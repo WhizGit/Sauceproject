@@ -107,7 +107,7 @@ public class TestVerifyTitle implements SauceOnDemandSessionIdProvider {
     @ConcurrentParameterized.Parameters
     public static LinkedList browsersStrings() {
         LinkedList browsers = new LinkedList();
-        browsers.add(new String[]{"Windows 7", "30", "firefox"});
+        browsers.add(new String[]{"Windows 8.1", "30", "firefox"});
       //  browsers.add(new String[]{"OSX 10.8", "6", "safari"});
         return browsers;
     }

@@ -1,4 +1,2 @@
-SauceOnDemandSessionID=70199519c7a24e829987dbbbc61fbd07 job-name=com.saucelabs.SampleSauceTest.amazon[0]
-SauceOnDemandSessionID=a4d9cd972e33432798f531ff380819fe job-name=com.saucelabs.SampleSauceTest.amazon[1]
-Job link: https://saucelabs.com/jobs/70199519c7a24e829987dbbbc61fbd07?auth=54be78a29fa836042213193e05153316
-Job link: https://saucelabs.com/jobs/a4d9cd972e33432798f531ff380819fe?auth=bebfeba505a87d24413beb20f47a838b
+SauceOnDemandSessionID=1200eb3b026e4aa0b6c5b5a59f8c1ce0 job-name=com.saucelabs.SampleSauceTest.amazon[0]
+Job link: https://saucelabs.com/jobs/1200eb3b026e4aa0b6c5b5a59f8c1ce0?auth=4d496f2fb35b9465dddc2a872d496189
