@@ -1,2 +1,1 @@
-SauceOnDemandSessionID=ebf5b492f551403fb11434ac685fa8fa job-name=com.saucelabs.TestVerifyTitle.Chartltyics[0]
-Job link: https://saucelabs.com/jobs/ebf5b492f551403fb11434ac685fa8fa?auth=218704c1c583b07492e691dd2631ffe0
+SauceOnDemandSessionID=fd0dc11c478a4df7a00c09ccbc477a10 job-name=com.saucelabs.TestVerifyTitle.Chartltyics[0]
