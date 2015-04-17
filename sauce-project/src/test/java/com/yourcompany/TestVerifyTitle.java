@@ -142,7 +142,7 @@ public class TestVerifyTitle implements SauceOnDemandSessionIdProvider {
      * @throws Exception
      */
     @Test
-    public void Chartltyics() throws Exception {
+    public void ChartltyicsGettitle() throws Exception {
         
 		    driver.get("http://dev.chartlytics.com");
     assertEquals("Chartlytics", driver.getTitle());

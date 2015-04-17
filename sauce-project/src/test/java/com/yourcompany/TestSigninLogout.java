@@ -49,7 +49,7 @@ import static org.junit.Assert.assertEquals;
  * @author Ross Rowe
  */
 @RunWith(ConcurrentParameterized.class)
-public class TestVerifyTitle implements SauceOnDemandSessionIdProvider {
+public class TestSigninLogout implements SauceOnDemandSessionIdProvider {
 
     /**
      * Constructs a {@link SauceOnDemandAuthentication} instance using the supplied user name/access key.  To use the authentication
@@ -93,7 +93,7 @@ public class TestVerifyTitle implements SauceOnDemandSessionIdProvider {
      * @param version
      * @param browser
      */
-    public TestVerifyTitle(String os, String version, String browser) {
+    public TestSigninLogout(String os, String version, String browser) {
         super();
         this.os = os;
         this.version = version;
@@ -142,7 +142,7 @@ public class TestVerifyTitle implements SauceOnDemandSessionIdProvider {
      * @throws Exception
      */
     @Test
-    public void Chartltyics() throws Exception {
+    public void SignIn() throws Exception {
         
 		       driver.get("http://dev.chartlytics.com");
     driver.manage().window().maximize();
