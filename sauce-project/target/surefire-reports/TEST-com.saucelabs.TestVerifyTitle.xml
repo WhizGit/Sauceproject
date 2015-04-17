@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite failures="0" time="35.005" errors="0" skipped="0" tests="2" name="com.saucelabs.TestVerifyTitle">
+<testsuite failures="0" time="32.392" errors="0" skipped="0" tests="2" name="com.saucelabs.TestVerifyTitle">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\java\jdk1.7.0_80\jre\bin"/>
@@ -61,6 +61,6 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase time="13.431" classname="com.saucelabs.TestVerifyTitle" name="Chartltyics[1]"/>
-  <testcase time="21.574" classname="com.saucelabs.TestVerifyTitle" name="Chartltyics[0]"/>
+  <testcase time="12.488" classname="com.saucelabs.TestVerifyTitle" name="Chartltyics[1]"/>
+  <testcase time="19.904" classname="com.saucelabs.TestVerifyTitle" name="Chartltyics[0]"/>
 </testsuite>
