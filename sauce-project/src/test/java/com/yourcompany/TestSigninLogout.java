@@ -152,18 +152,12 @@ public class TestSigninLogout implements SauceOnDemandSessionIdProvider {
     driver.findElement(By.name("password")).clear();
     driver.findElement(By.name("password")).sendKeys("1234abcd@00");
     driver.findElement(By.xpath("//button[@type='submit']")).click();
-    try {
       assertEquals("testing", driver.findElement(By.cssSelector(".user-info>a>span")).getText());
-    } catch (Error e) {
-      verificationErrors.append(e.toString());
-    }
     driver.findElement(By.cssSelector(".user-info>a>span")).click();
     driver.findElement(By.linkText("Logout")).click();
-    try {
+   
       assertEquals("Home", driver.findElement(By.linkText("Home")).getText());
-    } catch (Error e) {
-      verificationErrors.append(e.toString());
-    }
+    
    
     }
 

@@ -148,7 +148,25 @@ public class TestVerifyTitle implements SauceOnDemandSessionIdProvider {
     assertEquals("Chartlytics", driver.getTitle());
    
     }
-
+  @Test
+    public void SignIn() throws Exception {
+        
+		       driver.get("http://dev.chartlytics.com");
+    driver.manage().window().maximize();
+    driver.findElement(By.linkText("Log in")).click();
+    driver.findElement(By.name("username")).clear();
+    driver.findElement(By.name("username")).sendKeys("testingapptrial@gmail.com");
+    driver.findElement(By.name("password")).clear();
+    driver.findElement(By.name("password")).sendKeys("1234abcd@00");
+    driver.findElement(By.xpath("//button[@type='submit']")).click();
+      assertEquals("testing", driver.findElement(By.cssSelector(".user-info>a>span")).getText());
+    driver.findElement(By.cssSelector(".user-info>a>span")).click();
+    driver.findElement(By.linkText("Logout")).click();
+   
+      assertEquals("Home", driver.findElement(By.linkText("Home")).getText());
+    
+   
+    }
     /**
      * Closes the {@link WebDriver} session.
      *
