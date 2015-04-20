@@ -1,7 +1,4 @@
 package com.saucelabs;
-package org.apache.log4j;
-package org.apache.poi.xssf.usermodel;
-package org.apache.poi.xssf.usermodel;
 
 import com.saucelabs.common.SauceOnDemandAuthentication;
 import org.junit.After;
