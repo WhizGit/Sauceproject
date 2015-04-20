@@ -475,7 +475,7 @@ public class TestVerifyTitle implements SauceOnDemandSessionIdProvider {
 	  }
 	  return arrays;
   }
-  private static String cellToString(XSSFCell cell) {
+  public static String cellToString(XSSFCell cell) {
 		
 		Object result;
 		int type = cell.getCellType();
@@ -503,7 +503,7 @@ public class TestVerifyTitle implements SauceOnDemandSessionIdProvider {
         driver.quit();
     }
 	
-  private boolean isElementPresent(By by) {
+  public boolean isElementPresent(By by) {
     try {
       driver.findElement(by);
       return true;
@@ -512,7 +512,7 @@ public class TestVerifyTitle implements SauceOnDemandSessionIdProvider {
     }
   }
 
-  private boolean isAlertPresent() {
+  public boolean isAlertPresent() {
     try {
       driver.switchTo().alert();
       return true;
@@ -521,7 +521,7 @@ public class TestVerifyTitle implements SauceOnDemandSessionIdProvider {
     }
   }
 
-  private String closeAlertAndGetItsText() {
+  public String closeAlertAndGetItsText() {
     try {
       Alert alert = driver.switchTo().alert();
       String alertText = alert.getText();
@@ -536,8 +536,7 @@ public class TestVerifyTitle implements SauceOnDemandSessionIdProvider {
     }
   }
 
-    /**
-     *
+    /*
      * @return the value of the Sauce Job id.
      */
     @Override
