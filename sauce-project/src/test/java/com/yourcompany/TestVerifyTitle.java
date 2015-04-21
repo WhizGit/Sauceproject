@@ -1,5 +1,6 @@
 package com.saucelabs;
-
+package org.apache.poi
+;
 import com.saucelabs.common.SauceOnDemandAuthentication;
 import org.junit.After;
 import org.junit.Before;
