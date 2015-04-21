@@ -1,8 +1,5 @@
-package com.yourcompany;
 package com.saucelabs;
-package junit;
-package org.seleniumhq.selenium;
-package org.apache.poi;
+
 
 import com.saucelabs.common.SauceOnDemandAuthentication;
 import org.junit.After;
@@ -41,11 +38,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.text.DecimalFormat;
-import org.apache.log4j.PropertyConfigurator;
-import org.apache.poi.xssf.usermodel.XSSFCell;
-import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
 
 
 //-------------------------------------------------------------
@@ -157,8 +150,7 @@ public class TestVerifyTitle implements SauceOnDemandSessionIdProvider {
      * @throws Exception
      */
     @Test
-    public void testCreatePerformer() throws Exception {
-
+   public void testVerifyTitle() throws Exception {
     driver.get(baseUrl + "/signin");
     driver.findElement(By.name("username")).clear();
     driver.findElement(By.name("username")).sendKeys("testingapptrial@gmail.com");
@@ -271,8 +263,6 @@ public class TestVerifyTitle implements SauceOnDemandSessionIdProvider {
 			return result.toString();
 
 	}
-
-
     /**
      * Closes the {@link WebDriver} session.
      *

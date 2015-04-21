@@ -1,2 +1,2 @@
-SauceOnDemandSessionID=329dc5deac9f45d6b03f8c2f5becba24 job-name=com.saucelabs.TestSigninLogout.SignIn[0]
-Job link: https://saucelabs.com/jobs/329dc5deac9f45d6b03f8c2f5becba24?auth=96246e87bd3255ee21b73aa816ee2849
+SauceOnDemandSessionID=90e36428226f4cf2a5507e3e68528417 job-name=com.saucelabs.TestSigninLogout.SignIn[0]
+Job link: https://saucelabs.com/jobs/90e36428226f4cf2a5507e3e68528417?auth=b8801513e7024ca28fa699e84eceeef1
