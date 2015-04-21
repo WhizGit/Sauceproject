@@ -1,6 +1,6 @@
 package com.saucelabs;
-package org.apache.poi
-;
+import at.*;
+
 import com.saucelabs.common.SauceOnDemandAuthentication;
 import org.junit.After;
 import org.junit.Before;
@@ -24,7 +24,7 @@ import java.util.LinkedList;
 import static org.junit.Assert.assertEquals;
 import com.saucelabs.common.SauceOnDemandSessionIdProvider;
 import org.junit.Rule;
-//------------------------------------------------------------
+//------------------------
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
