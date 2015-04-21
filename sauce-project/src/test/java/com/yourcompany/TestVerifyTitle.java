@@ -29,7 +29,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 import static org.hamcrest.CoreMatchers.*;
-import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -39,7 +38,12 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.text.DecimalFormat;
 
-import org.apache.poi.*;
+//import org.apache.poi.poi.3/.11.*;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
 
 
 
@@ -185,7 +189,7 @@ public class TestVerifyTitle implements SauceOnDemandSessionIdProvider {
 		String Gen = datas [0][2];
 		String Grade = datas [0][3];
 		
-   
+     driver.findElement(By.xapth("//*[@id='header-logo']/i")).click;
     driver.findElement(By.cssSelector("a[title=\"Performers\"] > span")).click();
     driver.findElement(By.id("createPerformer")).click();
     driver.findElement(By.name("performerName")).clear();
