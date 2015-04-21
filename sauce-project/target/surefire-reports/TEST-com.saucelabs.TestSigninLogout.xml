@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite failures="1" time="43.128" errors="0" skipped="0" tests="1" name="com.saucelabs.TestSigninLogout">
+<testsuite failures="1" time="39.825" errors="0" skipped="0" tests="1" name="com.saucelabs.TestSigninLogout">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\java\jdk1.7.0_80\jre\bin"/>
@@ -61,7 +61,7 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase time="43.128" classname="com.saucelabs.TestSigninLogout" name="SignIn[0]">
+  <testcase time="39.825" classname="com.saucelabs.TestSigninLogout" name="SignIn[0]">
     <failure message="expected:&lt;[testing]&gt; but was:&lt;[]&gt;" type="org.junit.ComparisonFailure">org.junit.ComparisonFailure: expected:&lt;[testing]&gt; but was:&lt;[]&gt;
 	at org.junit.Assert.assertEquals(Assert.java:115)
 	at org.junit.Assert.assertEquals(Assert.java:144)
@@ -88,8 +88,8 @@
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
 	at java.lang.Thread.run(Thread.java:745)
 </failure>
-    <system-out>SauceOnDemandSessionID=f954f7fc55c14c56915d296f81855239 job-name=com.saucelabs.TestSigninLogout.SignIn[0]
-Job link: https://saucelabs.com/jobs/f954f7fc55c14c56915d296f81855239?auth=744446287ce8832521eabcb246df8368
+    <system-out>SauceOnDemandSessionID=79dcd7b33ce5452f8c7420940c0c9a94 job-name=com.saucelabs.TestSigninLogout.SignIn[0]
+Job link: https://saucelabs.com/jobs/79dcd7b33ce5452f8c7420940c0c9a94?auth=028ebfac2aba773d1c66a3447e02bacc
 </system-out>
   </testcase>
 </testsuite>

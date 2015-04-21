@@ -1,27 +1,13 @@
 -------------------------------------------------------------------------------
 Test set: com.saucelabs.TestVerifyTitle
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 19.268 sec <<< FAILURE!
-testVerifyTitle[0](com.saucelabs.TestVerifyTitle)  Time elapsed: 19.252 sec  <<< ERROR!
-org.openqa.selenium.WebDriverException: Component returned failure code: 0x804b0012 (NS_ERROR_UNKNOWN_PROTOCOL) [nsIWebNavigation.loadURI]
-Build info: version: '2.40.0', revision: 'fbe29a9', time: '2014-02-19 20:54:28'
-System info: host: 'WIN-R1JBAO1CNPS', ip: '172.20.17.145', os.name: 'Windows Server 2008 R2', os.arch: 'x86', os.version: '6.1', java.version: '1.7.0_60'
-Driver info: driver.version: unknown
-Command duration or timeout: 758 milliseconds
-Build info: version: '2.43.0', revision: 'accb3003b9fb8f7cae30f9669b4c594a065396a6', time: '2014-09-09 22:22:51'
-System info: host: 'varun-PC', ip: '192.168.1.103', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.7.0_80-ea'
-Session ID: 8551cc151a4a4f16ba2cbd6a40b4424f
-Driver info: org.openqa.selenium.remote.RemoteWebDriver
-Capabilities [{platform=XP, acceptSslCerts=true, javascriptEnabled=true, hasMetadata=true, browserName=firefox, rotatable=false, locationContextEnabled=true, webdriver.remote.sessionid=8551cc151a4a4f16ba2cbd6a40b4424f, version=30.0, cssSelectorsEnabled=true, databaseEnabled=true, handlesAlerts=true, browserConnectionEnabled=true, nativeEvents=false, webStorageEnabled=true, applicationCacheEnabled=true, takesScreenshot=true}]
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
-	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
-	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:204)
-	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:156)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:599)
-	at org.openqa.selenium.remote.RemoteWebDriver.get(RemoteWebDriver.java:304)
-	at com.saucelabs.TestVerifyTitle.testVerifyTitle(TestVerifyTitle.java:160)
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 14.478 sec <<< FAILURE!
+testVerifyTitle[0](com.saucelabs.TestVerifyTitle)  Time elapsed: 14.468 sec  <<< ERROR!
+java.io.FileNotFoundException: dataexcel.xlsx (The system cannot find the file specified)
+	at java.io.FileInputStream.open(Native Method)
+	at java.io.FileInputStream.<init>(FileInputStream.java:146)
+	at com.saucelabs.TestVerifyTitle.GetValue(TestVerifyTitle.java:176)
+	at com.saucelabs.TestVerifyTitle.testVerifyTitle(TestVerifyTitle.java:161)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -43,11 +29,4 @@ Capabilities [{platform=XP, acceptSslCerts=true, javascriptEnabled=true, hasMeta
 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
 	at java.lang.Thread.run(Thread.java:745)
-Caused by: org.openqa.selenium.remote.ErrorHandler$UnknownServerException: Component returned failure code: 0x804b0012 (NS_ERROR_UNKNOWN_PROTOCOL) [nsIWebNavigation.loadURI]
-Build info: version: '2.40.0', revision: 'fbe29a9', time: '2014-02-19 20:54:28'
-System info: host: 'WIN-R1JBAO1CNPS', ip: '172.20.17.145', os.name: 'Windows Server 2008 R2', os.arch: 'x86', os.version: '6.1', java.version: '1.7.0_60'
-Driver info: driver.version: unknown
-Build info: version: '2.43.0', revision: 'accb3003b9fb8f7cae30f9669b4c594a065396a6', time: '2014-09-09 22:22:51'
-System info: host: 'varun-PC', ip: '192.168.1.103', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.7.0_80-ea'
-Driver info: driver.version: unknown
 

@@ -64,6 +64,7 @@ public class TestVerifyTitle implements SauceOnDemandSessionIdProvider {
   private boolean acceptNextAlert = true;
   private StringBuffer verificationErrors = new StringBuffer();
   public String Tar, Mtype, Mrec, Aggtype, Email, Password;
+  
 
     /**
      * Constructs a {@link SauceOnDemandAuthentication} instance using the supplied user name/access key.  To use the authentication
@@ -157,99 +158,36 @@ public class TestVerifyTitle implements SauceOnDemandSessionIdProvider {
      */
     @Test
    public void testVerifyTitle() throws Exception {
-    driver.get(baseUrl + "http://dev.chartlytics.com");
+  String[][] getit = GetValue("dataexcel.xlsx","signup",2);
+	baseUrl = getit[0][0]; 
+	 Email= getit[0][2];  
+	 Password=getit[0][3];
+
+    driver.get("http://"+ baseUrl + "/signin");
     driver.findElement(By.name("username")).clear();
-    driver.findElement(By.name("username")).sendKeys("testingapptrial@gmail.com");
+    driver.findElement(By.name("username")).sendKeys(Email);
     driver.findElement(By.name("password")).clear();
-    driver.findElement(By.name("password")).sendKeys("1234abcd@00");
+    driver.findElement(By.name("password")).sendKeys(Password);
 
     driver.findElement(By.xpath("//button[@type='submit']")).click();
-    
-    File Defaultvaluepinpoitsheet = new File("Performer_creator.xlsx");
-	  FileInputStream fis_default = new FileInputStream(Defaultvaluepinpoitsheet);
-	  @SuppressWarnings("resource")
-	XSSFWorkbook wb_def = new XSSFWorkbook(fis_default);
-	  XSSFSheet ws_def = wb_def.getSheet("Input");
-	  int colNums = ws_def.getRow(0).getLastCellNum();
-	  int rowNums = ws_def.getLastRowNum();
-		String[][] datas = new String[1][colNums];
-	for(int c=1;c<=rowNums;c++)
-	{
-		for (int i=0;i<colNums;i++)
-		{
-			XSSFRow rows = ws_def.getRow(c);
-			XSSFCell cell = rows.getCell(i);
-			datas[0][i]= cellToString(cell);	
-		}
-		
-		
-		String PerName = datas [0][0];
-		String age = datas [0][1];
-		
-		String Gen = datas [0][2];
-		String Grade = datas [0][3];
-		
-     driver.findElement(By.xpath("html/body/nav/div/div/a/i")).click();
-    driver.findElement(By.cssSelector("a[title=\"Performers\"] > span")).click();
-    driver.findElement(By.id("createPerformer")).click();
-    driver.findElement(By.name("performerName")).clear();
-    driver.findElement(By.name("performerName")).sendKeys(PerName);
-    driver.findElement(By.name("age")).clear();
-    driver.findElement(By.name("age")).sendKeys(""+age);
-    if(Gen.equals("M"))
-    {
-    driver.findElement(By.id("male")).click();
-    }else
-    {
-    	  driver.findElement(By.id("female")).click();
-    }
-    driver.findElement(By.name("grade")).clear();
-    driver.findElement(By.name("grade")).sendKeys(Grade);
-    driver.findElement(By.cssSelector("p.pull-right > button.btn.btn-primary")).click();
-  //  driver.findElement(By.linkText("Last")).click();
-    String p =driver.findElement(By.xpath("//*[@id='results-paging']/div/div[1]/button[1]")).getText();
-    String item =driver.findElement(By.xpath("//*[@id='results-paging']/div/div[1]/button[2]")).getText();
-   // System.out.println(p);
-    //System.out.println(item);
-    String[] temp, temps;
-    String delimiter = " ";
-    String del = " ";
-	temp = p.split(delimiter);
-	int page =Integer.parseInt(temp[3]);
-	temps= item.split(del);
-
-	
-	int items =Integer.parseInt(temps[5]);
-	
-	if(page==1 || items<10)
-	{
-	
-    try {
-    	Thread.sleep(10000);
-    	driver.findElement(By.xpath("//*[@id='app-main']/div[2]/div[1]/div/div[4]/label[4]")).click();
-    	assertEquals(PerName , driver.findElement(By.xpath("//*[@id='grid-view']/div[1]/a/div/div[2]/div[1]/h2")).getText());
-    	assertEquals("Age: "+age+"   "+"Grade: "+Grade , driver.findElement(By.xpath("//*[@id='grid-view']/div[1]/a/div/div[2]/p")).getText());
-    	System.out.println("successfully created");
-    	} catch (Error e) {
-    		verificationErrors.append(e.toString());
-    	}
-	}// end of if
-	else
-	{
-		int pag = page-1;
-		driver.findElement(By.xpath("//*[@id='results-paging']/div/div[1]/a[3]")).click();
-		driver.findElement(By.xpath("//*[@id='app-main']/div[2]/div[1]/div/div[4]/label[4]")).click();
-		  try {
-			  Thread.sleep(10000);
-		      assertEquals(PerName , driver.findElement(By.xpath("//*[@id='grid-view']/div[1]/a/div/div[2]/div[1]/h2")).getText());
-		      assertEquals("Age: "+age+"   "+"Grade: "+Grade, driver.findElement(By.xpath("//*[@id='grid-view']/div[1]/a/div/div[2]/p")).getText());
-		      System.out.println("successfully created Performer " + PerName );
-		    } catch (Error e) {
-		      verificationErrors.append(e.toString());
-		    }
-	} //end of else
-	}//end of for loop
   }// end of test
+  private String[][] GetValue(String Pathfile, String sheetName, int startrow) throws IOException{
+	  File excel= new File(Pathfile);
+	  FileInputStream fis = new FileInputStream(excel);
+	  @SuppressWarnings("resource")
+	XSSFWorkbook wb = new XSSFWorkbook(fis);
+	  XSSFSheet ws = wb.getSheet(sheetName);
+	  int colNum = ws.getRow(startrow).getLastCellNum();
+	  String [][] arrays = new String [1][colNum];
+	  for(int i=0;i<colNum;i++){
+		  XSSFRow row= ws.getRow(startrow);
+		  XSSFCell cell = row.getCell(i);
+		  arrays[0][i] = cellToString(cell);
+		 // System.out.println(arrays[0][i]);
+	  }
+	  return arrays;
+  }
+
   private String cellToString(XSSFCell cell) {
 			Object result;
 			int type = cell.getCellType();
