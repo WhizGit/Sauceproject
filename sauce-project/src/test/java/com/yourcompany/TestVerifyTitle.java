@@ -1,4 +1,4 @@
-package com.yourcompany
+package com.yourcompany;
 //package com.saucelabs;
 
 import com.saucelabs.common.SauceOnDemandAuthentication;
