@@ -158,7 +158,7 @@ public class TestVerifyTitle implements SauceOnDemandSessionIdProvider {
      */
     @Test
    public void testVerifyTitle() throws Exception {
-  String[][] getit = GetValue("dataexcel.xlsx","signup",2);
+  String[][] getit = GetValue("./src/test/java/com/yourcompany/dataexcel.xlsx","signup",2);
 	baseUrl = getit[0][0]; 
 	 Email= getit[0][2];  
 	 Password=getit[0][3];
