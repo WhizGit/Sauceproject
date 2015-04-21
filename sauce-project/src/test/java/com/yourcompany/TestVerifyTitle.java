@@ -189,7 +189,7 @@ public class TestVerifyTitle implements SauceOnDemandSessionIdProvider {
 		String Gen = datas [0][2];
 		String Grade = datas [0][3];
 		
-     driver.findElement(By.xapth("//*[@id='header-logo']/i")).click;
+     driver.findElement(By.xpath("html/body/nav/div/div/a/i")).click();
     driver.findElement(By.cssSelector("a[title=\"Performers\"] > span")).click();
     driver.findElement(By.id("createPerformer")).click();
     driver.findElement(By.name("performerName")).clear();
