@@ -38,7 +38,10 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.text.DecimalFormat;
-
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 
 //-------------------------------------------------------------
@@ -151,7 +154,7 @@ public class TestVerifyTitle implements SauceOnDemandSessionIdProvider {
      */
     @Test
    public void testVerifyTitle() throws Exception {
-    driver.get(baseUrl + "/signin");
+    driver.get(baseUrl + "http://dev.chartlytics.com");
     driver.findElement(By.name("username")).clear();
     driver.findElement(By.name("username")).sendKeys("testingapptrial@gmail.com");
     driver.findElement(By.name("password")).clear();
