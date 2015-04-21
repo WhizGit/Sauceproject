@@ -1,6 +1,8 @@
 package com.yourcompany;
+package com.saucelabs;
+package junit;
+package org.seleniumhq.selenium;
 package org.apache.poi;
-//package com.saucelabs;
 
 import com.saucelabs.common.SauceOnDemandAuthentication;
 import org.junit.After;
