@@ -1,4 +1,5 @@
 package com.yourcompany;
+package org.apache.poi;
 //package com.saucelabs;
 
 import com.saucelabs.common.SauceOnDemandAuthentication;
