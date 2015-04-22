@@ -61,7 +61,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 	//-----------------------------------------------------------------------------------------
 	
 	//-----------------------------------------------------------------------------------------
-
+	@FixMethodOrder(MethodSorters.NAME_ASCENDING)
     public TestVerifyTitle(String os, String version, String browser) {
         super();
         this.os = os;
@@ -92,12 +92,67 @@ import org.openqa.selenium.remote.RemoteWebDriver;
         this.sessionId = (((RemoteWebDriver) driver).getSessionId()).toString();
 	String[][] getit = GetValue(Pathofexcel,"signup",2);
 	baseUrl = getit[0][0]; 
+	Fullname = getit[0][1]; 
 	Email= getit[0][2];  
 	Password=getit[0][3];
+	Orgname=getit[0][4];
     }
-
+	 @Test
+  public void testA_CreateAnOrganisation() throws Exception {
+//--------------------------------------------------Create An Organization---------------------------------------------------------------//	  
+    driver.get("http://"+baseUrl + "/");
+    driver.findElement(By.name("fullname")).clear();
+    driver.findElement(By.name("fullname")).sendKeys(Fullname);
+    driver.findElement(By.name("email")).clear();
+    driver.findElement(By.name("email")).sendKeys(Email);
+    driver.findElement(By.name("password")).clear();
+    driver.findElement(By.name("password")).sendKeys(Password);
+    driver.findElement(By.name("orgName")).clear();
+    driver.findElement(By.name("orgName")).sendKeys(Orgname);
+    driver.findElement(By.xpath("//button[@type='submit']")).click(); 
+    String msg = driver.findElement(By.xpath("//form/div/div")).getText();
+    System.out.println("//@@##--------------Email Verification Message----------------##@@// ");
+    System.out.println(msg);
+      
+//------------------------------------------Email Verification---------------------------------------------------------------------------//
+    driver.get("https://accounts.google.com/ServiceLogin?sacu=1&scc=1&continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&hl=en&service=mail");
+    driver.findElement(By.id("Email")).clear();
+    driver.findElement(By.id("Email")).sendKeys("testingapptrial@gmail.com");
+    driver.findElement(By.id("Passwd")).clear();
+    driver.findElement(By.id("Passwd")).sendKeys("1234abcd@00");
+    driver.findElement(By.id("signIn")).click();
+    Thread.sleep(10000);
+    driver.findElement(By.partialLinkText("Inbox")).click();
+    Thread.sleep(5000);
+    driver.findElement(By.xpath("//div [@class='y6']/span[contains(.,'Chartlytics: Confirm your email address')]")).click();
+    driver.findElement(By.partialLinkText("http://dev.chartlytics.com/activate/")).click();
+    Thread.sleep(5000);
+    String emailver = driver.findElement(By.xpath("//form/div/div")).getText();
+    System.out.println("//@@##--------------After Verifying Email----------------##@@// ");
+    System.out.println(emailver);
+    
+//--------------------------------------------------------------------SignIn In Created Orgazation-------------------------------------------------------------------//    
+    for(String winHandle : driver.getWindowHandles()){
+    driver.switchTo().window(winHandle);
+    }
+    driver.findElement(By.name("username")).clear();
+    driver.findElement(By.name("username")).sendKeys(Email);
+    driver.findElement(By.name("password")).clear();
+    driver.findElement(By.name("password")).sendKeys(Password);
+    driver.findElement(By.xpath("//button[@type='submit']")).click();
+    Thread.sleep(5000);
+    driver.findElement(By.xpath("//button[@type='submit']")).click();
+    Thread.sleep(5000);
+    driver.findElement(By.xpath("//a[contains(@href, '/')]")).click();
+    Thread.sleep(5000);
+    String db = driver.findElement(By.xpath("//div[@id='app-main']/div/div/div")).getText();
+    assertEquals("Dashboard", db);
+    System.out.println("//--------------------After the reset password & signin it open--------------------//");
+    System.out.println(db);
+  }
+  
     @Test // Test 1 Create pinpoint
-    public void test1createpinpoint() throws Exception {
+    public void testB_createpinpoint() throws Exception {
     driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     driver.get("http://"+baseUrl + "/");
     driver.findElement(By.linkText("Log in")).click();
@@ -397,7 +452,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
   } //for loop end
   } // end of test
    @Test // Test 2 Create Performer
-   public void test2createperformer() throws Exception {
+   public void testC_createperformer() throws Exception {
      driver.get("http://"+ baseUrl + "/signin");
     driver.findElement(By.name("username")).clear();
     driver.findElement(By.name("username")).sendKeys(Email);
@@ -477,7 +532,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
   }// end of test
   
   @Test // Test 3 Delete performer
-   public void test3deleteperformer() throws Exception {
+   public void testD_deleteperformer() throws Exception {
 	 String[][] Per = GetValue(Pathofexcel,"performer",8);
 	 String PerName = Per[0][0];
 	 String Age = Per[0][1];
@@ -518,7 +573,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
   
   }
   @Test  // Test 4 Performer sort
-   public void test4performersort() throws Exception {
+   public void testE_performersort() throws Exception {
     driver.get("http://"+baseUrl + "/signin");
     driver.findElement(By.name("username")).clear();
     driver.findElement(By.name("username")).sendKeys(Email);
@@ -680,7 +735,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 	}// end of for loop
  }// end of test 
    @Test // Test 5 Archive Performer
-  public void test5archiveperformer() throws Exception {
+  public void testF_archiveperformer() throws Exception {
     driver.get("http://"+ baseUrl + "/signin");
     driver.manage().window().maximize();
     driver.findElement(By.name("username")).clear();
