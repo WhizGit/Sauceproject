@@ -770,6 +770,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
     
 //-------------------------------------------------VERIFY ARCHIVED PERFORMER--------------------------------------------------------------------//    
     driver.findElement(By.xpath("//*[@id='app-sidebar']/ul/li[4]/a")).click();
+	Thread.sleep(5000);
     driver.findElement(By.id("fifty")).click();
     driver.findElement(By.xpath("//*[@id='app-main']/div[2]/div[1]/div/div[4]/label[4]")).click();
     driver.findElement(By.id("showArchived")).click();
