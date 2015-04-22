@@ -108,7 +108,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
     driver.findElement(By.cssSelector("a[title=\"Pinpoints+\"] > span")).click();
      for(int c=5; c<=8; c++) // we can start test case from testcase 1
 		{
-	String[][] data = GetValue("./src/dataexcel.xlsx","ReviewSummary",c);
+	String[][] data = GetValue("./src/test/java/com/yourcompany/dataexcel.xlsx","ReviewSummary",c);
 	String Acc = data [0][1];
 	String Dec = data [0][2];
 	String Frq = data [0][3];
