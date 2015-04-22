@@ -56,7 +56,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
     private String sessionId;
     private WebDriver driver;
 
-    public Create_pinpoint(String os, String version, String browser) {
+    public Create_Pinpoint(String os, String version, String browser) {
         super();
         this.os = os;
         this.version = version;
