@@ -131,7 +131,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 	//--------------------- read data for set default using excel sheet-------
 	int k=0;
 	k = c-1;
-	String[][] datas = GetValue(".src/test/java/com/yourcompany/dataexcel.xlsx","Pinpoint",k);	
+	String[][] datas = GetValue("./src/test/java/com/yourcompany/dataexcel.xlsx","Pinpoint",k);	
 		String SIn = datas [0][1];
 		String Pout = datas [0][2];
 		String Action = datas [0][3];
@@ -143,7 +143,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 		String ADMi = datas [0][9];
 		String ADMx = datas [0][10];
 		String Daim  = datas [0][11];
-	System.out.println("Create pinpoint:"+ Action);
+
 		
     //click on the Create Pinpoint
     driver.findElement(By.id("createPinpoint")).click();
