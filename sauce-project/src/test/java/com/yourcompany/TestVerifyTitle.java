@@ -57,10 +57,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
     private String sessionId;
     private WebDriver driver;
 	//-----------------------------------------------------------------------------------------
-	String[][] getit = GetValue("./src/test/java/com/yourcompany/dataexcel.xlsx","signup",2);
-	baseUrl = getit[0][0]; 
-	Email= getit[0][2];  
-	Password=getit[0][3];
+	
 	//-----------------------------------------------------------------------------------------
 
     public TestVerifyTitle(String os, String version, String browser) {
@@ -91,6 +88,10 @@ import org.openqa.selenium.remote.RemoteWebDriver;
                 new URL("http://" + authentication.getUsername() + ":" + authentication.getAccessKey() + "@ondemand.saucelabs.com:80/wd/hub"),
                 capabilities);
         this.sessionId = (((RemoteWebDriver) driver).getSessionId()).toString();
+	String[][] getit = GetValue("./src/test/java/com/yourcompany/dataexcel.xlsx","signup",2);
+	baseUrl = getit[0][0]; 
+	Email= getit[0][2];  
+	Password=getit[0][3];
     }
 
     @Test
