@@ -516,7 +516,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
     Thread.sleep(10000);
     driver.findElement(By.xpath("(//button[@type='submit'])[2]")).click();
   
-  
+  }
   @Test  // Test 4 Performer sort
    public void test4performersort() throws Exception {
     driver.get("http://"+baseUrl + "/signin");
