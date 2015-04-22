@@ -48,7 +48,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 	private boolean acceptNextAlert = true;
 	private StringBuffer verificationErrors = new StringBuffer();
 	private String Tar, Mtype, Mrec, Aggtype, Email, Password;
-	private String Pathogexcel ="./src/test/java/com/yourcompany/dataexcel.xlsx"; // path of your excel file
+	private String Pathofexcel ="./src/test/java/com/yourcompany/dataexcel.xlsx"; // path of your excel file
     public SauceOnDemandAuthentication authentication = new SauceOnDemandAuthentication("ervarunvardhan", "dc9703ef-ad60-4c15-9caa-1279e5171c26");
 
     @Rule
@@ -85,12 +85,12 @@ import org.openqa.selenium.remote.RemoteWebDriver;
             capabilities.setCapability(CapabilityType.VERSION, version);
         }
         capabilities.setCapability(CapabilityType.PLATFORM, os);
-        capabilities.setCapability("name", "Chartlytics Sample Test");
+        capabilities.setCapability("name", "Chartlytics Test Suit");
         this.driver = new RemoteWebDriver(
                 new URL("http://" + authentication.getUsername() + ":" + authentication.getAccessKey() + "@ondemand.saucelabs.com:80/wd/hub"),
                 capabilities);
         this.sessionId = (((RemoteWebDriver) driver).getSessionId()).toString();
-	String[][] getit = GetValue(Pathogexcel,"signup",2);
+	String[][] getit = GetValue(Pathofexcel,"signup",2);
 	baseUrl = getit[0][0]; 
 	Email= getit[0][2];  
 	Password=getit[0][3];
@@ -110,7 +110,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
     driver.findElement(By.cssSelector("a[title=\"Pinpoints+\"] > span")).click();
      for(int c=5; c<=8; c++) // we can start test case from testcase 1
 		{
-	String[][] data = GetValue(Pathogexcel,"ReviewSummary",c);
+	String[][] data = GetValue(Pathofexcel,"ReviewSummary",c);
 	String Acc = data [0][1];
 	String Dec = data [0][2];
 	String Frq = data [0][3];
@@ -133,7 +133,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 	//--------------------- read data for set default using excel sheet-------
 	int k=0;
 	k = c-1;
-	String[][] datas = GetValue(Pathogexcel,"Pinpoint",k);	
+	String[][] datas = GetValue(Pathofexcel,"Pinpoint",k);	
 		String SIn = datas [0][1];
 		String Pout = datas [0][2];
 		String Action = datas [0][3];
@@ -407,7 +407,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
     driver.findElement(By.xpath("//button[@type='submit']")).click();
     
     for(int i=2; i<=7;i++){
-    String[][] getits = GetValue(Pathogexcel,"performer",i);
+    String[][] getits = GetValue(Pathofexcel,"performer",i);
 		String PerName = getits [0][0];
 		String age = getits [0][1];
 		String Gen = getits [0][2];
@@ -478,7 +478,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
   
   @Test // Test 3 Delete performer
    public void test3deleteperformer() throws Exception {
-	 String[][] Per = GetValue(Pathogexcel,"performer",8);
+	 String[][] Per = GetValue(Pathofexcel,"performer",8);
 	 String PerName = Per[0][0];
 	 String Age = Per[0][1];
 	 String Gen = Per[0][2];
@@ -537,7 +537,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
     List<String> actual= new ArrayList<String>();
     String[] arr = new String[items];
   for(int y=14;y<=17;y++){
- 		 String[][] data = GetValue(Pathogexcel,"performer",y);
+ 		 String[][] data = GetValue(Pathofexcel,"performer",y);
  		 
  		System.out.println("Input from Orgdata sheet(Perfomer_sort) : ");
  		String Arc = data [0][0];
