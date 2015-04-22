@@ -55,7 +55,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  * @author Ross Rowe
  */
 @RunWith(ConcurrentParameterized.class)
-public class TestVerifyTitle implements SauceOnDemandSessionIdProvider {
+public class TestVerifyTitle_1 implements SauceOnDemandSessionIdProvider {
 
   public String baseUrl;
   private boolean acceptNextAlert = true;
@@ -105,7 +105,7 @@ public class TestVerifyTitle implements SauceOnDemandSessionIdProvider {
      * @param version
      * @param browser
      */
-    public TestVerifyTitle(String os, String version, String browser) {
+    public TestVerifyTitle_1(String os, String version, String browser) {
         super();
         this.os = os;
         this.version = version;
