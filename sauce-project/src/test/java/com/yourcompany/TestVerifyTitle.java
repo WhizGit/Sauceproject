@@ -393,6 +393,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 	 //   driver.quit();
   } //for loop end
   } // end of test
+  
 	 private String[][] GetValue(String Pathfile, String sheetName, int startrow) throws IOException{
 	  File excel= new File(Pathfile);
 	  FileInputStream fis = new FileInputStream(excel);
@@ -458,6 +459,17 @@ import org.openqa.selenium.remote.RemoteWebDriver;
     } finally {
       acceptNextAlert = true;
     }
+  }
+    @Test
+   public void test2createpinpoint() throws Exception {
+
+    driver.get("http://"+ baseUrl + "/signin");
+    driver.findElement(By.name("username")).clear();
+    driver.findElement(By.name("username")).sendKeys(Email);
+    driver.findElement(By.name("password")).clear();
+    driver.findElement(By.name("password")).sendKeys(Password);
+
+    driver.findElement(By.xpath("//button[@type='submit']")).click();
   }
 
     @After
