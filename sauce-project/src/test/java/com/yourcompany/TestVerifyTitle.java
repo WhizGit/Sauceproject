@@ -42,7 +42,7 @@ import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 //-------------------------------------------------------
-//@RunWith(ConcurrentParameterized.class)
+@RunWith(ConcurrentParameterized.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 	public class TestVerifyTitle implements SauceOnDemandSessionIdProvider {
 	
@@ -51,7 +51,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 	private StringBuffer verificationErrors = new StringBuffer();
 	private String Tar, Mtype, Mrec, Aggtype, Email,Fullname,Orgname, Password;
 	private String Pathofexcel ="./src/test/java/com/yourcompany/dataexcel.xlsx"; // path of your excel file
-    public SauceOnDemandAuthentication authentication = new SauceOnDemandAuthentication("ervarunvardhan", "dc9703ef-ad60-4c15-9caa-1279e5171c26");
+    public SauceOnDemandAuthentication authentication = new SauceOnDemandAuthentication("vardhanvarun", "9efa0336-55b5-4e46-9802-ca8f825a55c6");
 
     @Rule
     public SauceOnDemandTestWatcher resultReportingTestWatcher = new SauceOnDemandTestWatcher(this, authentication);
