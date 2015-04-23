@@ -98,6 +98,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 	Email= getit[0][2];  
 	Password=getit[0][3];
 	Orgname=getit[0][4];
+	 driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     }
 	 @Test
   public void testA_CreateAnOrganisation() throws Exception {
