@@ -56,7 +56,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  * @author Ross Rowe
  */
 @RunWith(ConcurrentParameterized.class)
-public class TestCreatepin_2 implements SauceOnDemandSessionIdProvider {
+public class TestSuit_3 implements SauceOnDemandSessionIdProvider {
 
   public String baseUrl;
   private boolean acceptNextAlert = true;
@@ -106,7 +106,7 @@ public class TestCreatepin_2 implements SauceOnDemandSessionIdProvider {
      * @param version
      * @param browser
      */
-    public TestCreatepin_2(String os, String version, String browser) {
+    public TestSuit_3(String os, String version, String browser) {
         super();
         this.os = os;
         this.version = version;

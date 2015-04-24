@@ -44,7 +44,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 //-------------------------------------------------------
 @RunWith(ConcurrentParameterized.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class TestVerifyTitle implements SauceOnDemandSessionIdProvider {
+public class TestSuit_1 implements SauceOnDemandSessionIdProvider {
 	
 	private String baseUrl;
 	private boolean acceptNextAlert = true;
@@ -64,7 +64,7 @@ public class TestVerifyTitle implements SauceOnDemandSessionIdProvider {
 	
 	//-----------------------------------------------------------------------------------------
 	
-    public TestVerifyTitle(String os, String version, String browser) {
+    public TestSuit_1(String os, String version, String browser) {
         super();
         this.os = os;
         this.version = version;
