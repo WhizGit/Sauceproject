@@ -147,6 +147,13 @@ public class TestSuit_2 implements SauceOnDemandSessionIdProvider {
                 new URL("http://" + authentication.getUsername() + ":" + authentication.getAccessKey() + "@ondemand.saucelabs.com:80/wd/hub"),
                 capabilities);
         this.sessionId = (((RemoteWebDriver) driver).getSessionId()).toString();
+		String[][] getit = GetValue(Pathofexcel,"signup",2);
+	baseUrl = getit[0][0]; 
+	Fullname = getit[0][1]; 
+	Email= getit[0][2];  
+	Password=getit[0][3];
+	Orgname=getit[0][4];
+	driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
     }
 
