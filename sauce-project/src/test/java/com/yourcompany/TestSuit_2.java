@@ -142,7 +142,7 @@ public class TestSuit_2 implements SauceOnDemandSessionIdProvider {
             capabilities.setCapability(CapabilityType.VERSION, version);
         }
         capabilities.setCapability(CapabilityType.PLATFORM, os);
-        capabilities.setCapability("name", "Chartlytics Signup Test");
+        capabilities.setCapability("name", "Chartlytics TestSuit_2");
         this.driver = new RemoteWebDriver(
                 new URL("http://" + authentication.getUsername() + ":" + authentication.getAccessKey() + "@ondemand.saucelabs.com:80/wd/hub"),
                 capabilities);

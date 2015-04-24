@@ -87,7 +87,7 @@ public class TestSuit_1 implements SauceOnDemandSessionIdProvider {
             capabilities.setCapability(CapabilityType.VERSION, version);
         }
         capabilities.setCapability(CapabilityType.PLATFORM, os);
-        capabilities.setCapability("name", "Chartlytics Test Suit");
+        capabilities.setCapability("name", "Chartlytics TestSuit_1");
         this.driver = new RemoteWebDriver(
                 new URL("http://" + authentication.getUsername() + ":" + authentication.getAccessKey() + "@ondemand.saucelabs.com:80/wd/hub"),
                 capabilities);
@@ -102,7 +102,7 @@ public class TestSuit_1 implements SauceOnDemandSessionIdProvider {
     }
 	@Ignore
 	@Test
-	public void testA_CreateAnOrganisation() throws Exception {
+	public void testsuit1_CreateAnOrganisation() throws Exception {
 //--------------------------------------------------Create An Organization---------------------------------------------------------------//	  
     driver.get("http://"+baseUrl + "/");
     driver.findElement(By.name("fullname")).clear();
