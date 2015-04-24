@@ -61,7 +61,7 @@ public class TestVerifyTitle_1 implements SauceOnDemandSessionIdProvider {
   private boolean acceptNextAlert = true;
   private StringBuffer verificationErrors = new StringBuffer();
   public String Tar, Mtype, Mrec, Aggtype, Email, Password;
-  
+  private String Pathofexcel ="./src/test/java/com/yourcompany/dataexcel.xlsx"; // path of your excel file
 
     /**
      * Constructs a {@link SauceOnDemandAuthentication} instance using the supplied user name/access key.  To use the authentication
