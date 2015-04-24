@@ -153,7 +153,7 @@ public class TestSuit_2 implements SauceOnDemandSessionIdProvider {
 	Email= getit[0][2];  
 	Password=getit[0][3];
 	Orgname=getit[0][4];
-	driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+	driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
 
     }
 
