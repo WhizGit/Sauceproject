@@ -1,2 +1,0 @@
-SauceOnDemandSessionID=1200eb3b026e4aa0b6c5b5a59f8c1ce0 job-name=com.saucelabs.SampleSauceTest.amazon[0]
-Job link: https://saucelabs.com/jobs/1200eb3b026e4aa0b6c5b5a59f8c1ce0?auth=4d496f2fb35b9465dddc2a872d496189
