@@ -20,6 +20,7 @@ import org.junit.*;
 import static org.junit.Assert.*;
 import org.openqa.selenium.*;
 import java.net.URL;
+import java.util.*;
 import java.util.LinkedList;
 import static org.junit.Assert.assertEquals;
 import com.saucelabs.common.SauceOnDemandSessionIdProvider;
