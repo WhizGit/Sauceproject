@@ -1,16 +1,2 @@
-SauceOnDemandSessionID=f319e7c05e494e28a2e0960cdeb07e96 job-name=com.saucelabs.TestVerifyTitle.testF_archiveperformer[0]
-SauceOnDemandSessionID=ead5ef19a51547b081a2ab122009f0f9 job-name=com.saucelabs.TestVerifyTitle.testA_CreateAnOrganisation[0]
-Job link: https://saucelabs.com/jobs/f319e7c05e494e28a2e0960cdeb07e96?auth=804fc8b9059af8d7a9d2a506240e2097
-Job link: https://saucelabs.com/jobs/ead5ef19a51547b081a2ab122009f0f9?auth=8123e8bf9a16df24c1d7c2e277b0e7cd
-SauceOnDemandSessionID=d146412387d94b9bb6151a69e1d97e3d job-name=com.saucelabs.TestVerifyTitle.testD_deleteperformer[0]
-Job link: https://saucelabs.com/jobs/d146412387d94b9bb6151a69e1d97e3d?auth=f480d3efdaa090996a578d90cfc72f0d
-Create pinpoint:Input from Orgdata sheet(Perfomer_sort) : 
-NNYYNNN10[performer1]
-Input from Orgdata sheet(Perfomer_sort) : 
-NYNYNNN10Input from Orgdata sheet(Perfomer_sort) : 
-NNYNYNN10[performer1]
-Input from Orgdata sheet(Perfomer_sort) : 
-NYNNYNN10other loop
-SauceOnDemandSessionID=336cb03026e74421adfefa4dc87b71b4 job-name=com.saucelabs.TestVerifyTitle.testE_performersort[0]
-Create pinpoint:SauceOnDemandSessionID=8a33955006c84f9fbf19f425bfa46e8e job-name=com.saucelabs.TestVerifyTitle.testB_createpinpoint[0]
-Job link: https://saucelabs.com/jobs/8a33955006c84f9fbf19f425bfa46e8e?auth=27fd1c6a1b0038c0d1846578034fe593
+SauceOnDemandSessionID=7dfbeaad71d84979b0f7a8e9335f56ec job-name=com.saucelabs.TestVerifyTitle.testA_CreateAnOrganisation[0]
+Job link: https://saucelabs.com/jobs/7dfbeaad71d84979b0f7a8e9335f56ec?auth=ba61f4b0e6b446ecb08285df8bdd3713
