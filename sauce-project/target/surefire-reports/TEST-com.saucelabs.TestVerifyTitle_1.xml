@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite failures="0" time="8.47" errors="2" skipped="0" tests="2" name="com.saucelabs.TestVerifyTitle_1">
+<testsuite failures="0" time="2.449" errors="2" skipped="0" tests="2" name="com.saucelabs.TestVerifyTitle_1">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\java\jdk1.7.0_80\jre\bin"/>
@@ -61,15 +61,15 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase time="4.235" classname="com.saucelabs.TestVerifyTitle_1" name="testVerifyTitle[0]">
+  <testcase time="1.224" classname="com.saucelabs.TestVerifyTitle_1" name="testVerifyTitle[0]">
     <error message="Uh oh, you&apos;ve run out of minutes!
 Please visit https://saucelabs.com/pricing to purchase a subscription.
-Command duration or timeout: 2.19 seconds
+Command duration or timeout: 1.33 seconds
 Build info: version: &apos;2.43.0&apos;, revision: &apos;accb3003b9fb8f7cae30f9669b4c594a065396a6&apos;, time: &apos;2014-09-09 22:22:51&apos;
 System info: host: &apos;varun-PC&apos;, ip: &apos;192.168.1.101&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.7.0_80-ea&apos;
 Driver info: org.openqa.selenium.remote.RemoteWebDriver" type="org.openqa.selenium.UnsupportedCommandException">org.openqa.selenium.UnsupportedCommandException: Uh oh, you&apos;ve run out of minutes!
 Please visit https://saucelabs.com/pricing to purchase a subscription.
-Command duration or timeout: 2.19 seconds
+Command duration or timeout: 1.33 seconds
 Build info: version: &apos;2.43.0&apos;, revision: &apos;accb3003b9fb8f7cae30f9669b4c594a065396a6&apos;, time: &apos;2014-09-09 22:22:51&apos;
 System info: host: &apos;varun-PC&apos;, ip: &apos;192.168.1.101&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.7.0_80-ea&apos;
 Driver info: org.openqa.selenium.remote.RemoteWebDriver
@@ -106,7 +106,7 @@ Driver info: org.openqa.selenium.remote.RemoteWebDriver
 	at java.lang.Thread.run(Thread.java:745)
 </error>
   </testcase>
-  <testcase time="4.235" classname="com.saucelabs.TestVerifyTitle_1" name="testVerifyTitle[0]">
+  <testcase time="1.225" classname="com.saucelabs.TestVerifyTitle_1" name="testVerifyTitle[0]">
     <error type="java.lang.NullPointerException">java.lang.NullPointerException
 	at com.saucelabs.TestVerifyTitle_1.tearDown(TestVerifyTitle_1.java:214)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
