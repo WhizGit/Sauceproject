@@ -871,7 +871,7 @@ public class TestSuit_2 implements SauceOnDemandSessionIdProvider {
 	Thread.sleep(5000);
 	driver.findElement(By.xpath("html/body/nav/div/div/a/i")).click();
     driver.findElement(By.cssSelector("a[title=\"Groups\"] > span")).click();
-    String[][] creatgroup = GetValue("./src/dataexcel.xlsx","group",2);
+    String[][] creatgroup = GetValue(Pathofexcel,"group",2);
 	String grpname = creatgroup[0][0]; 
 	String grpdescription = creatgroup[0][1];  
 	String grplocation= creatgroup[0][2];
@@ -1079,7 +1079,7 @@ public class TestSuit_2 implements SauceOnDemandSessionIdProvider {
     
   }
    public void test10_UpdateGroupProfile() throws Exception {
-	  String[][] getit = GetValue("./src/dataexcel.xlsx","signup",2);
+	  String[][] getit = GetValue(Pathofexcel,"signup",2);
 	  baseUrl = getit[0][0]; 
 	   Email= getit[0][2];  
 	   Password=getit[0][3];
@@ -1095,7 +1095,7 @@ public class TestSuit_2 implements SauceOnDemandSessionIdProvider {
 	Thread.sleep(5000);
 	driver.findElement(By.xpath("html/body/nav/div/div/a/i")).click();
     driver.findElement(By.cssSelector("a[title=\"Groups\"] > span")).click();
-    String[][] creatgroup = GetValue("./src/dataexcel.xlsx","group",18);
+    String[][] creatgroup = GetValue(Pathofexcel,"group",18);
 	String grpname = creatgroup[0][0]; 
 	String grpdescription = creatgroup[0][1];  
 	String grplocation= creatgroup[0][2];
@@ -1118,7 +1118,7 @@ public class TestSuit_2 implements SauceOnDemandSessionIdProvider {
 //-------------------------------------------------Update the Group Profile--------------------------------------------------------//    
     driver.findElement(By.xpath(".//*[@id='grid-view']/div/a/div/div[2]/div[1]/h2")).click();
     driver.findElement(By.xpath("(//a[contains(text(),'Profile')])[3]")).click();
-    String[][] updtgroup = GetValue("./src/dataexcel.xlsx","group",22);
+    String[][] updtgroup = GetValue(Pathofexcel,"group",22);
    	String updtname = updtgroup[0][0]; 
    	String updtdescription = updtgroup[0][1];  
    	String updtlocation= updtgroup[0][2];
