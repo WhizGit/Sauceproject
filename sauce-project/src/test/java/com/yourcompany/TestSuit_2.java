@@ -61,7 +61,7 @@ public class TestSuit_2 implements SauceOnDemandSessionIdProvider {
   public String baseUrl;
   private boolean acceptNextAlert = true;
   private StringBuffer verificationErrors = new StringBuffer();
-  public String Tar, Mtype, Mrec, Aggtype, Email, Password, FullName, Orgname;
+  public String Tar, Mtype, Mrec, Aggtype, Email, Password, Fullname, Orgname;
   private String Pathofexcel ="./src/test/java/com/yourcompany/dataexcel.xlsx"; // path of your excel file
 
     /**
