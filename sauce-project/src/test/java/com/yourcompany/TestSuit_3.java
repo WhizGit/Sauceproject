@@ -104,8 +104,8 @@ public class TestSuit_3 implements SauceOnDemandSessionIdProvider {
 	Orgname=getit[0][4];
 	 driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     }
-	@Test
-//--------------------------------------------------Create An Organization---------------------------------------------------------------//	  
+	@Ignore
+	@Test // Create Performer
    public void CreatePerformer() throws Exception {
      driver.get("http://"+ baseUrl + "/signin");
     driver.findElement(By.name("username")).clear();
@@ -181,48 +181,6 @@ public class TestSuit_3 implements SauceOnDemandSessionIdProvider {
 	} //end of else
   } // of for loop
   }// end of test
-  @Ignore
-	@Test
-	 public void testB_deleteperformer() throws Exception {
-	 String[][] Per = GetValue(Pathofexcel,"performer",8);
-	 String PerName = Per[0][0];
-	 String Age = Per[0][1];
-	 String Gen = Per[0][2];
-	 String Grade = Per[0][3];
-    driver.get("http://"+baseUrl + "/");
-    driver.manage().window().maximize();
-    driver.findElement(By.linkText("Log in")).click();
-    driver.findElement(By.name("username")).clear();
-    driver.findElement(By.name("username")).sendKeys(Email);
-    driver.findElement(By.name("password")).clear();
-    driver.findElement(By.name("password")).sendKeys(Password);
-    driver.findElement(By.xpath("//button[@type='submit']")).click();
-    driver.findElement(By.cssSelector("a[title=\"Performers\"] > span")).click();
-    driver.findElement(By.id("createPerformer")).click();
-    driver.findElement(By.name("performerName")).clear();
-    driver.findElement(By.name("performerName")).sendKeys(PerName);
-    driver.findElement(By.name("age")).clear();
-    driver.findElement(By.name("age")).sendKeys(Age);
-    if(Gen.equals("M"))
-    {
-    driver.findElement(By.id("male")).click();
-    }
-    else
-    {
-    	driver.findElement(By.id("female")).click();
-    }
-    driver.findElement(By.name("grade")).clear();
-    driver.findElement(By.name("grade")).sendKeys(Grade);
-    driver.findElement(By.cssSelector("p.pull-right > button.btn.btn-primary")).click();
-    driver.findElement(By.id("fifty")).click();
-    driver.findElement(By.xpath("//div[@id='app-main']/div[2]/div/div/div[4]/label[4]")).click();
-    driver.findElement(By.cssSelector("h2.male")).click();
-    driver.findElement(By.xpath("//a[contains(text(),'Settings')]")).click();
-    driver.findElement(By.id("deletePerformer")).click();
-    Thread.sleep(10000);
-    driver.findElement(By.xpath("(//button[@type='submit'])[2]")).click();
-  
-  }
   
   
 	 private String[][] GetValue(String Pathfile, String sheetName, int startrow) throws IOException{

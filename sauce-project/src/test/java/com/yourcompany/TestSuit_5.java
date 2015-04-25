@@ -104,6 +104,7 @@ public class TestSuit_5 implements SauceOnDemandSessionIdProvider {
 	Orgname=getit[0][4];
 	 driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     }
+	@Ignore
 	@Test // Test 3 Delete performer
 	public void DeletePerformer() throws Exception {
 	 String[][] Per = GetValue(Pathofexcel,"performer",8);
