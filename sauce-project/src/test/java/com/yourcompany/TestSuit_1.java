@@ -116,6 +116,10 @@ public class TestSuit_1 implements SauceOnDemandSessionIdProvider {
     String msg = driver.findElement(By.xpath("//form/div/div")).getText();
     System.out.println("//@@##--------------Email Verification Message----------------##@@// ");
     System.out.println(msg);
+	String del = " ";
+    String[] temps= msg.split(del);
+    System.out.println(temps[9]);
+     assertEquals(temps[9]+".", id) ;
 	}
 	@Ignore
     @Test
