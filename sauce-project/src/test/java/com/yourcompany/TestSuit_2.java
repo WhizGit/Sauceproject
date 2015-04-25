@@ -153,7 +153,7 @@ public class TestSuit_2 implements SauceOnDemandSessionIdProvider {
 	Email= getit[0][2];  
 	Password=getit[0][3];
 	Orgname=getit[0][4];
-	driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+	driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
     }
 
@@ -540,7 +540,7 @@ public class TestSuit_2 implements SauceOnDemandSessionIdProvider {
 	} //end of else
   } // of for loop
   }// end of test
-  
+  @Ignore
   @Test // Test 3 Delete performer
    public void test3_deleteperformer() throws Exception {
 	 String[][] Per = GetValue(Pathofexcel,"performer",8);
@@ -745,6 +745,7 @@ public class TestSuit_2 implements SauceOnDemandSessionIdProvider {
     }
 	}// end of for loop
  }// end of test 
+	@Ignore
    @Test // Test 5 Archive Performer
   public void test5_archiveperformer() throws Exception {
     driver.get("http://"+ baseUrl + "/signin");
@@ -853,6 +854,7 @@ public class TestSuit_2 implements SauceOnDemandSessionIdProvider {
     	   System.out.println("Performer is Not Archived");
     	    }
   }// end of test
+	@Ignore
   	@Test
 	  public void test6_CreateGroup() throws Exception {
 	  String[][] getit = GetValue(Pathofexcel,"signup",2);
@@ -890,6 +892,7 @@ public class TestSuit_2 implements SauceOnDemandSessionIdProvider {
     System.out.println("//-----------------------Create The Group------------------------------------//");
     System.out.println(groupname);
   }
+	@Ignore
 	@Test
 	 public void test7_CreateGroupWithUser() throws Exception {
 	  String[][] getit = GetValue(Pathofexcel,"signup",2);
@@ -949,6 +952,7 @@ public class TestSuit_2 implements SauceOnDemandSessionIdProvider {
     System.out.println("//-----------------------Create The Group------------------------------------//");
     System.out.println(groupname);
   }
+  @Ignore
   @Test
    public void test8_DeleteGroupUser() throws Exception {
 	  String[][] getit = GetValue(Pathofexcel,"signup",2);
@@ -1015,6 +1019,7 @@ public class TestSuit_2 implements SauceOnDemandSessionIdProvider {
     System.out.println("//---------Delete the added user------------//");
     
   }
+  @Ignore
   @Test
     public void test9_AddUSerGroupwithAccessControl() throws Exception {
 	  String[][] getit = GetValue(Pathofexcel,"signup",2);
