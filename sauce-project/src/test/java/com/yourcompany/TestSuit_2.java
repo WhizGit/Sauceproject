@@ -57,15 +57,15 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  */
 @RunWith(ConcurrentParameterized.class)
 public class TestSuit_2 implements SauceOnDemandSessionIdProvider {
-	String[][] SauceInfo = GetValue(Pathofexcel,"signup",11);
-	String SauceUser = SauceInfo[0][0];
-	String SauceAccessKey = SauceInfo[0][1];
+	
   public String baseUrl;
   private boolean acceptNextAlert = true;
   private StringBuffer verificationErrors = new StringBuffer();
   public String Tar, Mtype, Mrec, Aggtype, Email, Password, Fullname, Orgname;
   private String Pathofexcel ="./src/test/java/com/yourcompany/dataexcel.xlsx"; // path of your excel file
-
+	String[][] SauceInfo = GetValue(Pathofexcel,"signup",11);
+	String SauceUser = SauceInfo[0][0];
+	String SauceAccessKey = SauceInfo[0][1];
     /**
      * Constructs a {@link SauceOnDemandAuthentication} instance using the supplied user name/access key.  To use the authentication
      * supplied by environment variables or from an external file, use the no-arg {@link SauceOnDemandAuthentication} constructor.

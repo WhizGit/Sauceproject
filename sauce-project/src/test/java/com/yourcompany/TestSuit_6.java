@@ -45,14 +45,15 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 @RunWith(ConcurrentParameterized.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestSuit_6 implements SauceOnDemandSessionIdProvider {
-	String[][] SauceInfo = GetValue(Pathofexcel,"signup",11);
-	String SauceUser = SauceInfo[0][0];
-	String SauceAccessKey = SauceInfo[0][1];
+	
 	private String baseUrl;
 	private boolean acceptNextAlert = true;
 	private StringBuffer verificationErrors = new StringBuffer();
 	private String Tar, Mtype, Mrec, Aggtype, Email,Fullname,Orgname, Password;
 	private String Pathofexcel ="./src/test/java/com/yourcompany/dataexcel.xlsx"; // path of your excel file
+	String[][] SauceInfo = GetValue(Pathofexcel,"signup",11);
+	String SauceUser = SauceInfo[0][0];
+	String SauceAccessKey = SauceInfo[0][1];
     public SauceOnDemandAuthentication authentication = new SauceOnDemandAuthentication(SauceUser, SauceAccessKey);
 
     @Rule
