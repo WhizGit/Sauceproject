@@ -169,14 +169,11 @@ public class TestSuit_3 implements SauceOnDemandSessionIdProvider {
 		int pag = page+1;
 		driver.findElement(By.xpath("//*[@id='results-paging']/div/div[1]/a["+pag+"]")).click();
 		driver.findElement(By.xpath("//*[@id='app-main']/div[2]/div[1]/div/div[4]/label[4]")).click();
-		  try {
 			  Thread.sleep(10000);
 		      assertEquals(PerName , driver.findElement(By.xpath("//*[@id='grid-view']/div[1]/a/div/div[2]/div[1]/h2")).getText());
 		      assertEquals("Age: "+age+"   "+"Grade: "+Grade, driver.findElement(By.xpath("//*[@id='grid-view']/div[1]/a/div/div[2]/p")).getText());
 		      System.out.println("successfully created Performer " + PerName );
-		    } catch (Error e) {
-		      verificationErrors.append(e.toString());
-		    }
+		   
 	} //end of else
   } // of for loop
   }// end of test
