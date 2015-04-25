@@ -108,6 +108,8 @@ public class TestSuit_1 implements SauceOnDemandSessionIdProvider {
     driver.findElement(By.name("fullname")).sendKeys(Fullname);
     driver.findElement(By.name("email")).clear();
     driver.findElement(By.name("email")).sendKeys(Email);
+	WebElement emailid = driver.findElement(By.name("email"));
+    String id = emailid.getAttribute("value");
     driver.findElement(By.name("password")).clear();
     driver.findElement(By.name("password")).sendKeys(Password);
     driver.findElement(By.name("orgName")).clear();
