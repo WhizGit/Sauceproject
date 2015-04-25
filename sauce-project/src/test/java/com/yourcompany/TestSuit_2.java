@@ -57,7 +57,9 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  */
 @RunWith(ConcurrentParameterized.class)
 public class TestSuit_2 implements SauceOnDemandSessionIdProvider {
-
+	String[][] SauceInfo = GetValue(Pathofexcel,"signup",11);
+	String SauceUser = SauceInfo[0][0];
+	String SauceAccessKey = SauceInfo[0][1];
   public String baseUrl;
   private boolean acceptNextAlert = true;
   private StringBuffer verificationErrors = new StringBuffer();
@@ -68,7 +70,7 @@ public class TestSuit_2 implements SauceOnDemandSessionIdProvider {
      * Constructs a {@link SauceOnDemandAuthentication} instance using the supplied user name/access key.  To use the authentication
      * supplied by environment variables or from an external file, use the no-arg {@link SauceOnDemandAuthentication} constructor.
      */
-    public SauceOnDemandAuthentication authentication = new SauceOnDemandAuthentication("vardhanvarun", "9efa0336-55b5-4e46-9802-ca8f825a55c6");
+    public SauceOnDemandAuthentication authentication = new SauceOnDemandAuthentication(SauceUser, SauceAccessKey);
 
     /**
      * JUnit Rule which will mark the Sauce Job as passed/failed when the test succeeds or fails.
@@ -142,7 +144,7 @@ public class TestSuit_2 implements SauceOnDemandSessionIdProvider {
             capabilities.setCapability(CapabilityType.VERSION, version);
         }
         capabilities.setCapability(CapabilityType.PLATFORM, os);
-        capabilities.setCapability("name", "Chartlytics TestSuit_2");
+        capabilities.setCapability("name", "Chartlytics Test_CreatePinpoint");
         this.driver = new RemoteWebDriver(
                 new URL("http://" + authentication.getUsername() + ":" + authentication.getAccessKey() + "@ondemand.saucelabs.com:80/wd/hub"),
                 capabilities);
@@ -163,7 +165,7 @@ public class TestSuit_2 implements SauceOnDemandSessionIdProvider {
      */
 
     @Test // Test 1 Create pinpoint
-    public void testA_createpinpoint() throws Exception {
+    public void CreatePinpoint() throws Exception {
     driver.get("http://"+baseUrl + "/");
     driver.findElement(By.linkText("Log in")).click();
     driver.findElement(By.name("username")).clear();
@@ -542,211 +544,9 @@ public class TestSuit_2 implements SauceOnDemandSessionIdProvider {
 	} //end of else
   } // of for loop
   }// end of test
-  @Ignore
-  @Test // Test 3 Delete performer
-   public void test3_deleteperformer() throws Exception {
-	 String[][] Per = GetValue(Pathofexcel,"performer",8);
-	 String PerName = Per[0][0];
-	 String Age = Per[0][1];
-	 String Gen = Per[0][2];
-	 String Grade = Per[0][3];
-    driver.get("http://"+baseUrl + "/");
-    driver.manage().window().maximize();
-    driver.findElement(By.linkText("Log in")).click();
-    driver.findElement(By.name("username")).clear();
-    driver.findElement(By.name("username")).sendKeys(Email);
-    driver.findElement(By.name("password")).clear();
-    driver.findElement(By.name("password")).sendKeys(Password);
-    driver.findElement(By.xpath("//button[@type='submit']")).click();
-    driver.findElement(By.cssSelector("a[title=\"Performers\"] > span")).click();
-    driver.findElement(By.id("createPerformer")).click();
-    driver.findElement(By.name("performerName")).clear();
-    driver.findElement(By.name("performerName")).sendKeys(PerName);
-    driver.findElement(By.name("age")).clear();
-    driver.findElement(By.name("age")).sendKeys(Age);
-    if(Gen.equals("M"))
-    {
-    driver.findElement(By.id("male")).click();
-    }
-    else
-    {
-    	driver.findElement(By.id("female")).click();
-    }
-    driver.findElement(By.name("grade")).clear();
-    driver.findElement(By.name("grade")).sendKeys(Grade);
-    driver.findElement(By.cssSelector("p.pull-right > button.btn.btn-primary")).click();
-    driver.findElement(By.id("fifty")).click();
-    driver.findElement(By.xpath("//div[@id='app-main']/div[2]/div/div/div[4]/label[4]")).click();
-    driver.findElement(By.cssSelector("h2.male")).click();
-    driver.findElement(By.xpath("//a[contains(text(),'Settings')]")).click();
-    driver.findElement(By.id("deletePerformer")).click();
-    Thread.sleep(10000);
-    driver.findElement(By.xpath("(//button[@type='submit'])[2]")).click();
+ 
+
   
-  }
-  @Ignore
-  @Test  // Test 4 Performer sort
-   public void test4_performersort() throws Exception {
-    driver.get("http://"+baseUrl + "/signin");
-    driver.findElement(By.name("username")).clear();
-    driver.findElement(By.name("username")).sendKeys(Email);
-    driver.findElement(By.name("password")).clear();
-    driver.findElement(By.name("password")).sendKeys(Password);
-    driver.findElement(By.xpath("//button[@type='submit']")).click();
-    driver.findElement(By.cssSelector("a[title=\"Performers\"] > span")).click();
-    // some variable intialisation which is used in if-else loop
-	String tru = "Y";
-	String fals= "N";	
-	String item =driver.findElement(By.xpath("//*[@id='results-paging']/div/div[1]/button[2]")).getText();
-	String del = " ";
-	String[] temps= item.split(del);
-	int items =Integer.parseInt(temps[3]);
-	List<String> expected = new ArrayList<String>();
-    List<String> actual= new ArrayList<String>();
-    String[] arr = new String[items];
-  for(int y=14;y<=17;y++){
- 		 String[][] data = GetValue(Pathofexcel,"performer",y);
- 		 
- 		System.out.println("Input from Orgdata sheet(Perfomer_sort) : ");
- 		String Arc = data [0][0];
- 		System.out.print(Arc);
- 		String Grid = data [0][1];
- 		System.out.print(Grid);
- 		String Table = data [0][2];
- 		System.out.print(Table);
- 		String NmAtoZ = data [0][3];
- 		System.out.print(NmAtoZ);
- 		String NmZtoA = data [0][4];
- 		System.out.print(NmZtoA);
- 		String Id1to9 = data [0][5];
- 		System.out.print(Id1to9);
- 		String Id9to1 = data [0][6];
- 		System.out.print(Id9to1);
- 		String Itemperpage = data [0][7];
- 		System.out.print(Itemperpage);
-    if(Table.equals(tru) && Grid.equals(fals))
-    {
-    	driver.findElement(By.xpath("//*[@id='app-main']/div[2]/div[1]/div/div[3]/label[2]")).click();
-    	Thread.sleep(2000);
-    	 if(NmAtoZ.equals(tru) && NmZtoA.equals(fals))
-    		{
-    	    
-    	    for(int i=0; i<items; i++)
-    	    {
-    	    	int a = 1+i;
-    	    arr[i] = driver.findElement(By.xpath("//*[@id='results-rows']/tr["+a+"]/td[1]")).getText();
-    	    actual.add(arr[i]);
-    	    }
-    	  Collections.sort(actual);
-    		  System.out.println(actual);
-    	  
-
-    		driver.findElement(By.xpath("//*[@id='app-main']/div[2]/div[1]/div/div[4]/label[1]")).click();
-//    		System.out.println("click on name a to z ");
-    		  String[] arrs = new String[arr.length];
-    		    for(int i=0; i<arr.length; i++)
-    		    {
-    		    	int a = 1+i;
-    		    arrs[i] = driver.findElement(By.xpath("//*[@id='results-rows']/tr["+a+"]/td[1]")).getText();
-    		    expected.add(arrs[i]);
-    		    }
-    		    //xpath div[9] is not in page
-    		   
-    		    assertThat(actual, is(expected));
-    		    expected.clear();
-    		    actual.clear();
-    			}	
-    	    else//(NmZtoA.equals(tru) && NmAtoZ.equals(fals) )
-    	    {	    
-    	    	//System.out.println("hi"+actual);
-    	    	  for(int i=0; i<items; i++)
-    	    	    {
-    	    	    	int a = 1+i;
-    	    	    arr[i] = driver.findElement(By.xpath("//*[@id='results-rows']/tr["+a+"]/td[1]")).getText();
-    	    	    actual.add(arr[i]);
-    	    	    }
-    	    	  //Collections.sort(actual, Collections.reverseOrder(actual));
-    	    	    Collections.reverse(actual);
-    	    	  System.out.println(actual);
-
-    	    		driver.findElement(By.xpath("//*[@id='app-main']/div[2]/div[1]/div/div[4]/label[2]")).click();
-//    	    		System.out.println("click on name z to a ");
-    	    		  String[] arrs = new String[arr.length];
-    	    		    for(int i=0; i<arr.length; i++)
-    	    		    {
-    	    		    	int a = 1+i;
-    	    		    arrs[i] = driver.findElement(By.xpath("//*[@id='results-rows']/tr["+a+"]/td[1]")).getText();
-    	    		    expected.add(arrs[i]);
-    	    		    }
-    	    		 
-    	    		    assertThat(actual, is(expected));
-    	    		    expected.clear();
-    	    		    actual.clear();
-    	    }//end of if loop for table
-    }
-    else
-    {
-    //if NameAtoZ button is Y in the excel sheet 
-    if(NmAtoZ.equals(tru))
-	{
-    
-    for(int i=0; i<items; i++)
-    {
-    	int a = 1+i;
-    arr[i] = driver.findElement(By.xpath("//*[@id='grid-view']/div["+a+"]/a/div/div[2]/div[1]/h2")).getText();
-    actual.add(arr[i]);
-    }
-  Collections.sort(actual);
-  
-
-	driver.findElement(By.xpath("//*[@id='app-main']/div[2]/div[1]/div/div[4]/label[1]")).click();
-//	System.out.println("click on name a to z ");
-	  String[] arrs = new String[arr.length];
-	    for(int i=0; i<arr.length; i++)
-	    {
-	    	int a = 1+i;
-	    arrs[i] = driver.findElement(By.xpath("//*[@id='grid-view']/div["+a+"]/a/div/div[2]/div[1]/h2")).getText();
-	    expected.add(arrs[i]);
-	    }
-	    //xpath div[9] is not in page
-	   
-	    assertThat(actual, is(expected));
-	    actual.clear();
-	    expected.clear();
-		}	
-    else if(NmZtoA.equals(tru))
-    {	    
-    	    for(int i=0; i<items; i++)
-    	    {
-    	    	int a = 1+i;
-    	    arr[i] = driver.findElement(By.xpath("//*[@id='grid-view']/div["+a+"]/a/div/div[2]/div[1]/h2")).getText();
-    	    actual.add(arr[i]);
-    	    }
-    	  Collections.sort(actual, Collections.reverseOrder());
-    	  System.out.println("other loop");
-
-    		driver.findElement(By.xpath("//*[@id='app-main']/div[2]/div[1]/div/div[4]/label[2]")).click();
-//    		System.out.println("click on name a to z ");
-    		  String[] arrs = new String[10];
-    		    for(int i=0; i<items; i++)
-    		    {
-    		    	int a = 1+i;
-    		    arrs[i] = driver.findElement(By.xpath("//*[@id='grid-view']/div["+a+"]/a/div/div[2]/div[1]/h2")).getText();
-    		    expected.add(arrs[i]);
-    		    }
-    		 
-    		    assertThat(actual, is(expected));
-    		    actual.clear();
-    		    expected.clear();
-    }//end of else loop for grid
-    else
-    	{
-    	
-    		System.out.println("not in loop");
-    	}
-    }
-	}// end of for loop
- }// end of test 
 	@Ignore
    @Test // Test 5 Archive Performer
   public void test5_archiveperformer() throws Exception {

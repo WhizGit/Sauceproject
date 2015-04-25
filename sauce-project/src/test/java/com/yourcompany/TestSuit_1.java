@@ -45,13 +45,15 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 @RunWith(ConcurrentParameterized.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestSuit_1 implements SauceOnDemandSessionIdProvider {
-	
+	String[][] SauceInfo = GetValue(Pathofexcel,"signup",11);
+	String SauceUser = SauceInfo[0][0];
+	String SauceAccessKey = SauceInfo[0][1];
 	private String baseUrl;
 	private boolean acceptNextAlert = true;
 	private StringBuffer verificationErrors = new StringBuffer();
 	private String Tar, Mtype, Mrec, Aggtype, Email,Fullname,Orgname, Password;
 	private String Pathofexcel ="./src/test/java/com/yourcompany/dataexcel.xlsx"; // path of your excel file
-    public SauceOnDemandAuthentication authentication = new SauceOnDemandAuthentication("vardhanvarun", "9efa0336-55b5-4e46-9802-ca8f825a55c6");
+    public SauceOnDemandAuthentication authentication = new SauceOnDemandAuthentication(SauceUser, SauceAccessKey);
 
     @Rule
     public SauceOnDemandTestWatcher resultReportingTestWatcher = new SauceOnDemandTestWatcher(this, authentication);
@@ -87,7 +89,7 @@ public class TestSuit_1 implements SauceOnDemandSessionIdProvider {
             capabilities.setCapability(CapabilityType.VERSION, version);
         }
         capabilities.setCapability(CapabilityType.PLATFORM, os);
-        capabilities.setCapability("name", "Chartlytics TestSuit_1");
+        capabilities.setCapability("name", "Chartlytics Test_CreateOrg");
         this.driver = new RemoteWebDriver(
                 new URL("http://" + authentication.getUsername() + ":" + authentication.getAccessKey() + "@ondemand.saucelabs.com:80/wd/hub"),
                 capabilities);
