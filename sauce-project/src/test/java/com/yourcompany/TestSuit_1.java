@@ -101,7 +101,7 @@ public class TestSuit_1 implements SauceOnDemandSessionIdProvider {
 	 driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     }
 	@Test
-	public void testsuit1_CreateAnOrganisation() throws Exception {
+	public void testA_CreateAnOrganisation() throws Exception {
 //--------------------------------------------------Create An Organization---------------------------------------------------------------//	  
     driver.get("http://"+baseUrl + "/");
     driver.findElement(By.name("fullname")).clear();
@@ -116,7 +116,10 @@ public class TestSuit_1 implements SauceOnDemandSessionIdProvider {
     String msg = driver.findElement(By.xpath("//form/div/div")).getText();
     System.out.println("//@@##--------------Email Verification Message----------------##@@// ");
     System.out.println(msg);
-      
+	}
+	@Ignore
+    @Test
+	public void testB_OrganisationVerification() throws Exception {
 //------------------------------------------Email Verification---------------------------------------------------------------------------//
     driver.get("https://accounts.google.com/ServiceLogin?sacu=1&scc=1&continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&hl=en&service=mail");
     driver.findElement(By.id("Email")).clear();
