@@ -101,7 +101,6 @@ public class TestSuit_3 implements SauceOnDemandSessionIdProvider {
 	 driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     }
 	@Test
-	public void testA_CreateAnOrganisation() throws Exception {
 //--------------------------------------------------Create An Organization---------------------------------------------------------------//	  
    public void test2_createperformer() throws Exception {
      driver.get("http://"+ baseUrl + "/signin");
@@ -181,7 +180,7 @@ public class TestSuit_3 implements SauceOnDemandSessionIdProvider {
 	} //end of else
   } // of for loop
   }// end of test
-  }
+  
   
   
 	 private String[][] GetValue(String Pathfile, String sheetName, int startrow) throws IOException{
