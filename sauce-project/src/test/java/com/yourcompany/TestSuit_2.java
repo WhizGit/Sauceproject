@@ -161,6 +161,7 @@ public class TestSuit_2 implements SauceOnDemandSessionIdProvider {
      * Runs a simple test verifying the title of the amazon.com homepage.
      * @throws Exception
      */
+	@Ignore
     @Test // Test 1 Create pinpoint
     public void test1_createpinpoint() throws Exception {
     driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
@@ -461,6 +462,7 @@ public class TestSuit_2 implements SauceOnDemandSessionIdProvider {
 	 //   driver.quit();
   } //for loop end
   } // end of test
+  @Ignore
    @Test // Test 2 Create Performer
    public void test2_createperformer() throws Exception {
      driver.get("http://"+ baseUrl + "/signin");
