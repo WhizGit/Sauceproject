@@ -100,6 +100,7 @@ public class TestSuit_1 implements SauceOnDemandSessionIdProvider {
 	Orgname=getit[0][4];
 	 driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     }
+	@Ignore
 	@Test
 	public void testA_CreateAnOrganisation() throws Exception {
 //--------------------------------------------------Create An Organization---------------------------------------------------------------//	  
@@ -124,6 +125,7 @@ public class TestSuit_1 implements SauceOnDemandSessionIdProvider {
      assertEquals(temps[9], id+".") ;
 	 
 	}
+	@Ignore
 	@Test
 	public void testB_UpdateTimeZone() throws Exception {
   driver.get("http://"+ baseUrl + "/signin");
