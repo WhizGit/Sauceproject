@@ -102,7 +102,7 @@ public class TestSuit_3 implements SauceOnDemandSessionIdProvider {
     }
 	@Test
 //--------------------------------------------------Create An Organization---------------------------------------------------------------//	  
-   public void test2_createperformer() throws Exception {
+   public void testA_createperformer() throws Exception {
      driver.get("http://"+ baseUrl + "/signin");
     driver.findElement(By.name("username")).clear();
     driver.findElement(By.name("username")).sendKeys(Email);
