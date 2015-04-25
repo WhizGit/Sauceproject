@@ -44,13 +44,13 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 //-------------------------------------------------------
 @RunWith(ConcurrentParameterized.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class TestSuit_6 implements SauceOnDemandSessionIdProvider throws Exception  {
-	
+public class TestSuit_4 implements SauceOnDemandSessionIdProvider throws Exception {
+
 	private String baseUrl;
 	private boolean acceptNextAlert = true;
 	private StringBuffer verificationErrors = new StringBuffer();
 	private String Tar, Mtype, Mrec, Aggtype, Email,Fullname,Orgname, Password;
-	private String Pathofexcel ="./src/test/java/com/yourcompany/dataexcel.xlsx"; // path of your excel file
+	 private String Pathofexcel ="./src/test/java/com/yourcompany/dataexcel.xlsx"; // path of your excel file
 	String[][] SauceInfo = GetValue(Pathofexcel,"signup",11);
 	String SauceUser = SauceInfo[0][0];
 	String SauceAccessKey = SauceInfo[0][1];
@@ -67,7 +67,7 @@ public class TestSuit_6 implements SauceOnDemandSessionIdProvider throws Excepti
 	
 	//-----------------------------------------------------------------------------------------
 	
-    public TestSuit_6(String os, String version, String browser) {
+    public TestSuit_4(String os, String version, String browser) {
         super();
         this.os = os;
         this.version = version;
@@ -90,7 +90,7 @@ public class TestSuit_6 implements SauceOnDemandSessionIdProvider throws Excepti
             capabilities.setCapability(CapabilityType.VERSION, version);
         }
         capabilities.setCapability(CapabilityType.PLATFORM, os);
-        capabilities.setCapability("name", "Chartlytics Test_ArchivePerformer");
+        capabilities.setCapability("name", "Chartlytics Test_PerformerSort");
         this.driver = new RemoteWebDriver(
                 new URL("http://" + authentication.getUsername() + ":" + authentication.getAccessKey() + "@ondemand.saucelabs.com:80/wd/hub"),
                 capabilities);
@@ -104,114 +104,168 @@ public class TestSuit_6 implements SauceOnDemandSessionIdProvider throws Excepti
 	 driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     }
 	@Ignore
-	 @Test // Test 5 Archive Performer
-  public void ArchivePerformer() throws Exception {
-    driver.get("http://"+ baseUrl + "/signin");
-    driver.manage().window().maximize();
+	@Test
+	 public void PerformerSort() throws Exception {
+    driver.get("http://"+baseUrl + "/signin");
     driver.findElement(By.name("username")).clear();
     driver.findElement(By.name("username")).sendKeys(Email);
     driver.findElement(By.name("password")).clear();
     driver.findElement(By.name("password")).sendKeys(Password);
-
     driver.findElement(By.xpath("//button[@type='submit']")).click();
-    
-    
-    String[][] getits = GetValue(Pathofexcel,"performer",9);
-  String PerName = getits [0][0];
-  String age = getits [0][1];
-  String Gen = getits [0][2];
-  String Grade = getits [0][3];
-  
-   
     driver.findElement(By.cssSelector("a[title=\"Performers\"] > span")).click();
-    driver.findElement(By.id("createPerformer")).click();
-    driver.findElement(By.name("performerName")).clear();
-    driver.findElement(By.name("performerName")).sendKeys(PerName);
-    driver.findElement(By.name("age")).clear();
-    driver.findElement(By.name("age")).sendKeys(""+age);
-    if(Gen.equals("M"))
+    // some variable intialisation which is used in if-else loop
+	String tru = "Y";
+	String fals= "N";	
+	String item =driver.findElement(By.xpath("//*[@id='results-paging']/div/div[1]/button[2]")).getText();
+	String del = " ";
+	String[] temps= item.split(del);
+	int items =Integer.parseInt(temps[3]);
+	List<String> expected = new ArrayList<String>();
+    List<String> actual= new ArrayList<String>();
+    String[] arr = new String[items];
+  for(int y=14;y<=17;y++){
+ 		 String[][] data = GetValue(Pathofexcel,"performer",y);
+ 		 
+ 		System.out.println("Input from Orgdata sheet(Perfomer_sort) : ");
+ 		String Arc = data [0][0];
+ 		System.out.print(Arc);
+ 		String Grid = data [0][1];
+ 		System.out.print(Grid);
+ 		String Table = data [0][2];
+ 		System.out.print(Table);
+ 		String NmAtoZ = data [0][3];
+ 		System.out.print(NmAtoZ);
+ 		String NmZtoA = data [0][4];
+ 		System.out.print(NmZtoA);
+ 		String Id1to9 = data [0][5];
+ 		System.out.print(Id1to9);
+ 		String Id9to1 = data [0][6];
+ 		System.out.print(Id9to1);
+ 		String Itemperpage = data [0][7];
+ 		System.out.print(Itemperpage);
+    if(Table.equals(tru) && Grid.equals(fals))
     {
-    driver.findElement(By.id("male")).click();
-    }else
-    {
-       driver.findElement(By.id("female")).click();
-    }
-    driver.findElement(By.name("grade")).clear();
-    driver.findElement(By.name("grade")).sendKeys(Grade);
-    driver.findElement(By.cssSelector("p.pull-right > button.btn.btn-primary")).click();
-  //  driver.findElement(By.linkText("Last")).click();
-    Thread.sleep(3000);
-    String p =driver.findElement(By.xpath("//*[@id='results-paging']/div/div[1]/button[1]")).getText();
-    String item =driver.findElement(By.xpath("//*[@id='results-paging']/div/div[1]/button[2]")).getText();
-   // System.out.println(p);
-    //System.out.println(item);
-    String[] temp, temps;
-    String delimiter = " ";
-    String del = " ";
- temp = p.split(delimiter);
- int page =Integer.parseInt(temp[3]);
- temps= item.split(del);
-
- 
- int items =Integer.parseInt(temps[5]);
- 
- if(page==1 || items<=10)
- {
- 
-    try {
-     Thread.sleep(10000);
-     driver.findElement(By.xpath("//*[@id='app-main']/div[2]/div[1]/div/div[4]/label[4]")).click();
-     assertEquals(PerName , driver.findElement(By.xpath("//*[@id='grid-view']/div[1]/a/div/div[2]/div[1]/h2")).getText());
-     assertEquals("Age: "+age+"   "+"Grade: "+Grade , driver.findElement(By.xpath("//*[@id='grid-view']/div[1]/a/div/div[2]/p")).getText());
-     System.out.println("successfully created");
-     } catch (Error e) {
-      verificationErrors.append(e.toString());
-     }
- }// end of if
- else
- {
-  int pag = page+1;
-  driver.findElement(By.xpath("//*[@id='results-paging']/div/div[1]/a["+pag+"]")).click();
-  driver.findElement(By.xpath("//*[@id='app-main']/div[2]/div[1]/div/div[4]/label[4]")).click();
-    try {
-     Thread.sleep(10000);
-        assertEquals(PerName , driver.findElement(By.xpath("//*[@id='grid-view']/div[1]/a/div/div[2]/div[1]/h2")).getText());
-        assertEquals("Age: "+age+"   "+"Grade: "+Grade, driver.findElement(By.xpath("//*[@id='grid-view']/div[1]/a/div/div[2]/p")).getText());
-        System.out.println("//----------Successfully create Performer----------//" );
-        System.out.println( PerName );
-      } catch (Error e) {
-        verificationErrors.append(e.toString());
-      }
- } //end of else
- 
-//-------------------------------------------------ARCHIVE PERFORMER---------------------------------------------------------------------------//
-    
-    driver.findElement(By.xpath("//*[@id='grid-view']/div[1]/a/div/div[2]/div[1]/h2")).click();
-    driver.findElement(By.xpath("//a[contains(text(),'Settings')]")).click();
-    driver.findElement(By.id("archive")).click();
-    Thread.sleep(10000);
-    driver.findElement(By.xpath("(//button[@type='submit'])[3]")).click();
-    System.out.println("//----------Successfullly archived the performer----------//");
-    
-//-------------------------------------------------VERIFY ARCHIVED PERFORMER--------------------------------------------------------------------//    
-    driver.findElement(By.xpath("//*[@id='app-sidebar']/ul/li[4]/a")).click();
-	Thread.sleep(5000);
-    driver.findElement(By.id("fifty")).click();
-    driver.findElement(By.xpath("//*[@id='app-main']/div[2]/div[1]/div/div[4]/label[4]")).click();
-    driver.findElement(By.id("showArchived")).click();
-   String archper = driver.findElement(By.xpath(".//*[@id='grid-view']/div[1]")).getAttribute("data-archived");
-   System.out.println("//----------Shows the message performer is archived or not archived----------//");
-    
-    if(archper.equals("true"))
+    	driver.findElement(By.xpath("//*[@id='app-main']/div[2]/div[1]/div/div[3]/label[2]")).click();
+    	Thread.sleep(2000);
+    	 if(NmAtoZ.equals(tru) && NmZtoA.equals(fals))
     		{
-    	
-    	   System.out.println("Performer is Archived");
+    	    
+    	    for(int i=0; i<items; i++)
+    	    {
+    	    	int a = 1+i;
+    	    arr[i] = driver.findElement(By.xpath("//*[@id='results-rows']/tr["+a+"]/td[1]")).getText();
+    	    actual.add(arr[i]);
     	    }
+    	  Collections.sort(actual);
+    		  System.out.println(actual);
+    	  
+
+    		driver.findElement(By.xpath("//*[@id='app-main']/div[2]/div[1]/div/div[4]/label[1]")).click();
+//    		System.out.println("click on name a to z ");
+    		  String[] arrs = new String[arr.length];
+    		    for(int i=0; i<arr.length; i++)
+    		    {
+    		    	int a = 1+i;
+    		    arrs[i] = driver.findElement(By.xpath("//*[@id='results-rows']/tr["+a+"]/td[1]")).getText();
+    		    expected.add(arrs[i]);
+    		    }
+    		    //xpath div[9] is not in page
+    		   
+    		    assertThat(actual, is(expected));
+    		    expected.clear();
+    		    actual.clear();
+    			}	
+    	    else//(NmZtoA.equals(tru) && NmAtoZ.equals(fals) )
+    	    {	    
+    	    	//System.out.println("hi"+actual);
+    	    	  for(int i=0; i<items; i++)
+    	    	    {
+    	    	    	int a = 1+i;
+    	    	    arr[i] = driver.findElement(By.xpath("//*[@id='results-rows']/tr["+a+"]/td[1]")).getText();
+    	    	    actual.add(arr[i]);
+    	    	    }
+    	    	  //Collections.sort(actual, Collections.reverseOrder(actual));
+    	    	    Collections.reverse(actual);
+    	    	  System.out.println(actual);
+
+    	    		driver.findElement(By.xpath("//*[@id='app-main']/div[2]/div[1]/div/div[4]/label[2]")).click();
+//    	    		System.out.println("click on name z to a ");
+    	    		  String[] arrs = new String[arr.length];
+    	    		    for(int i=0; i<arr.length; i++)
+    	    		    {
+    	    		    	int a = 1+i;
+    	    		    arrs[i] = driver.findElement(By.xpath("//*[@id='results-rows']/tr["+a+"]/td[1]")).getText();
+    	    		    expected.add(arrs[i]);
+    	    		    }
+    	    		 
+    	    		    assertThat(actual, is(expected));
+    	    		    expected.clear();
+    	    		    actual.clear();
+    	    }//end of if loop for table
+    }
     else
-            {
-    	   System.out.println("Performer is Not Archived");
+    {
+    //if NameAtoZ button is Y in the excel sheet 
+    if(NmAtoZ.equals(tru))
+	{
+    
+    for(int i=0; i<items; i++)
+    {
+    	int a = 1+i;
+    arr[i] = driver.findElement(By.xpath("//*[@id='grid-view']/div["+a+"]/a/div/div[2]/div[1]/h2")).getText();
+    actual.add(arr[i]);
+    }
+  Collections.sort(actual);
+  
+
+	driver.findElement(By.xpath("//*[@id='app-main']/div[2]/div[1]/div/div[4]/label[1]")).click();
+//	System.out.println("click on name a to z ");
+	  String[] arrs = new String[arr.length];
+	    for(int i=0; i<arr.length; i++)
+	    {
+	    	int a = 1+i;
+	    arrs[i] = driver.findElement(By.xpath("//*[@id='grid-view']/div["+a+"]/a/div/div[2]/div[1]/h2")).getText();
+	    expected.add(arrs[i]);
+	    }
+	    //xpath div[9] is not in page
+	   
+	    assertThat(actual, is(expected));
+	    actual.clear();
+	    expected.clear();
+		}	
+    else if(NmZtoA.equals(tru))
+    {	    
+    	    for(int i=0; i<items; i++)
+    	    {
+    	    	int a = 1+i;
+    	    arr[i] = driver.findElement(By.xpath("//*[@id='grid-view']/div["+a+"]/a/div/div[2]/div[1]/h2")).getText();
+    	    actual.add(arr[i]);
     	    }
-  }// end of test
+    	  Collections.sort(actual, Collections.reverseOrder());
+    	  System.out.println("other loop");
+
+    		driver.findElement(By.xpath("//*[@id='app-main']/div[2]/div[1]/div/div[4]/label[2]")).click();
+//    		System.out.println("click on name a to z ");
+    		  String[] arrs = new String[10];
+    		    for(int i=0; i<items; i++)
+    		    {
+    		    	int a = 1+i;
+    		    arrs[i] = driver.findElement(By.xpath("//*[@id='grid-view']/div["+a+"]/a/div/div[2]/div[1]/h2")).getText();
+    		    expected.add(arrs[i]);
+    		    }
+    		 
+    		    assertThat(actual, is(expected));
+    		    actual.clear();
+    		    expected.clear();
+    }//end of else loop for grid
+    else
+    	{
+    	
+    		System.out.println("not in loop");
+    	}
+    }
+	}// end of for loop
+ }// end of test 
 
   
 	 private String[][] GetValue(String Pathfile, String sheetName, int startrow) throws IOException{
@@ -250,22 +304,6 @@ public class TestSuit_6 implements SauceOnDemandSessionIdProvider throws Excepti
 }
  
 
- 
-
-  private String closeAlertAndGetItsText() {
-    try {
-      Alert alert = driver.switchTo().alert();
-      String alertText = alert.getText();
-      if (acceptNextAlert) {
-        alert.accept();
-      } else {
-        alert.dismiss();
-      }
-      return alertText;
-    } finally {
-      acceptNextAlert = true;
-    }
-  }
    
 
     @After

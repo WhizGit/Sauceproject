@@ -56,7 +56,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  * @author Ross Rowe
  */
 @RunWith(ConcurrentParameterized.class)
-public class TestSuit_2 implements SauceOnDemandSessionIdProvider {
+public class TestSuit_2 implements SauceOnDemandSessionIdProvider throws Exception {
 	
   public String baseUrl;
   private boolean acceptNextAlert = true;
