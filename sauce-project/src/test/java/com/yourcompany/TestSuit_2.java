@@ -56,21 +56,21 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  * @author Ross Rowe
  */
 @RunWith(ConcurrentParameterized.class)
-public class TestSuit_2 implements SauceOnDemandSessionIdProvider throws Exception {
+public class TestSuit_2 implements SauceOnDemandSessionIdProvider {
 	
   public String baseUrl;
   private boolean acceptNextAlert = true;
   private StringBuffer verificationErrors = new StringBuffer();
   public String Tar, Mtype, Mrec, Aggtype, Email, Password, Fullname, Orgname;
   private String Pathofexcel ="./src/test/java/com/yourcompany/dataexcel.xlsx"; // path of your excel file
-	String[][] SauceInfo = GetValue(Pathofexcel,"signup",11);
+	/*String[][] SauceInfo = GetValue(Pathofexcel,"signup",11);
 	String SauceUser = SauceInfo[0][0];
-	String SauceAccessKey = SauceInfo[0][1];
+	String SauceAccessKey = SauceInfo[0][1];*/
     /**
      * Constructs a {@link SauceOnDemandAuthentication} instance using the supplied user name/access key.  To use the authentication
      * supplied by environment variables or from an external file, use the no-arg {@link SauceOnDemandAuthentication} constructor.
      */
-    public SauceOnDemandAuthentication authentication = new SauceOnDemandAuthentication(SauceUser, SauceAccessKey);
+    public SauceOnDemandAuthentication authentication = new SauceOnDemandAuthentication("testingapptrial", "d64b5203-e2a4-4108-bd1b-0d311b34dc5d");
 
     /**
      * JUnit Rule which will mark the Sauce Job as passed/failed when the test succeeds or fails.

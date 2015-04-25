@@ -44,7 +44,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 //-------------------------------------------------------
 @RunWith(ConcurrentParameterized.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class TestSuit_3 implements SauceOnDemandSessionIdProvider throws Exception {
+public class TestSuit_3 implements SauceOnDemandSessionIdProvider {
 
 	private String baseUrl;
 	private boolean acceptNextAlert = true;
@@ -52,10 +52,10 @@ public class TestSuit_3 implements SauceOnDemandSessionIdProvider throws Excepti
 	private String Tar, Mtype, Mrec, Aggtype, Email,Fullname,Orgname, Password;
 
 	private String Pathofexcel ="./src/test/java/com/yourcompany/dataexcel.xlsx"; // path of your excel file
-		String[][] SauceInfo = GetValue(Pathofexcel,"signup",11);
+	/*	String[][] SauceInfo = GetValue(Pathofexcel,"signup",11);
 	String SauceUser = SauceInfo[0][0];
-	String SauceAccessKey = SauceInfo[0][1];
-    public SauceOnDemandAuthentication authentication = new SauceOnDemandAuthentication(SauceUser, SauceAccessKey);
+	String SauceAccessKey = SauceInfo[0][1]; */
+    public SauceOnDemandAuthentication authentication = new SauceOnDemandAuthentication("testingapptrial", "d64b5203-e2a4-4108-bd1b-0d311b34dc5d");
 
     @Rule
     public SauceOnDemandTestWatcher resultReportingTestWatcher = new SauceOnDemandTestWatcher(this, authentication);
