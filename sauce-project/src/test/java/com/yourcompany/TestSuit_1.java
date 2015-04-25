@@ -122,7 +122,34 @@ public class TestSuit_1 implements SauceOnDemandSessionIdProvider {
     String[] temps= msg.split(del);
     System.out.println(temps[9]);
      assertEquals(temps[9], id+".") ;
+	 
 	}
+	@Test
+	public void testB_UpdateTimeZone() throws Exception {
+  driver.get("http://"+ baseUrl + "/signin");
+    driver.findElement(By.name("username")).clear();
+    driver.findElement(By.name("username")).sendKeys(Email);
+    driver.findElement(By.name("password")).clear();
+    driver.findElement(By.name("password")).sendKeys(Password);
+
+    driver.findElement(By.xpath("//button[@type='submit']")).click();
+	 for(String winHandle : driver.getWindowHandles()){
+    driver.switchTo().window(winHandle);
+    }
+  driver.findElement(By.name("username")).clear();
+    driver.findElement(By.name("username")).sendKeys(Email);
+    driver.findElement(By.name("password")).clear();
+    driver.findElement(By.name("password")).sendKeys(Password);
+    driver.findElement(By.xpath("//button[@type='submit']")).click();
+    Thread.sleep(5000);
+    driver.findElement(By.xpath("//button[@type='submit']")).click();
+    Thread.sleep(5000);
+    driver.findElement(By.xpath("//a[contains(@href, '/')]")).click();
+    Thread.sleep(5000);
+    String db = driver.findElement(By.xpath("//div[@id='app-main']/div/div/div")).getText();
+    assertEquals("Dashboard", db);
+	}
+	
 	@Ignore
     @Test
 	public void testB_OrganisationVerification() throws Exception {
