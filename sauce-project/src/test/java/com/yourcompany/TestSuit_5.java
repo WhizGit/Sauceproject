@@ -64,7 +64,7 @@ public class TestSuit_5 implements SauceOnDemandSessionIdProvider {
 	
 	//-----------------------------------------------------------------------------------------
 	
-    public TestSuit_6(String os, String version, String browser) {
+    public TestSuit_5(String os, String version, String browser) {
         super();
         this.os = os;
         this.version = version;
