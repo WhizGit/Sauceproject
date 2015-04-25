@@ -304,22 +304,6 @@ public class TestSuit_4 implements SauceOnDemandSessionIdProvider {
 }
  
 
- 
-
-  private String closeAlertAndGetItsText() {
-    try {
-      Alert alert = driver.switchTo().alert();
-      String alertText = alert.getText();
-      if (acceptNextAlert) {
-        alert.accept();
-      } else {
-        alert.dismiss();
-      }
-      return alertText;
-    } finally {
-      acceptNextAlert = true;
-    }
-  }
    
 
     @After
