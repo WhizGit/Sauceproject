@@ -121,7 +121,7 @@ public class TestSuit_1 implements SauceOnDemandSessionIdProvider {
 	String del = " ";
     String[] temps= msg.split(del);
     System.out.println(temps[9]);
-     assertEquals(temps[9]+".", id) ;
+     assertEquals(temps[9], id+".") ;
 	}
 	@Ignore
     @Test
