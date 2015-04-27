@@ -152,6 +152,8 @@ public class TestSuit_001 implements SauceOnDemandSessionIdProvider {
     driver.findElement(By.name("password")).sendKeys(Password);
     driver.findElement(By.xpath("//button[@type='submit']")).click();
     Thread.sleep(5000);
+	Select Timezone = new Select(driver.findElement(By.name("timezone")));
+	Timezone.selectByVisibleText("(UTC-06:00) Central Time (US and Canada)");
     driver.findElement(By.xpath("//button[@type='submit']")).click();
     Thread.sleep(5000);
     driver.findElement(By.xpath("//a[contains(@href, '/')]")).click();
