@@ -78,7 +78,8 @@ public class TestSuit_10 implements SauceOnDemandSessionIdProvider {
     public static LinkedList browsersStrings() {
         LinkedList browsers = new LinkedList();
         browsers.add(new String[]{"Windows 7", "37", "firefox"});
-      //  browsers.add(new String[]{"OSX 10.8", "6", "safari"});
+        browsers.add(new String[]{"OSX 10.8", "6", "safari"});
+		browsers.add(new String[]{"","",""});
         return browsers;
     }
 
@@ -103,7 +104,7 @@ public class TestSuit_10 implements SauceOnDemandSessionIdProvider {
 	Orgname=getit[0][4];
 	 driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     }
-	
+	@Ignore
 	 @Test 
 	  public void AddUsertoGroupwithAccessControl() throws Exception {
 	  String[][] getit = GetValue(Pathofexcel,"signup",2);
