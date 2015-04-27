@@ -54,7 +54,7 @@ public class TestSuit_001 implements SauceOnDemandSessionIdProvider {
 	/*	String[][] SauceInfo = GetValue(Pathofexcel,"signup",11);
 	String SauceUser = SauceInfo[0][0];
 	String SauceAccessKey = SauceInfo[0][1];*/
-    public SauceOnDemandAuthentication authentication = new SauceOnDemandAuthentication("testingapptrial", "d64b5203-e2a4-4108-bd1b-0d311b34dc5d");
+    public SauceOnDemandAuthentication authentication = new SauceOnDemandAuthentication("gsteam", "a7b52c33-af4c-4334-9486-75f4b13a9869");
 
     @Rule
     public SauceOnDemandTestWatcher resultReportingTestWatcher = new SauceOnDemandTestWatcher(this, authentication);
@@ -103,7 +103,7 @@ public class TestSuit_001 implements SauceOnDemandSessionIdProvider {
 	Orgname=getit[0][4];
 	 driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     }
-	@Ignore
+	
 	@Test
 	public void testA_CreateAnOrganisation() throws Exception {
 //--------------------------------------------------Create An Organization---------------------------------------------------------------//	  
@@ -126,6 +126,40 @@ public class TestSuit_001 implements SauceOnDemandSessionIdProvider {
     String[] temps= msg.split(del);
     System.out.println(temps[9]);
      assertEquals(temps[9], id+".") ;
+	  driver.get("https://accounts.google.com/ServiceLogin?sacu=1&scc=1&continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&hl=en&service=mail");
+    driver.findElement(By.id("Email")).clear();
+    driver.findElement(By.id("Email")).sendKeys("testingapptrial@gmail.com");
+    driver.findElement(By.id("Passwd")).clear();
+    driver.findElement(By.id("Passwd")).sendKeys("1234abcd@00");
+    driver.findElement(By.id("signIn")).click();
+    Thread.sleep(10000);
+    driver.findElement(By.partialLinkText("Inbox")).click();
+    Thread.sleep(5000);
+    driver.findElement(By.xpath("//div [@class='y6']/span[contains(.,'Chartlytics: Confirm your email address')]")).click();
+    driver.findElement(By.partialLinkText("http://dev.chartlytics.com/activate/")).click();
+    Thread.sleep(5000);
+    String emailver = driver.findElement(By.xpath("//form/div/div")).getText();
+    System.out.println("//@@##--------------After Verifying Email----------------##@@// ");
+    System.out.println(emailver);
+    
+//--------------------------------------------------------------------SignIn In Created Orgazation-------------------------------------------------------------------//    
+    for(String winHandle : driver.getWindowHandles()){
+    driver.switchTo().window(winHandle);
+    }
+    driver.findElement(By.name("username")).clear();
+    driver.findElement(By.name("username")).sendKeys(Email);
+    driver.findElement(By.name("password")).clear();
+    driver.findElement(By.name("password")).sendKeys(Password);
+    driver.findElement(By.xpath("//button[@type='submit']")).click();
+    Thread.sleep(5000);
+    driver.findElement(By.xpath("//button[@type='submit']")).click();
+    Thread.sleep(5000);
+    driver.findElement(By.xpath("//a[contains(@href, '/')]")).click();
+    Thread.sleep(5000);
+    String db = driver.findElement(By.xpath("//div[@id='app-main']/div/div/div")).getText();
+    assertEquals("Dashboard", db);
+    System.out.println("//--------------------After the reset password & signin it open--------------------//");
+    System.out.println(db);
 	 
 	}
 	@Ignore
