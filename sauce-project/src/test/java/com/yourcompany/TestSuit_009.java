@@ -44,15 +44,14 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 //-------------------------------------------------------
 @RunWith(ConcurrentParameterized.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class TestSuit_3 implements SauceOnDemandSessionIdProvider {
-
+public class TestSuit_009 implements SauceOnDemandSessionIdProvider {
+	
 	private String baseUrl;
 	private boolean acceptNextAlert = true;
 	private StringBuffer verificationErrors = new StringBuffer();
 	private String Tar, Mtype, Mrec, Aggtype, Email,Fullname,Orgname, Password;
-
 	private String Pathofexcel ="./src/test/java/com/yourcompany/dataexcel.xlsx"; // path of your excel file
-	/*	String[][] SauceInfo = GetValue(Pathofexcel,"signup",11);
+	/*String[][] SauceInfo = GetValue(Pathofexcel,"signup",11);
 	String SauceUser = SauceInfo[0][0];
 	String SauceAccessKey = SauceInfo[0][1]; */
     public SauceOnDemandAuthentication authentication = new SauceOnDemandAuthentication("testingapptrial", "d64b5203-e2a4-4108-bd1b-0d311b34dc5d");
@@ -68,7 +67,7 @@ public class TestSuit_3 implements SauceOnDemandSessionIdProvider {
 	
 	//-----------------------------------------------------------------------------------------
 	
-    public TestSuit_3(String os, String version, String browser) {
+    public TestSuit_009(String os, String version, String browser) {
         super();
         this.os = os;
         this.version = version;
@@ -91,7 +90,7 @@ public class TestSuit_3 implements SauceOnDemandSessionIdProvider {
             capabilities.setCapability(CapabilityType.VERSION, version);
         }
         capabilities.setCapability(CapabilityType.PLATFORM, os);
-        capabilities.setCapability("name", "Chartlytics Test_CreatePerformer");
+        capabilities.setCapability("name", "Chartlytics Test_DeleteGroupUser");
         this.driver = new RemoteWebDriver(
                 new URL("http://" + authentication.getUsername() + ":" + authentication.getAccessKey() + "@ondemand.saucelabs.com:80/wd/hub"),
                 capabilities);
@@ -105,83 +104,73 @@ public class TestSuit_3 implements SauceOnDemandSessionIdProvider {
 	 driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     }
 	@Ignore
-	@Test // Create Performer
-   public void CreatePerformer() throws Exception {
-     driver.get("http://"+ baseUrl + "/signin");
-    driver.findElement(By.name("username")).clear();
-    driver.findElement(By.name("username")).sendKeys(Email);
-    driver.findElement(By.name("password")).clear();
-    driver.findElement(By.name("password")).sendKeys(Password);
+	 @Test 
+	  public void DeleteGroupUser() throws Exception {
+	  String[][] getit = GetValue(Pathofexcel,"signup",2);
+	  baseUrl = getit[0][0]; 
+	   Email= getit[0][2];  
+	   Password=getit[0][3];
 
-    driver.findElement(By.xpath("//button[@type='submit']")).click();
-    
-    for(int i=2; i<=7;i++){
-    String[][] getits = GetValue(Pathofexcel,"performer",i);
-		String PerName = getits [0][0];
-		String age = getits [0][1];
-		String Gen = getits [0][2];
-		String Grade = getits [0][3];
-		
-   
-    driver.findElement(By.cssSelector("a[title=\"Performers\"] > span")).click();
-    driver.findElement(By.id("createPerformer")).click();
-    driver.findElement(By.name("performerName")).clear();
-    driver.findElement(By.name("performerName")).sendKeys(PerName);
-    driver.findElement(By.name("age")).clear();
-    driver.findElement(By.name("age")).sendKeys(""+age);
-    if(Gen.equals("M"))
-    {
-    driver.findElement(By.id("male")).click();
-    }else
-    {
-    	  driver.findElement(By.id("female")).click();
+	driver.get("http://"+ baseUrl + "/signin");
+	//driver.manage().window().maximize();
+	driver.findElement(By.name("username")).clear();
+	driver.findElement(By.name("username")).sendKeys(Email);
+	driver.findElement(By.name("password")).clear();
+	driver.findElement(By.name("password")).sendKeys(Password);
+
+	driver.findElement(By.xpath("//button[@type='submit']")).click();
+	Thread.sleep(5000);
+	driver.findElement(By.xpath("html/body/nav/div/div/a/i")).click();
+	driver.findElement(By.cssSelector("a[title=\"Groups\"] > span")).click();
+	driver.findElement(By.id("newGroup")).click();
+    String[][] creatgroup = GetValue(Pathofexcel,"group",28);
+	String grpname = creatgroup[0][0]; 
+	String grpdescription = creatgroup[0][1];  
+	String grplocation= creatgroup[0][2];
+	String usrname= creatgroup[0][3];
+	String usrrole= creatgroup[0][4];
+	driver.findElement(By.name("groupName")).clear();
+    driver.findElement(By.name("groupName")).sendKeys(grpname);
+    driver.findElement(By.cssSelector("input[name=\"description\"]")).clear();
+    driver.findElement(By.cssSelector("input[name=\"description\"]")).sendKeys(grpdescription);
+    driver.findElement(By.name("location")).clear();
+    driver.findElement(By.name("location")).sendKeys(grplocation);
+    driver.findElement(By.id("createGroup")).click();
+    Thread.sleep(10000);
+    driver.findElement(By.cssSelector("i.fa.fa-sort-numeric-desc")).click();
+    String groupname = driver.findElement(By.xpath(".//*[@id='grid-view']/div/a/div/div[2]/div[1]/h2")).getText();
+    assertEquals(groupname,grpname);
+    System.out.println("//-----------------------Create The Group------------------------------------//");
+    System.out.println(groupname);
+//---------------------------------------------Add User To Group through Access Control--------------------------------------------------//    
+    driver.findElement(By.xpath(".//*[@id='grid-view']/div/a/div/div[2]/div[1]/h2")).click();
+    driver.findElement(By.xpath("//a[contains(text(),'Access Control')]")).click();
+    driver.findElement(By.id("addUser")).click();
+    driver.findElement(By.xpath("//form/div[1]/div/div/a/span[1]")).click(); 
+    driver.findElement(By.xpath("html/body/div[6]/div/input")).sendKeys(usrname);
+    driver.findElement(By.xpath("html/body/div[6]/ul/li/div")).click();
+    if(usrrole.equals("Advisor"))
+    {                                 
+    	driver.findElement(By.xpath("//form/div[2]/div/div/label[1]")).click();
     }
-    driver.findElement(By.name("grade")).clear();
-    driver.findElement(By.name("grade")).sendKeys(Grade);
-    driver.findElement(By.cssSelector("p.pull-right > button.btn.btn-primary")).click();
-  //  driver.findElement(By.linkText("Last")).click();
-    Thread.sleep(3000);
-    String p =driver.findElement(By.xpath("//*[@id='results-paging']/div/div[1]/button[1]")).getText();
-    String item =driver.findElement(By.xpath("//*[@id='results-paging']/div/div[1]/button[2]")).getText();
-   // System.out.println(p);
-    //System.out.println(item);
-    String[] temp, temps;
-    String delimiter = " ";
-    String del = " ";
-	temp = p.split(delimiter);
-	int page =Integer.parseInt(temp[3]);
-	temps= item.split(del);
+    else
+    {                             
+    	driver.findElement(By.xpath("//form/div[2]/div/div/label[2]")).click(); 
+    }
+    driver.findElement(By.id("confirmAdd")).click();
+    driver.findElement(By.id("cancelUserSelect")).click();
+                                  
+    String addedusrname= driver.findElement(By.cssSelector("h2.male")).getText();
+    assertEquals(usrname,addedusrname);
+    System.out.println("//-----------------------Added User Name------------------------------------//");
+    System.out.println(addedusrname);
+//------------------------------------------------------Delete Group user--------------------------------------------------------------------//    
+    driver.findElement(By.xpath("//button[@type='button']")).click();
+    
+    System.out.println("//---------Delete the added user------------//");
+    
+  }
 
-	
-	int items =Integer.parseInt(temps[5]);
-	
-	if(page==1 || items<=10)
-	{
-	
-    try {
-    	Thread.sleep(10000);
-    	driver.findElement(By.xpath("//*[@id='app-main']/div[2]/div[1]/div/div[4]/label[4]")).click();
-    	assertEquals(PerName , driver.findElement(By.xpath("//*[@id='grid-view']/div[1]/a/div/div[2]/div[1]/h2")).getText());
-    	assertEquals("Age: "+age+"   "+"Grade: "+Grade , driver.findElement(By.xpath("//*[@id='grid-view']/div[1]/a/div/div[2]/p")).getText());
-    	System.out.println("successfully created");
-    	} catch (Error e) {
-    		verificationErrors.append(e.toString());
-    	}
-	}// end of if
-	else
-	{
-		int pag = page+1;
-		driver.findElement(By.xpath("//*[@id='results-paging']/div/div[1]/a["+pag+"]")).click();
-		driver.findElement(By.xpath("//*[@id='app-main']/div[2]/div[1]/div/div[4]/label[4]")).click();
-			  Thread.sleep(10000);
-		      assertEquals(PerName , driver.findElement(By.xpath("//*[@id='grid-view']/div[1]/a/div/div[2]/div[1]/h2")).getText());
-		      assertEquals("Age: "+age+"   "+"Grade: "+Grade, driver.findElement(By.xpath("//*[@id='grid-view']/div[1]/a/div/div[2]/p")).getText());
-		      System.out.println("successfully created Performer " + PerName );
-		   
-	} //end of else
-  } // of for loop
-  }// end of test
-  
   
 	 private String[][] GetValue(String Pathfile, String sheetName, int startrow) throws IOException{
 	  File excel= new File(Pathfile);

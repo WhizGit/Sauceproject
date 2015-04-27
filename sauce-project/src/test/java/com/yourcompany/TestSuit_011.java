@@ -44,16 +44,16 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 //-------------------------------------------------------
 @RunWith(ConcurrentParameterized.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class TestSuit_1 implements SauceOnDemandSessionIdProvider {
-
+public class TestSuit_011 implements SauceOnDemandSessionIdProvider {
+	
 	private String baseUrl;
 	private boolean acceptNextAlert = true;
 	private StringBuffer verificationErrors = new StringBuffer();
 	private String Tar, Mtype, Mrec, Aggtype, Email,Fullname,Orgname, Password;
 	private String Pathofexcel ="./src/test/java/com/yourcompany/dataexcel.xlsx"; // path of your excel file
-	/*	String[][] SauceInfo = GetValue(Pathofexcel,"signup",11);
+	/*String[][] SauceInfo = GetValue(Pathofexcel,"signup",11);
 	String SauceUser = SauceInfo[0][0];
-	String SauceAccessKey = SauceInfo[0][1];*/
+	String SauceAccessKey = SauceInfo[0][1]; */
     public SauceOnDemandAuthentication authentication = new SauceOnDemandAuthentication("testingapptrial", "d64b5203-e2a4-4108-bd1b-0d311b34dc5d");
 
     @Rule
@@ -67,7 +67,7 @@ public class TestSuit_1 implements SauceOnDemandSessionIdProvider {
 	
 	//-----------------------------------------------------------------------------------------
 	
-    public TestSuit_1(String os, String version, String browser) {
+    public TestSuit_011(String os, String version, String browser) {
         super();
         this.os = os;
         this.version = version;
@@ -90,7 +90,7 @@ public class TestSuit_1 implements SauceOnDemandSessionIdProvider {
             capabilities.setCapability(CapabilityType.VERSION, version);
         }
         capabilities.setCapability(CapabilityType.PLATFORM, os);
-        capabilities.setCapability("name", "Chartlytics Test_CreateOrg");
+        capabilities.setCapability("name", "Chartlytics Test_UpdateGroup_Profile");
         this.driver = new RemoteWebDriver(
                 new URL("http://" + authentication.getUsername() + ":" + authentication.getAccessKey() + "@ondemand.saucelabs.com:80/wd/hub"),
                 capabilities);
@@ -104,97 +104,68 @@ public class TestSuit_1 implements SauceOnDemandSessionIdProvider {
 	 driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     }
 	@Ignore
-	@Test
-	public void testA_CreateAnOrganisation() throws Exception {
-//--------------------------------------------------Create An Organization---------------------------------------------------------------//	  
-    driver.get("http://"+baseUrl + "/");
-    driver.findElement(By.name("fullname")).clear();
-    driver.findElement(By.name("fullname")).sendKeys(Fullname);
-    driver.findElement(By.name("email")).clear();
-    driver.findElement(By.name("email")).sendKeys(Email);
-	WebElement emailid = driver.findElement(By.name("email"));
-    String id = emailid.getAttribute("value");
-    driver.findElement(By.name("password")).clear();
-    driver.findElement(By.name("password")).sendKeys(Password);
-    driver.findElement(By.name("orgName")).clear();
-    driver.findElement(By.name("orgName")).sendKeys(Orgname);
-    driver.findElement(By.xpath("//button[@type='submit']")).click(); 
-    String msg = driver.findElement(By.xpath("//form/div/div")).getText();
-    System.out.println("//@@##--------------Email Verification Message----------------##@@// ");
-    System.out.println(msg);
-	String del = " ";
-    String[] temps= msg.split(del);
-    System.out.println(temps[9]);
-     assertEquals(temps[9], id+".") ;
-	 
-	}
-	@Ignore
-	@Test
-	public void testB_UpdateTimeZone() throws Exception {
-  driver.get("http://"+ baseUrl + "/signin");
-    driver.findElement(By.name("username")).clear();
-    driver.findElement(By.name("username")).sendKeys(Email);
-    driver.findElement(By.name("password")).clear();
-    driver.findElement(By.name("password")).sendKeys(Password);
+	 @Test 
+	  public void UpdateGroupProfile() throws Exception {
+	  String[][] getit = GetValue(Pathofexcel,"signup",2);
+	  baseUrl = getit[0][0]; 
+	   Email= getit[0][2];  
+	   Password=getit[0][3];
 
-    driver.findElement(By.xpath("//button[@type='submit']")).click();
-	 for(String winHandle : driver.getWindowHandles()){
-    driver.switchTo().window(winHandle);
-    }
-  driver.findElement(By.name("username")).clear();
-    driver.findElement(By.name("username")).sendKeys(Email);
-    driver.findElement(By.name("password")).clear();
-    driver.findElement(By.name("password")).sendKeys(Password);
-    driver.findElement(By.xpath("//button[@type='submit']")).click();
-    Thread.sleep(5000);
-    driver.findElement(By.xpath("//button[@type='submit']")).click();
-    Thread.sleep(5000);
-    driver.findElement(By.xpath("//a[contains(@href, '/')]")).click();
-    Thread.sleep(5000);
-    String db = driver.findElement(By.xpath("//div[@id='app-main']/div/div/div")).getText();
-    assertEquals("Dashboard", db);
-	}
-	
-	@Ignore
-    @Test
-	public void testB_OrganisationVerification() throws Exception {
-//------------------------------------------Email Verification---------------------------------------------------------------------------//
-    driver.get("https://accounts.google.com/ServiceLogin?sacu=1&scc=1&continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&hl=en&service=mail");
-    driver.findElement(By.id("Email")).clear();
-    driver.findElement(By.id("Email")).sendKeys("testingapptrial@gmail.com");
-    driver.findElement(By.id("Passwd")).clear();
-    driver.findElement(By.id("Passwd")).sendKeys("1234abcd@00");
-    driver.findElement(By.id("signIn")).click();
+	driver.get("http://"+ baseUrl + "/signin");
+	//driver.manage().window().maximize();
+	driver.findElement(By.name("username")).clear();
+	driver.findElement(By.name("username")).sendKeys(Email);
+	driver.findElement(By.name("password")).clear();
+	driver.findElement(By.name("password")).sendKeys(Password);
+
+	driver.findElement(By.xpath("//button[@type='submit']")).click();
+	Thread.sleep(5000);
+	driver.findElement(By.xpath("html/body/nav/div/div/a/i")).click();
+    driver.findElement(By.cssSelector("a[title=\"Groups\"] > span")).click();
+    String[][] creatgroup = GetValue(Pathofexcel,"group",18);
+	String grpname = creatgroup[0][0]; 
+	String grpdescription = creatgroup[0][1];  
+	String grplocation= creatgroup[0][2];
+	driver.findElement(By.id("newGroup")).click();
+    driver.findElement(By.name("groupName")).clear();
+    driver.findElement(By.name("groupName")).sendKeys(grpname);
+    driver.findElement(By.cssSelector("input[name=\"description\"]")).clear();
+    driver.findElement(By.cssSelector("input[name=\"description\"]")).sendKeys(grpdescription);
+    driver.findElement(By.name("location")).clear();
+    driver.findElement(By.name("location")).sendKeys(grplocation);
+    driver.findElement(By.id("createGroup")).click();
     Thread.sleep(10000);
-    driver.findElement(By.partialLinkText("Inbox")).click();
-    Thread.sleep(5000);
-    driver.findElement(By.xpath("//div [@class='y6']/span[contains(.,'Chartlytics: Confirm your email address')]")).click();
-    driver.findElement(By.partialLinkText("http://dev.chartlytics.com/activate/")).click();
-    Thread.sleep(5000);
-    String emailver = driver.findElement(By.xpath("//form/div/div")).getText();
-    System.out.println("//@@##--------------After Verifying Email----------------##@@// ");
-    System.out.println(emailver);
+    driver.findElement(By.cssSelector("i.fa.fa-sort-numeric-desc")).click();
+    String groupname = driver.findElement(By.xpath(".//*[@id='grid-view']/div/a/div/div[2]/div[1]/h2")).getText();
+    assertEquals(groupname,grpname);
+    System.out.println("//-----------------------Create The Group------------------------------------//");
+    System.out.println("Name="+groupname);
+    System.out.println("Description="+grpdescription);
+    System.out.println("Location="+grplocation);
+//-------------------------------------------------Update the Group Profile--------------------------------------------------------//    
+    driver.findElement(By.xpath(".//*[@id='grid-view']/div/a/div/div[2]/div[1]/h2")).click();
+    driver.findElement(By.xpath("(//a[contains(text(),'Profile')])[3]")).click();
+    String[][] updtgroup = GetValue(Pathofexcel,"group",22);
+   	String updtname = updtgroup[0][0]; 
+   	String updtdescription = updtgroup[0][1];  
+   	String updtlocation= updtgroup[0][2];
+    driver.findElement(By.name("groupName")).clear();
+    driver.findElement(By.name("groupName")).sendKeys(updtname);
+    driver.findElement(By.cssSelector("input[name=\"description\"]")).clear();
+    driver.findElement(By.cssSelector("input[name=\"description\"]")).sendKeys(updtdescription);
+    driver.findElement(By.name("location")).clear();
+    driver.findElement(By.name("location")).sendKeys(updtlocation);
+    driver.findElement(By.id("saveGroupProfile")).click();
+    driver.findElement(By.cssSelector("i.fa.fa-sort-numeric-desc")).click();
+    String editname = driver.findElement(By.xpath(".//*[@id='grid-view']/div/a/div/div[2]/div[1]/h2")).getText();
+    assertEquals(editname,updtname);
+    System.out.println("//-----------------------Update Group------------------------------------//");
+    System.out.println("Name="+editname);
+    System.out.println("Description="+updtdescription);
+    System.out.println("Location="+updtlocation);
     
-//--------------------------------------------------------------------SignIn In Created Orgazation-------------------------------------------------------------------//    
-    for(String winHandle : driver.getWindowHandles()){
-    driver.switchTo().window(winHandle);
-    }
-    driver.findElement(By.name("username")).clear();
-    driver.findElement(By.name("username")).sendKeys(Email);
-    driver.findElement(By.name("password")).clear();
-    driver.findElement(By.name("password")).sendKeys(Password);
-    driver.findElement(By.xpath("//button[@type='submit']")).click();
-    Thread.sleep(5000);
-    driver.findElement(By.xpath("//button[@type='submit']")).click();
-    Thread.sleep(5000);
-    driver.findElement(By.xpath("//a[contains(@href, '/')]")).click();
-    Thread.sleep(5000);
-    String db = driver.findElement(By.xpath("//div[@id='app-main']/div/div/div")).getText();
-    assertEquals("Dashboard", db);
-    System.out.println("//--------------------After the reset password & signin it open--------------------//");
-    System.out.println(db);
   }
-  
+
   
 	 private String[][] GetValue(String Pathfile, String sheetName, int startrow) throws IOException{
 	  File excel= new File(Pathfile);

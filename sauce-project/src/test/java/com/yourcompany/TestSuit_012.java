@@ -44,7 +44,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 //-------------------------------------------------------
 @RunWith(ConcurrentParameterized.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class TestSuit_6 implements SauceOnDemandSessionIdProvider {
+public class TestSuit_012 implements SauceOnDemandSessionIdProvider {
 	
 	private String baseUrl;
 	private boolean acceptNextAlert = true;
@@ -67,7 +67,7 @@ public class TestSuit_6 implements SauceOnDemandSessionIdProvider {
 	
 	//-----------------------------------------------------------------------------------------
 	
-    public TestSuit_6(String os, String version, String browser) {
+    public TestSuit_012(String os, String version, String browser) {
         super();
         this.os = os;
         this.version = version;
@@ -90,7 +90,7 @@ public class TestSuit_6 implements SauceOnDemandSessionIdProvider {
             capabilities.setCapability(CapabilityType.VERSION, version);
         }
         capabilities.setCapability(CapabilityType.PLATFORM, os);
-        capabilities.setCapability("name", "Chartlytics Test_ArchivePerformer");
+        capabilities.setCapability("name", "Chartlytics Test_UpdatePerformerProfile");
         this.driver = new RemoteWebDriver(
                 new URL("http://" + authentication.getUsername() + ":" + authentication.getAccessKey() + "@ondemand.saucelabs.com:80/wd/hub"),
                 capabilities);
@@ -98,14 +98,19 @@ public class TestSuit_6 implements SauceOnDemandSessionIdProvider {
 	String[][] getit = GetValue(Pathofexcel,"signup",2);
 	baseUrl = getit[0][0]; 
 	Fullname = getit[0][1]; 
-	Email= getit[0][2];  
+	Email= getit[0][2];
 	Password=getit[0][3];
 	Orgname=getit[0][4];
 	 driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     }
-	@Ignore
-	 @Test // Test 5 Archive Performer
-  public void ArchivePerformer() throws Exception {
+	
+	 @Test 
+	  public void UpdatePerformerProfile() throws Exception {
+	   String[][] getit = GetValue(Pathofexcel,"signup",2);
+ baseUrl = getit[0][0]; 
+  Email= getit[0][2];  
+  Password=getit[0][3];
+
     driver.get("http://"+ baseUrl + "/signin");
     driver.manage().window().maximize();
     driver.findElement(By.name("username")).clear();
@@ -116,7 +121,7 @@ public class TestSuit_6 implements SauceOnDemandSessionIdProvider {
     driver.findElement(By.xpath("//button[@type='submit']")).click();
     
     
-    String[][] getits = GetValue(Pathofexcel,"performer",9);
+    String[][] getits = GetValue(Pathofexcel,"performer",25);
   String PerName = getits [0][0];
   String age = getits [0][1];
   String Gen = getits [0][2];
@@ -184,34 +189,54 @@ public class TestSuit_6 implements SauceOnDemandSessionIdProvider {
       }
  } //end of else
  
-//-------------------------------------------------ARCHIVE PERFORMER---------------------------------------------------------------------------//
+//-------------------------------------------------UPDATE PERFORMER PROFILE---------------------------------------------------------------------------//
     
     driver.findElement(By.xpath("//*[@id='grid-view']/div[1]/a/div/div[2]/div[1]/h2")).click();
+    //Thread.sleep(5000);
+    driver.findElement(By.xpath("(//a[contains(text(),'Profile')])[3]")).click();
+    String[][] perupd = GetValue(Pathofexcel,"performer",28);
+    String upPerName = perupd [0][0];
+    String upage = perupd [0][1];
+    String upGrade = perupd [0][2];
+    String upGen = perupd [0][3];
+    
+    driver.findElement(By.name("performerName")).clear();
+    driver.findElement(By.name("performerName")).sendKeys(upPerName);
+    driver.findElement(By.name("age")).clear();
+    driver.findElement(By.name("age")).sendKeys(upage);
+    driver.findElement(By.name("grade")).clear();
+    driver.findElement(By.name("grade")).sendKeys(upGrade);
+    String gen;
+    if(upGen.equals("M"))
+    {
+    driver.findElement(By.id("male")).click();
+     gen = "male";
+    }else
+    {
+       driver.findElement(By.id("female")).click();
+       gen ="female";
+    }
+    
+    driver.findElement(By.xpath(".//*[@id='app-main']/div[2]/p/button")).click();
+    String upmsg = driver.findElement(By.xpath("//div[@id='profile']/div/div/span")).getText();
+    System.out.println("//----------After update profile it shows the message--------//");
+    System.out.println(upmsg);
+    System.out.println("//----------After updation profile detail--------//");
+    String pername = driver.findElement(By.name("performerName")).getAttribute("value");
+    String perage  = driver.findElement(By.name("age")).getAttribute("value");
+    String pergrade= driver.findElement(By.name("grade")).getAttribute("value");
+   
+    System.out.println("Name:="  +pername);
+    System.out.println("Age:="   +perage);
+    System.out.println("Grade:=" +pergrade);
+    System.out.println("Gender:=" +gen);
+//---------------------------------------------------------DELETE PERFORMER-----------------------------------------------------------//    
     driver.findElement(By.xpath("//a[contains(text(),'Settings')]")).click();
-    driver.findElement(By.id("archive")).click();
+    driver.findElement(By.id("deletePerformer")).click();
     Thread.sleep(10000);
-    driver.findElement(By.xpath("(//button[@type='submit'])[3]")).click();
-    System.out.println("//----------Successfullly archived the performer----------//");
+    driver.findElement(By.xpath("(//button[@type='submit'])[2]")).click();
     
-//-------------------------------------------------VERIFY ARCHIVED PERFORMER--------------------------------------------------------------------//    
-    driver.findElement(By.xpath("//*[@id='app-sidebar']/ul/li[4]/a")).click();
-	Thread.sleep(5000);
-    driver.findElement(By.id("fifty")).click();
-    driver.findElement(By.xpath("//*[@id='app-main']/div[2]/div[1]/div/div[4]/label[4]")).click();
-    driver.findElement(By.id("showArchived")).click();
-   String archper = driver.findElement(By.xpath(".//*[@id='grid-view']/div[1]")).getAttribute("data-archived");
-   System.out.println("//----------Shows the message performer is archived or not archived----------//");
-    
-    if(archper.equals("true"))
-    		{
-    	
-    	   System.out.println("Performer is Archived");
-    	    }
-    else
-            {
-    	   System.out.println("Performer is Not Archived");
-    	    }
-  }// end of test
+  }
 
   
 	 private String[][] GetValue(String Pathfile, String sheetName, int startrow) throws IOException{
