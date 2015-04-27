@@ -105,10 +105,6 @@ public class TestSuit_014 implements SauceOnDemandSessionIdProvider {
     }
 	 @Test 
 	  public void testResetPassword() throws Exception {
-	  String[][] getit = GetValue(Pathofexcel,"signup",2);
-		baseUrl = getit[0][0]; 
-		Email= getit[0][2];  
-		Password=getit[0][3];
 		driver.get("http://"+baseUrl + "/");
 	    driver.manage().window().maximize();
 	    driver.findElement(By.linkText("Log in")).click();
