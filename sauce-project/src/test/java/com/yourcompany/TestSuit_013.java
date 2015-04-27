@@ -106,6 +106,15 @@ public class TestSuit_013 implements SauceOnDemandSessionIdProvider {
 	
 	 @Test 
 	  public void UpdatePerformerProfile() throws Exception {
+    driver.get("http://"+baseUrl+"/");
+    driver.findElement(By.linkText("Log in")).click();
+    driver.findElement(By.name("username")).clear();
+    driver.findElement(By.name("username")).sendKeys(Email);
+    driver.findElement(By.name("password")).clear();
+    driver.findElement(By.name("password")).sendKeys(Password);
+    driver.findElement(By.xpath("//button[@type='submit']")).click();
+    // click on the pinpoint on the dashboard
+    driver.findElement(By.cssSelector("a[title=\"Pinpoints+\"] > span")).click();
 	    for(int c=4; c<=228; c++) // we can start test case from testcase 1
 		{
 		  String[][] data = GetValue(Pathofexcel,"ReviewSummary",c);
