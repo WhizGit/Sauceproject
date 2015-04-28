@@ -103,7 +103,7 @@ public class TestSuit_007 implements SauceOnDemandSessionIdProvider {
 	Orgname=getit[0][4];
 	 driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     }
-	
+	@Ignore
 	 @Test // Test Create_group
 	  public void testCreateGroup() throws Exception {
 	  String[][] getit = GetValue(Pathofexcel,"signup",2);

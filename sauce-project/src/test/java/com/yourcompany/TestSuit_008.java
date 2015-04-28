@@ -141,6 +141,7 @@ public class TestSuit_008 implements SauceOnDemandSessionIdProvider {
     driver.findElement(By.xpath("//form/div[1]/div/div/a/span[1]")).click();
 	Thread.sleep(3000);
     driver.findElement(By.xpath("html/body/div[8]/div/input")).sendKeys(usrname);
+	Thread.sleep(3000);
     driver.findElement(By.xpath("html/body/div[8]/ul/li/div")).click();
     if(usrrole.equals("Advisor"))
     {                                 

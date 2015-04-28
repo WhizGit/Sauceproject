@@ -103,7 +103,7 @@ public class TestSuit_006 implements SauceOnDemandSessionIdProvider {
 	Orgname=getit[0][4];
 	 driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     }
-
+	@Ignore
 	 @Test // Test 5 Archive Performer
   public void ArchivePerformer() throws Exception {
     driver.get("http://"+ baseUrl + "/signin");
