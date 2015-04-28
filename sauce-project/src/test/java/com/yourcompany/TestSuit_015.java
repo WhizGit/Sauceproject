@@ -44,7 +44,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 //-------------------------------------------------------
 @RunWith(ConcurrentParameterized.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class TestSuit_014 implements SauceOnDemandSessionIdProvider {
+public class TestSuit_015 implements SauceOnDemandSessionIdProvider {
 	
 	private String baseUrl;
 	private boolean acceptNextAlert = true;
@@ -67,7 +67,7 @@ public class TestSuit_014 implements SauceOnDemandSessionIdProvider {
 	
 	//-----------------------------------------------------------------------------------------
 	
-    public TestSuit_014(String os, String version, String browser) {
+    public TestSuit_015(String os, String version, String browser) {
         super();
         this.os = os;
         this.version = version;
@@ -90,7 +90,7 @@ public class TestSuit_014 implements SauceOnDemandSessionIdProvider {
             capabilities.setCapability(CapabilityType.VERSION, version);
         }
         capabilities.setCapability(CapabilityType.PLATFORM, os);
-        capabilities.setCapability("name", "Chartlytics Test_ResetPassword");
+        capabilities.setCapability("name", "Chartlytics Test_CreateCategory");
         this.driver = new RemoteWebDriver(
                 new URL("http://" + authentication.getUsername() + ":" + authentication.getAccessKey() + "@ondemand.saucelabs.com:80/wd/hub"),
                 capabilities);
@@ -103,54 +103,52 @@ public class TestSuit_014 implements SauceOnDemandSessionIdProvider {
 	Orgname=getit[0][4];
 	 driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     }
-	@Ignore
+	
 	 @Test 
-	  public void testResetPassword() throws Exception {
-		driver.get("http://"+baseUrl + "/");
-	    driver.manage().window().maximize();
-	    driver.findElement(By.linkText("Log in")).click();
-	    driver.findElement(By.name("username")).clear();
-	    driver.findElement(By.name("username")).sendKeys(Email);
-	    driver.findElement(By.name("password")).clear();
-	    driver.findElement(By.name("password")).sendKeys(Password);
-	    driver.findElement(By.xpath("//button[@type='submit']")).click(); 
-		Thread.sleep(3000);
-    driver.findElement(By.cssSelector(".user-info>a>span")).click();
-	Thread.sleep(2000);
-    driver.findElement(By.linkText("Security")).click();
-	Thread.sleep(2000);
-    String[][] data = GetValue(Pathofexcel,"signup",7);
-    String Npwd = data [0][1]; 
-    driver.findElement(By.name("old_password")).clear();
-    driver.findElement(By.name("old_password")).sendKeys(Password);
-    driver.findElement(By.name("password")).clear();
-    driver.findElement(By.name("password")).sendKeys(Npwd);
-    driver.findElement(By.name("password_confirm")).clear();
-    driver.findElement(By.name("password_confirm")).sendKeys(Npwd);
-    driver.findElement(By.cssSelector("button.btn.btn-primary")).click();
-    String UP = driver.findElement(By.xpath("//div[@id='identity']/div/div/span")).getText();
-    assertEquals("Password updated successfully.", UP);
-    System.out.println("//--------------------After Reset Password It shows the message--------------------//");
-    System.out.println(UP);
-//-------------------------------------------------Verify Reset Password-----------------------------------------------------------------//
-    driver.findElement(By.cssSelector(".user-info>a>span")).click();
-	Thread.sleep(2000);
-    driver.findElement(By.linkText("Logout")).click();
-	Thread.sleep(2000);
-    String[][] verrespass = GetValue(Pathofexcel,"signup",7);
-	Email= verrespass[0][0];  
-	Password=verrespass[0][1];
-	driver.findElement(By.name("username")).clear();
+	 public void testCreateCategory() throws Exception {
+
+			
+    driver.get("http://"+baseUrl + "/");
+    driver.findElement(By.linkText("Log in")).click();
+    driver.findElement(By.name("username")).clear();
     driver.findElement(By.name("username")).sendKeys(Email);
     driver.findElement(By.name("password")).clear();
     driver.findElement(By.name("password")).sendKeys(Password);
     driver.findElement(By.xpath("//button[@type='submit']")).click();
-	Thread.sleep(3000);
-    String db = driver.findElement(By.xpath("//div[@id='app-main']/div/div/div")).getText();
-    assertEquals("Dashboard", db);
-    //assertEquals("Dashboard", driver.findElement(By.xpath("//div[@id='app-main']/div/div/div")).getText());
-    System.out.println("//--------------------After the reset password & signin it open--------------------//");
-    System.out.println(db);
+    driver.findElement(By.cssSelector("a[title=\"Pinpoints+\"] > span")).click();
+    driver.findElement(By.cssSelector("a[title=\"Pinpoints+\"] > span")).click();
+    driver.findElement(By.id("createCategory")).click();
+    
+    String[][] data = GetValue(Pathofexcel,"Pinpoint",12);
+    //------------------------------------------------------------------------------
+    String CategoryNm = data[0][0];
+    //------------------------------------------------------------------------------
+    driver.findElement(By.name("catName")).clear();
+    driver.findElement(By.name("catName")).sendKeys(""+CategoryNm);
+    driver.findElement(By.xpath("//button[@type='submit']")).click();
+    boolean categories = isElementPresent(By.cssSelector("div.categories"));
+    System.out.println("categirues" + categories);
+    WebElement parent = driver.findElement(By.xpath("/html/body/div[3]/div[2]/div[2]/div[1]/a"));
+    List<WebElement> children = parent.findElements(By.cssSelector("box.categories"));
+    int sizes = children.size();
+    int size = 0;
+    System.out.println(size);
+    String arr[] = new String[sizes];
+    for (WebElement child : children) {
+        if (children.indexOf(child) >0)
+            break;
+        int i =0;
+        size+=1;
+       arr[i]= child.getText();
+       System.out.println(arr[i]);
+       i++;
+     }
+    System.out.println("total no of element :" +size);
+   
+   
+      assertEquals("×Category "+data[0][1]+" created successfully.", driver.findElement(By.xpath("//form[@id='createCategoryForm']/div/div/div")).getText());
+   
+    assertEquals(data[0][1], driver.findElement(By.cssSelector("div.box.category")).getText());
   }
 
   
