@@ -114,8 +114,11 @@ public class TestSuit_014 implements SauceOnDemandSessionIdProvider {
 	    driver.findElement(By.name("password")).clear();
 	    driver.findElement(By.name("password")).sendKeys(Password);
 	    driver.findElement(By.xpath("//button[@type='submit']")).click(); 
+		Thread.sleep(3000);
     driver.findElement(By.cssSelector(".user-info>a>span")).click();
+	Thread.sleep(2000);
     driver.findElement(By.linkText("Security")).click();
+	Thread.sleep(2000);
     String[][] data = GetValue(Pathofexcel,"signup",7);
     String Npwd = data [0][1]; 
     driver.findElement(By.name("old_password")).clear();
@@ -131,7 +134,9 @@ public class TestSuit_014 implements SauceOnDemandSessionIdProvider {
     System.out.println(UP);
 //-------------------------------------------------Verify Reset Password-----------------------------------------------------------------//
     driver.findElement(By.cssSelector(".user-info>a>span")).click();
+	Thread.sleep(2000);
     driver.findElement(By.linkText("Logout")).click();
+	Thread.sleep(2000);
     String[][] verrespass = GetValue(Pathofexcel,"signup",7);
 	Email= verrespass[0][0];  
 	Password=verrespass[0][1];
@@ -140,6 +145,7 @@ public class TestSuit_014 implements SauceOnDemandSessionIdProvider {
     driver.findElement(By.name("password")).clear();
     driver.findElement(By.name("password")).sendKeys(Password);
     driver.findElement(By.xpath("//button[@type='submit']")).click();
+	Thread.sleep(3000);
     String db = driver.findElement(By.xpath("//div[@id='app-main']/div/div/div")).getText();
     assertEquals("Dashboard", db);
     //assertEquals("Dashboard", driver.findElement(By.xpath("//div[@id='app-main']/div/div/div")).getText());
