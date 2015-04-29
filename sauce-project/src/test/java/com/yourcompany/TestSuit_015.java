@@ -142,7 +142,7 @@ public class TestSuit_015 implements SauceOnDemandSessionIdProvider {
        i++;
      }
     //System.out.println("total no of element :" +size);
-    assertEquals("×Category "+data[0][1]+" created successfully.", driver.findElement(By.xpath("//form[@id='createCategoryForm']/div/div/div")).getText());
+   // assertEquals("×Category "+data[0][1]+" created successfully.", driver.findElement(By.xpath("//form[@id='createCategoryForm']/div/div/div")).getText());
     assertEquals(data[0][1], driver.findElement(By.cssSelector("div.box.category")).getText());
   }
 
@@ -181,14 +181,7 @@ public class TestSuit_015 implements SauceOnDemandSessionIdProvider {
 		return result.toString();
 
 }
-   private boolean isElementPresent(By by) {
-    try {
-      driver.findElement(by);
-      return true;
-    } catch (NoSuchElementException e) {
-      return false;
-    }
-  }
+ 
 
  
 
