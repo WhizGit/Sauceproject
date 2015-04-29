@@ -439,9 +439,9 @@ public class TestSuit_016 implements SauceOnDemandSessionIdProvider {
 			    Thread.sleep(3000);
 			    driver.findElement(By.xpath("//form/div/div[1]/div/div/div/a/span[2]/b")).click();
 			    Thread.sleep(3000);
-			    driver.findElement(By.xpath("html/body/div[10]/div/input")).sendKeys(pinpoint);
+			    driver.findElement(By.xpath("html/body/div[9]/div/input")).sendKeys(pinpoint);
 			    Thread.sleep(3000);
-			    driver.findElement(By.xpath("html/body/div[10]/ul/li/div")).click();
+			    driver.findElement(By.xpath("html/body/div[9]/ul/li/div")).click();
 			    Thread.sleep(3000);
 			    String AssignPinpoint=driver.findElement(By.xpath("//form/div[1]/div/div/a/div/div[1]/div/h2")).getText();
 			    assertEquals(pinpoint,AssignPinpoint);

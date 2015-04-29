@@ -113,16 +113,19 @@ public class TestSuit_015 implements SauceOnDemandSessionIdProvider {
     driver.findElement(By.name("password")).clear();
     driver.findElement(By.name("password")).sendKeys(Password);
     driver.findElement(By.xpath("//button[@type='submit']")).click();
+	Thread.sleep(3000);
     driver.findElement(By.cssSelector("a[title=\"Pinpoints+\"] > span")).click();
+	Thread.sleep(3000);
     driver.findElement(By.cssSelector("a[title=\"Pinpoints+\"] > span")).click();
+	Thread,sleep(3000);
     driver.findElement(By.id("createCategory")).click();
     
-    String[][] data = GetValue(Pathofexcel,"Pinpoint",12);
+    String[][] data = GetValue(Pathofexcel,"Pinpoint",11);
     //------------------------------------------------------------------------------
     String CategoryNm = data[0][0];
     //------------------------------------------------------------------------------
     driver.findElement(By.name("catName")).clear();
-    driver.findElement(By.name("catName")).sendKeys(""+CategoryNm);
+    driver.findElement(By.name("catName")).sendKeys(CategoryNm);
     driver.findElement(By.xpath("//button[@type='submit']")).click();
   //  boolean categories = isElementPresent(By.cssSelector("div.categories"));
    // System.out.println("categirues" + categories);
@@ -144,7 +147,7 @@ public class TestSuit_015 implements SauceOnDemandSessionIdProvider {
      }
     //System.out.println("total no of element :" +size);
    // assertEquals("×Category "+data[0][1]+" created successfully.", driver.findElement(By.xpath("//form[@id='createCategoryForm']/div/div/div")).getText());
-    assertEquals(data[0][1], driver.findElement(By.cssSelector("div.box.category")).getText());
+    assertEquals(data[0][0], driver.findElement(By.cssSelector("div.box.category")).getText());
   }
 
   
