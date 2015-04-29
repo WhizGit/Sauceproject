@@ -127,8 +127,9 @@ public class TestSuit_017 implements SauceOnDemandSessionIdProvider {
   String Gen = getits [0][2];
   String Grade = getits [0][3];
   
-   
+   Thread.sleep(3000);
     driver.findElement(By.cssSelector("a[title=\"Performers\"] > span")).click();
+	
     driver.findElement(By.id("createPerformer")).click();
     driver.findElement(By.name("performerName")).clear();
     driver.findElement(By.name("performerName")).sendKeys(PerName);
