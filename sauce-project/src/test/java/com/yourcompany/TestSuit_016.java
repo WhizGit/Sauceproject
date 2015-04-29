@@ -103,7 +103,7 @@ public class TestSuit_016 implements SauceOnDemandSessionIdProvider {
 	Orgname=getit[0][4];
 	 driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     }
-	@Ignore
+	
 	@Test
 	//---------------------------------------------------------------------------------------------------
 	 public void AssignPinpointToPerformer() throws Exception {
@@ -144,7 +144,7 @@ public class TestSuit_016 implements SauceOnDemandSessionIdProvider {
     driver.findElement(By.id("fifty")).click();
     driver.findElement(By.cssSelector("i.fa.fa-sort-numeric-desc")).click();
     String Per= driver.findElement(By.xpath("//*[@id='grid-view']/div[1]/a/div/div[2]/div[1]/h2")).getText();
-    assertEequal(Per,PerName);
+    assertEquals(Per,PerName);
     System.out.println("//---------------Create Performer--------------//");
     System.out.println(Per);
  

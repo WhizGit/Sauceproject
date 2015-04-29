@@ -103,11 +103,9 @@ public class TestSuit_015 implements SauceOnDemandSessionIdProvider {
 	Orgname=getit[0][4];
 	 driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     }
-	@Ignore
+	
 	 @Test 
-	 public void testCreateCategory() throws Exception {
-
-			
+	public void testCreateCategory() throws Exception {	
     driver.get("http://"+baseUrl + "/");
     driver.findElement(By.linkText("Log in")).click();
     driver.findElement(By.name("username")).clear();
@@ -183,7 +181,14 @@ public class TestSuit_015 implements SauceOnDemandSessionIdProvider {
 		return result.toString();
 
 }
- 
+   private boolean isElementPresent(By by) {
+    try {
+      driver.findElement(by);
+      return true;
+    } catch (NoSuchElementException e) {
+      return false;
+    }
+  }
 
  
 
