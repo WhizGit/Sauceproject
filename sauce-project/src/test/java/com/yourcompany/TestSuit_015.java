@@ -124,8 +124,9 @@ public class TestSuit_015 implements SauceOnDemandSessionIdProvider {
     driver.findElement(By.name("catName")).clear();
     driver.findElement(By.name("catName")).sendKeys(""+CategoryNm);
     driver.findElement(By.xpath("//button[@type='submit']")).click();
-    boolean categories = isElementPresent(By.cssSelector("div.categories"));
+  //  boolean categories = isElementPresent(By.cssSelector("div.categories"));
     System.out.println("categirues" + categories);
+	Thread.sleep(3000);
     WebElement parent = driver.findElement(By.xpath("/html/body/div[3]/div[2]/div[2]/div[1]/a"));
     List<WebElement> children = parent.findElements(By.cssSelector("box.categories"));
     int sizes = children.size();
