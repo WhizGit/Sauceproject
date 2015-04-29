@@ -515,6 +515,7 @@ public class TestSuit_017 implements SauceOnDemandSessionIdProvider {
 				}
 			//----------------------------------------------------------------------------------------------------------------
 				//Enter value in the Acceleration and Deceleration
+				Thread.sleep(5000);
 			    driver.findElement(By.name("recordFloor")).click();
 			    driver.findElement(By.name("recordFloor")).clear();
 			    driver.findElement(By.name("recordFloor")).sendKeys(""+Counttym);
