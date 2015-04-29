@@ -454,9 +454,9 @@ public class TestSuit_017 implements SauceOnDemandSessionIdProvider {
 			 
 			    driver.findElement(By.id("assignPinpoint")).click();
 //----------------------------------------Enter value in Acceleration and Deceleration in worksheet-------------------------
-			    Thread.sleep(5000);
+			   
 			    driver.findElement(By.linkText("Worksheet")).click();
-			    
+			     Thread.sleep(5000);
 			    //Get value methode
 			    //------------------------------
 			    File excel = new File("./src/dataexcel.xlsx");
