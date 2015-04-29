@@ -117,7 +117,7 @@ public class TestSuit_015 implements SauceOnDemandSessionIdProvider {
     driver.findElement(By.cssSelector("a[title=\"Pinpoints+\"] > span")).click();
 	Thread.sleep(3000);
     driver.findElement(By.cssSelector("a[title=\"Pinpoints+\"] > span")).click();
-	Thread,sleep(3000);
+	Thread.sleep(3000);
     driver.findElement(By.id("createCategory")).click();
     
     String[][] data = GetValue(Pathofexcel,"Pinpoint",11);
