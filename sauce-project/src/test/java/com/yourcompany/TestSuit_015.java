@@ -103,7 +103,7 @@ public class TestSuit_015 implements SauceOnDemandSessionIdProvider {
 	Orgname=getit[0][4];
 	 driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     }
-	
+	@Ignore
 	 @Test 
 	 public void testCreateCategory() throws Exception {
 
@@ -143,11 +143,8 @@ public class TestSuit_015 implements SauceOnDemandSessionIdProvider {
        System.out.println(arr[i]);
        i++;
      }
-    System.out.println("total no of element :" +size);
-   
-   
-      assertEquals("×Category "+data[0][1]+" created successfully.", driver.findElement(By.xpath("//form[@id='createCategoryForm']/div/div/div")).getText());
-   
+    //System.out.println("total no of element :" +size);
+    assertEquals("×Category "+data[0][1]+" created successfully.", driver.findElement(By.xpath("//form[@id='createCategoryForm']/div/div/div")).getText());
     assertEquals(data[0][1], driver.findElement(By.cssSelector("div.box.category")).getText());
   }
 
