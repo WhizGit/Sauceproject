@@ -103,7 +103,7 @@ public class TestSuit_016 implements SauceOnDemandSessionIdProvider {
 	Orgname=getit[0][4];
 	 driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     }
-	
+	@Ignore
 	@Test
 	//---------------------------------------------------------------------------------------------------
 	 public void AssignPinpointToPerformer() throws Exception {
