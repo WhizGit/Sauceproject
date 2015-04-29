@@ -459,7 +459,7 @@ public class TestSuit_017 implements SauceOnDemandSessionIdProvider {
 			     Thread.sleep(5000);
 			    //Get value methode
 			    //------------------------------
-			    File excel = new File("./src/dataexcel.xlsx");
+			    File excel = new File(Pathofexcel);
 			   	FileInputStream fis = new FileInputStream(excel);
 			   	@SuppressWarnings("resource")
 			   	XSSFWorkbook wb = new XSSFWorkbook(fis);
