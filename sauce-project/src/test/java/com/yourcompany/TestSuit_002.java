@@ -163,7 +163,7 @@ public class TestSuit_002 implements SauceOnDemandSessionIdProvider {
      * Runs a simple test verifying the title of the amazon.com homepage.
      * @throws Exception
      */
-	@Ignore
+
     @Test // Test 1 Create pinpoint
     public void CreatePinpoint() throws Exception {
     driver.get("http://"+baseUrl + "/");

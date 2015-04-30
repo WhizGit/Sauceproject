@@ -103,7 +103,7 @@ public class TestSuit_015 implements SauceOnDemandSessionIdProvider {
 	Orgname=getit[0][4];
 	 driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     }
-	@Ignore
+	
 	 @Test 
 	public void testCreateCategory() throws Exception {	
     driver.get("http://"+baseUrl + "/");

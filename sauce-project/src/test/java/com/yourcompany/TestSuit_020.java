@@ -44,7 +44,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 //-------------------------------------------------------
 @RunWith(ConcurrentParameterized.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class TestSuit_010 implements SauceOnDemandSessionIdProvider {
+public class TestSuit_019 implements SauceOnDemandSessionIdProvider {
 	
 	private String baseUrl;
 	private boolean acceptNextAlert = true;
@@ -67,7 +67,7 @@ public class TestSuit_010 implements SauceOnDemandSessionIdProvider {
 	
 	//-----------------------------------------------------------------------------------------
 	
-    public TestSuit_010(String os, String version, String browser) {
+    public TestSuit_019(String os, String version, String browser) {
         super();
         this.os = os;
         this.version = version;
@@ -78,8 +78,7 @@ public class TestSuit_010 implements SauceOnDemandSessionIdProvider {
     public static LinkedList browsersStrings() {
         LinkedList browsers = new LinkedList();
         browsers.add(new String[]{"Windows 7", "37", "firefox"});
-       // browsers.add(new String[]{"OSX 10.8", "6", "safari"});
-	
+      //  browsers.add(new String[]{"OSX 10.8", "6", "safari"});
         return browsers;
     }
 
@@ -91,7 +90,7 @@ public class TestSuit_010 implements SauceOnDemandSessionIdProvider {
             capabilities.setCapability(CapabilityType.VERSION, version);
         }
         capabilities.setCapability(CapabilityType.PLATFORM, os);
-        capabilities.setCapability("name", "Chartlytics Test_AddUsertoGroupWithAccessControl");
+        capabilities.setCapability("name", "Chartlytics Test_AddPerformerToGroup");
         this.driver = new RemoteWebDriver(
                 new URL("http://" + authentication.getUsername() + ":" + authentication.getAccessKey() + "@ondemand.saucelabs.com:80/wd/hub"),
                 capabilities);
@@ -99,79 +98,18 @@ public class TestSuit_010 implements SauceOnDemandSessionIdProvider {
 	String[][] getit = GetValue(Pathofexcel,"signup",2);
 	baseUrl = getit[0][0]; 
 	Fullname = getit[0][1]; 
-	Email= getit[0][2];  
+	Email= getit[0][2];
 	Password=getit[0][3];
 	Orgname=getit[0][4];
 	 driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     }
-	
+	@Ignore
 	 @Test 
-	  public void AddUsertoGroupwithAccessControl() throws Exception {
-	  String[][] getit = GetValue(Pathofexcel,"signup",2);
-	  baseUrl = getit[0][0]; 
-	   Email= getit[0][2];  
-	   Password=getit[0][3];
+	//--------------------------------------------------------------------------------------------
 
-	driver.get("http://"+ baseUrl + "/signin");
-	//driver.manage().window().maximize();
-	driver.findElement(By.name("username")).clear();
-	driver.findElement(By.name("username")).sendKeys(Email);
-	driver.findElement(By.name("password")).clear();
-	driver.findElement(By.name("password")).sendKeys(Password);
-
-	driver.findElement(By.xpath("//button[@type='submit']")).click();
-	Thread.sleep(5000);
-	driver.findElement(By.xpath("html/body/nav/div/div/a/i")).click();
-    driver.findElement(By.cssSelector("a[title=\"Groups\"] > span")).click();
-    String[][] creatgroup = GetValue(Pathofexcel,"group",14);
-	String grpname = creatgroup[0][0]; 
-	String grpdescription = creatgroup[0][1];  
-	String grplocation= creatgroup[0][2];
-	String usrname= creatgroup[0][3];
-	String usrrole= creatgroup[0][4];
-	driver.findElement(By.id("newGroup")).click();
-    driver.findElement(By.name("groupName")).clear();
-    driver.findElement(By.name("groupName")).sendKeys(grpname);
-    driver.findElement(By.cssSelector("input[name=\"description\"]")).clear();
-    driver.findElement(By.cssSelector("input[name=\"description\"]")).sendKeys(grpdescription);
-    driver.findElement(By.name("location")).clear();
-    driver.findElement(By.name("location")).sendKeys(grplocation);
-    driver.findElement(By.id("createGroup")).click();
-    Thread.sleep(10000);
-    driver.findElement(By.cssSelector("i.fa.fa-sort-numeric-desc")).click();
-    String groupname = driver.findElement(By.xpath(".//*[@id='grid-view']/div/a/div/div[2]/div[1]/h2")).getText();
-    assertEquals(groupname,grpname);
-    System.out.println("//-----------------------Create The Group------------------------------------//");
-    System.out.println(groupname);
-//---------------------------------------------Add User To Group through Access Control--------------------------------------------------//    
-    driver.findElement(By.xpath(".//*[@id='grid-view']/div/a/div/div[2]/div[1]/h2")).click();
-    driver.findElement(By.xpath("//a[contains(text(),'Access Control')]")).click();
-    driver.findElement(By.id("addUser")).click();
-	Thread.sleep(3000);
-    driver.findElement(By.xpath("//form/div[1]/div/div/a/span[1]")).click();
-	Thread.sleep(3000);
-    driver.findElement(By.xpath("html/body/div[6]/div/input")).sendKeys(usrname);
-	Thread.sleep(3000);
-    driver.findElement(By.xpath("html/body/div[6]/ul/li/div")).click();
-    if(usrrole.equals("Advisor"))
-    {                                 
-    	driver.findElement(By.xpath("//form/div[2]/div/div/label[1]")).click();
-    }
-    else
-    {                             
-    	driver.findElement(By.xpath("//form/div[2]/div/div/label[2]")).click(); 
-    }
-    driver.findElement(By.id("confirmAdd")).click();
-    driver.findElement(By.id("cancelUserSelect")).click();
-                                  
-    String addedusrname= driver.findElement(By.cssSelector("h2.male")).getText();
-    assertEquals(usrname,addedusrname);
-    System.out.println("//-----------------------Added User Name------------------------------------//");
-    System.out.println(addedusrname);
-   
-    
-  }
-
+  
+	
+	//---------------------------------------------------------------------------------------------
   
 	 private String[][] GetValue(String Pathfile, String sheetName, int startrow) throws IOException{
 	  File excel= new File(Pathfile);
