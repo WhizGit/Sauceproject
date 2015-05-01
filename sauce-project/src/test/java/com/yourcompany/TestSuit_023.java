@@ -1,4 +1,4 @@
-package com.saucelabs;
+spackage com.saucelabs;
 
 import java.util.ArrayList;
 import java.util.regex.Pattern;
@@ -44,7 +44,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 //-------------------------------------------------------
 @RunWith(ConcurrentParameterized.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class TestSuit_020 implements SauceOnDemandSessionIdProvider {
+public class TestSuit_023 implements SauceOnDemandSessionIdProvider {
 	
 	private String baseUrl;
 	private boolean acceptNextAlert = true;
@@ -54,7 +54,7 @@ public class TestSuit_020 implements SauceOnDemandSessionIdProvider {
 	/*String[][] SauceInfo = GetValue(Pathofexcel,"signup",11);
 	String SauceUser = SauceInfo[0][0];
 	String SauceAccessKey = SauceInfo[0][1]; */
- //   public SauceOnDemandAuthentication authentication = new SauceOnDemandAuthentication("gsteam", "a7b52c33-af4c-4334-9486-75f4b13a9869");
+   // public SauceOnDemandAuthentication authentication = new SauceOnDemandAuthentication("gsteam", "a7b52c33-af4c-4334-9486-75f4b13a9869");
  public SauceOnDemandAuthentication authentication = new SauceOnDemandAuthentication("testingdummy", "31896c70-5384-4a59-82d7-c993f0182942");
     @Rule
     public SauceOnDemandTestWatcher resultReportingTestWatcher = new SauceOnDemandTestWatcher(this, authentication);
@@ -67,7 +67,7 @@ public class TestSuit_020 implements SauceOnDemandSessionIdProvider {
 	
 	//-----------------------------------------------------------------------------------------
 	
-    public TestSuit_020(String os, String version, String browser) {
+    public TestSuit_023(String os, String version, String browser) {
         super();
         this.os = os;
         this.version = version;
@@ -77,7 +77,7 @@ public class TestSuit_020 implements SauceOnDemandSessionIdProvider {
     @ConcurrentParameterized.Parameters
     public static LinkedList browsersStrings() {
         LinkedList browsers = new LinkedList();
-        browsers.add(new String[]{"Windows 7", "37", "firefox"});
+        browsers.add(new String[]{"Windows 7", "42", "chrome"});
       //  browsers.add(new String[]{"OSX 10.8", "6", "safari"});
         return browsers;
     }
@@ -90,7 +90,7 @@ public class TestSuit_020 implements SauceOnDemandSessionIdProvider {
             capabilities.setCapability(CapabilityType.VERSION, version);
         }
         capabilities.setCapability(CapabilityType.PLATFORM, os);
-        capabilities.setCapability("name", "Chartlytics Test_Verify_Frequency_Accor_To_Acc_Dec_Point");
+        capabilities.setCapability("name", "Chartlytics Test_Invite_Verify_SignIn_As_User");
         this.driver = new RemoteWebDriver(
                 new URL("http://" + authentication.getUsername() + ":" + authentication.getAccessKey() + "@ondemand.saucelabs.com:80/wd/hub"),
                 capabilities);
@@ -106,97 +106,101 @@ public class TestSuit_020 implements SauceOnDemandSessionIdProvider {
 	
 	 @Test 
 	//--------------------------------------------------------------------------------------------
-	 public void Verify_Frequency_value() throws Exception {
-    driver.get(baseUrl);
-    driver.findElement(By.linkText("Log in")).click();
+	public void Invite_Verify_SignIn_As_User() throws Exception {
+	   for(int y=2; y<=4;y++)
+	    {
+ String[][] getit = GetValue(Pathofexcel,"signup",2);
+ baseUrl = getit[0][0]; 
+  Email= getit[0][2];  
+  Password=getit[0][3];
+
+    driver.get("http://"+ baseUrl + "/signin");
+    //driver.manage().window().maximize();
     driver.findElement(By.name("username")).clear();
     driver.findElement(By.name("username")).sendKeys(Email);
     driver.findElement(By.name("password")).clear();
     driver.findElement(By.name("password")).sendKeys(Password);
     driver.findElement(By.xpath("//button[@type='submit']")).click();
-	Thread.sleep(2000);
-    driver.findElement(By.cssSelector("a[title=\"Performers\"] > span")).click();
-	Thread.sleep(2000);
-    driver.findElement(By.cssSelector("//*[@id='grid-view']/div[1]/a/div")).click();
-//-----------------------------------------------------------------------------------------------------------------
-    File excel = new File(Pathofexcel);
-   	FileInputStream fis = new FileInputStream(excel);
-   	@SuppressWarnings("resource")
-   	XSSFWorkbook wb = new XSSFWorkbook(fis);
-   	
-   	XSSFSheet ws = wb.getSheet("frequencytest");
-    for(int y=19;y<=23;y++)// for loop for exceute no of row
+//---------------------------------------Invite User---------------------------------------------------------------------------------//
+ 
+   String[][] invusr = GetValue(Pathofexcel,"user",y);
+   String EmailAdd = invusr[0][0]; 
+   String Role= invusr[0][1]; 
+   String Pass= invusr[0][2]; 
+    driver.findElement(By.cssSelector("a[title=\"Settings\"] > span")).click();
+    Thread.sleep(3000);
+    driver.findElement(By.linkText("Manage Users")).click();
+    driver.findElement(By.id("createUser")).click();
+    Thread.sleep(5000);
+    driver.findElement(By.name("email")).sendKeys(EmailAdd);
+    driver.findElement(By.cssSelector(".select2-choices")).click();
+    Thread.sleep(3000);
+    driver.findElement(By.cssSelector(".select2-input")).sendKeys(Role);
+    Thread.sleep(2000);
+    driver.findElement(By.cssSelector(".select2-result-label")).click();
+    Thread.sleep(2000);
+    driver.findElement(By.cssSelector("p.pull-right > button.btn.btn-primary")).click();
+   // Thread.sleep(1000);
+   Thread.sleep(3000);
+    
+//----------------------------------------------------SignOut------------------------------------------------------------------------//
+    driver.findElement(By.cssSelector(".user-info>a>span")).click();
+    Thread.sleep(2000);
+    driver.findElement(By.linkText("Logout")).click();
+    Thread.sleep(20000);
+//----------------------------------------------------Email Verification----------------------------------------------------------//
+    
+    driver.get("https://accounts.google.com/ServiceLogin?sacu=1&scc=1&continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&hl=en&service=mail");
+    if(y==2)
     {
-   //fetch data from excel sheet (testcommbination1.xlsx using Sheet2)
-   
-	int colNum = ws.getRow(19).getLastCellNum();
-	String[][] data = new String[1][colNum];
-	for (int i=1;i<=colNum-3;i++)// for loop for exceute no of coloum
-	{
-		XSSFRow row = ws.getRow(y);
-		XSSFCell cell = row.getCell(i);
-		data[0][i]= cellToString(cell);	
+    driver.findElement(By.id("Email")).clear();
+    driver.findElement(By.id("Email")).sendKeys("testingapptrial@gmail.com");
+    }
+    driver.findElement(By.id("Passwd")).clear();
+    driver.findElement(By.id("Passwd")).sendKeys("1234abcd@00");
+    driver.findElement(By.id("signIn")).click();
+    Thread.sleep(3000);
+    driver.findElement(By.partialLinkText("Inbox")).click();
+    Thread.sleep(5000);
+    driver.findElement(By.xpath("//div [@class='y6']/span[contains(.,'Whiztest has invited you to Chartlytics')]")).click();
+    driver.findElement(By.partialLinkText("http://dev.chartlytics.com/register/")).click();
+    Thread.sleep(2000);
+//----------------------------------------------------Create the account------------------------------------------------------------------//
+    for(String winHandle : driver.getWindowHandles()){
+        driver.switchTo().window(winHandle);
+        }
+   /* Thread.sleep(3000);*/
+    String accnt = driver.findElement(By.xpath("html/body/div[1]/div[2]/div[2]/form/h3")).getText();
+    System.out.println("//@@##--------------After verifying email it opens the ----------------##@@// ");
+    System.out.println(accnt);
+    driver.findElement(By.name("password")).sendKeys(Pass);
+    driver.findElement(By.xpath("//button[@type='submit']")).click();
+//---------------------------------------------------------SingIn into using user-----------------------------------------------------//    
 
-	}
-	
-	String CountTime = data [0][1];
-	System.out.print(CountTime);
-	String Acc = data [0][2];
-	System.out.print(Acc);
-	String Dec = data [0][3];
-	System.out.print(Dec);
-//-------------------------------------------------------------------------------------------------------------
-	//Calculate the value of frequency
-	float Counttym = Float.parseFloat(CountTime);
-	int Acce;
-	int Dcel;
-	int acc;
-	int dcc;
-	if(Counttym<60)
-	{
-	float CT = (60/Counttym);
-	System.out.println("count time change to min"+CT);
-	 acc = Integer.parseInt(Acc);
-	 Acce = (int) Math.round (acc * CT); // Acceleration frequency
-	System.out.println(Acce);
-	 dcc = Integer.parseInt(Dec);
-	 Dcel = (int) Math.round(dcc * CT); // Deceleration frequency
-	System.out.println(Dcel);
-	}else
-	{
-		float CT = (Counttym/60);
-		System.out.println("count time change to min"+CT);
-		 acc = Integer.parseInt(Acc);
-		 Acce = Math.round(acc / CT); // Acceleration frequency
-		System.out.println(Acce);
-		 dcc = Integer.parseInt(Dec);
-		 Dcel = Math.round(dcc/CT); // Deceleration frequency
-		System.out.println(Dcel);
-		
-	}
-//----------------------------------------------------------------------------------------------------------------
-	//Enter value in the Acceleration and Deceleration
-    driver.findElement(By.name("recordFloor")).click();
-    driver.findElement(By.name("recordFloor")).clear();
-    driver.findElement(By.name("recordFloor")).sendKeys(""+Counttym);
-    driver.findElement(By.name("correct")).click();
-    driver.findElement(By.name("correct")).clear();
-    driver.findElement(By.name("correct")).sendKeys(Acc);
-    driver.findElement(By.name("incorrect")).click();
-    driver.findElement(By.name("incorrect")).clear();
-    driver.findElement(By.name("incorrect")).sendKeys(Dec);
-    driver.findElement(By.xpath("//div[@id='Daily']/div/div/div/div[2]/div/div[4]/button[2]")).click();
-	
-	 //--------Verification Acc, dec and frequency----------------------------
-	   //   assertEquals("1:21 AM", driver.findElement(By.cssSelector("td.measured")).getText());
-		//    assertEquals("0:02:00", driver.findElement(By.cssSelector("td.recordFloor")).getText());
-			assertEquals(Acc, driver.findElement(By.cssSelector("td.correct")).getText());
-			 assertEquals(Dec, driver.findElement(By.cssSelector("td.incorrect")).getText());
-			 assertEquals(Acce+"  "+Dcel+" ", driver.findElement(By.xpath("//*[@id='pinpoint0']/div/div/div[2]/table/tbody/tr[1]/td[5]")).getText());
-	   
-  }//end of for loop
-  }
-  
+    String Suuccmes = driver.findElement(By.xpath("//form/div/div")).getText();
+    System.out.println("//------------------After creating the account it open-------------------------//");
+    System.out.println(Suuccmes);
+    driver.findElement(By.name("username")).clear();
+    driver.findElement(By.name("username")).sendKeys(EmailAdd);
+    driver.findElement(By.name("password")).clear();
+    driver.findElement(By.name("password")).sendKeys(Pass);
+    
+    driver.findElement(By.xpath("//button[@type='submit']")).click();
+    Thread.sleep(3000);
+    driver.findElement(By.linkText("Start Using Chartlytics Now")).click();
+    Thread.sleep(3000);
+    String db = driver.findElement(By.xpath("//div[@id='app-main']/div/div/div")).getText();
+    assertEquals("Dashboard", db);
+    System.out.println("//--------------------After creating account & signin it open--------------------//");
+    System.out.println(db);
+    driver.findElement(By.cssSelector(".user-info>a>span")).click();
+    Thread.sleep(3000);
+    driver.findElement(By.linkText("Logout")).click();
+    
+    }//end of for loop
+}
+
+
 	
 	//---------------------------------------------------------------------------------------------
   
@@ -234,6 +238,9 @@ public class TestSuit_020 implements SauceOnDemandSessionIdProvider {
 		return result.toString();
 
 }
+ 
+
+ 
 
   private String closeAlertAndGetItsText() {
     try {

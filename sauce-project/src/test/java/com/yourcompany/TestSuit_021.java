@@ -1,4 +1,4 @@
-package com.saucelabs;
+spackage com.saucelabs;
 
 import java.util.ArrayList;
 import java.util.regex.Pattern;
@@ -44,7 +44,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 //-------------------------------------------------------
 @RunWith(ConcurrentParameterized.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class TestSuit_020 implements SauceOnDemandSessionIdProvider {
+public class TestSuit_021 implements SauceOnDemandSessionIdProvider {
 	
 	private String baseUrl;
 	private boolean acceptNextAlert = true;
@@ -54,7 +54,7 @@ public class TestSuit_020 implements SauceOnDemandSessionIdProvider {
 	/*String[][] SauceInfo = GetValue(Pathofexcel,"signup",11);
 	String SauceUser = SauceInfo[0][0];
 	String SauceAccessKey = SauceInfo[0][1]; */
- //   public SauceOnDemandAuthentication authentication = new SauceOnDemandAuthentication("gsteam", "a7b52c33-af4c-4334-9486-75f4b13a9869");
+   // public SauceOnDemandAuthentication authentication = new SauceOnDemandAuthentication("gsteam", "a7b52c33-af4c-4334-9486-75f4b13a9869");
  public SauceOnDemandAuthentication authentication = new SauceOnDemandAuthentication("testingdummy", "31896c70-5384-4a59-82d7-c993f0182942");
     @Rule
     public SauceOnDemandTestWatcher resultReportingTestWatcher = new SauceOnDemandTestWatcher(this, authentication);
@@ -67,7 +67,7 @@ public class TestSuit_020 implements SauceOnDemandSessionIdProvider {
 	
 	//-----------------------------------------------------------------------------------------
 	
-    public TestSuit_020(String os, String version, String browser) {
+    public TestSuit_021(String os, String version, String browser) {
         super();
         this.os = os;
         this.version = version;
@@ -90,7 +90,7 @@ public class TestSuit_020 implements SauceOnDemandSessionIdProvider {
             capabilities.setCapability(CapabilityType.VERSION, version);
         }
         capabilities.setCapability(CapabilityType.PLATFORM, os);
-        capabilities.setCapability("name", "Chartlytics Test_Verify_Frequency_Accor_To_Acc_Dec_Point");
+        capabilities.setCapability("name", "Chartlytics Test_VerifyAggreateValue");
         this.driver = new RemoteWebDriver(
                 new URL("http://" + authentication.getUsername() + ":" + authentication.getAccessKey() + "@ondemand.saucelabs.com:80/wd/hub"),
                 capabilities);
@@ -106,7 +106,7 @@ public class TestSuit_020 implements SauceOnDemandSessionIdProvider {
 	
 	 @Test 
 	//--------------------------------------------------------------------------------------------
-	 public void Verify_Frequency_value() throws Exception {
+	 public void Verify_Aggregate_Value() throws Exception {
     driver.get(baseUrl);
     driver.findElement(By.linkText("Log in")).click();
     driver.findElement(By.name("username")).clear();
@@ -114,88 +114,135 @@ public class TestSuit_020 implements SauceOnDemandSessionIdProvider {
     driver.findElement(By.name("password")).clear();
     driver.findElement(By.name("password")).sendKeys(Password);
     driver.findElement(By.xpath("//button[@type='submit']")).click();
-	Thread.sleep(2000);
+	Thread.sleep(3000);
     driver.findElement(By.cssSelector("a[title=\"Performers\"] > span")).click();
-	Thread.sleep(2000);
-    driver.findElement(By.cssSelector("//*[@id='grid-view']/div[1]/a/div")).click();
-//-----------------------------------------------------------------------------------------------------------------
-    File excel = new File(Pathofexcel);
-   	FileInputStream fis = new FileInputStream(excel);
-   	@SuppressWarnings("resource")
-   	XSSFWorkbook wb = new XSSFWorkbook(fis);
-   	
-   	XSSFSheet ws = wb.getSheet("frequencytest");
-    for(int y=19;y<=23;y++)// for loop for exceute no of row
-    {
-   //fetch data from excel sheet (testcommbination1.xlsx using Sheet2)
-   
-	int colNum = ws.getRow(19).getLastCellNum();
-	String[][] data = new String[1][colNum];
-	for (int i=1;i<=colNum-3;i++)// for loop for exceute no of coloum
-	{
-		XSSFRow row = ws.getRow(y);
-		XSSFCell cell = row.getCell(i);
-		data[0][i]= cellToString(cell);	
+    Thread.sleep(3000);
+    driver.findElement(By.id("fifty")).click();
+    Thread.sleep(3000);
+    driver.findElement(By.xpath("//*[@id='app-main']/div[2]/div[1]/div/div[4]/label[4]")).click();
+    Thread.sleep(3000);
+    driver.findElement(By.xpath("//*[@id='grid-view']/div[1]/a/div")).click();
+    Thread.sleep(5000);
+    driver.findElement(By.xpath("//*[@id='Daily']/div[1]/div[1]/div/div[2]/div/div[4]/a")).click();
+    // Get hold of static object underneath which you have your dynamic content like rows.
+    WebElement tablebody= driver.findElement(By.xpath("/html/body/div[3]/div[2]/div[2]/div/div[2]/div[1]/div[2]/div/div/div[2]/table/tbody"));
+        
+    // Use By.tagName() to get all elements of desired tag underneath the above static element
+      
+     List<WebElement> rows  = tablebody.findElements(By.tagName("tr"));
+    // Get the size of weblist to get number of rows    
 
-	}
-	
-	String CountTime = data [0][1];
-	System.out.print(CountTime);
-	String Acc = data [0][2];
-	System.out.print(Acc);
-	String Dec = data [0][3];
-	System.out.print(Dec);
-//-------------------------------------------------------------------------------------------------------------
-	//Calculate the value of frequency
-	float Counttym = Float.parseFloat(CountTime);
-	int Acce;
-	int Dcel;
-	int acc;
-	int dcc;
-	if(Counttym<60)
-	{
-	float CT = (60/Counttym);
-	System.out.println("count time change to min"+CT);
-	 acc = Integer.parseInt(Acc);
-	 Acce = (int) Math.round (acc * CT); // Acceleration frequency
-	System.out.println(Acce);
-	 dcc = Integer.parseInt(Dec);
-	 Dcel = (int) Math.round(dcc * CT); // Deceleration frequency
-	System.out.println(Dcel);
-	}else
-	{
-		float CT = (Counttym/60);
-		System.out.println("count time change to min"+CT);
-		 acc = Integer.parseInt(Acc);
-		 Acce = Math.round(acc / CT); // Acceleration frequency
-		System.out.println(Acce);
-		 dcc = Integer.parseInt(Dec);
-		 Dcel = Math.round(dcc/CT); // Deceleration frequency
-		System.out.println(Dcel);
-		
-	}
-//----------------------------------------------------------------------------------------------------------------
-	//Enter value in the Acceleration and Deceleration
-    driver.findElement(By.name("recordFloor")).click();
-    driver.findElement(By.name("recordFloor")).clear();
-    driver.findElement(By.name("recordFloor")).sendKeys(""+Counttym);
-    driver.findElement(By.name("correct")).click();
-    driver.findElement(By.name("correct")).clear();
-    driver.findElement(By.name("correct")).sendKeys(Acc);
-    driver.findElement(By.name("incorrect")).click();
-    driver.findElement(By.name("incorrect")).clear();
-    driver.findElement(By.name("incorrect")).sendKeys(Dec);
-    driver.findElement(By.xpath("//div[@id='Daily']/div/div/div/div[2]/div/div[4]/button[2]")).click();
-	
-	 //--------Verification Acc, dec and frequency----------------------------
-	   //   assertEquals("1:21 AM", driver.findElement(By.cssSelector("td.measured")).getText());
-		//    assertEquals("0:02:00", driver.findElement(By.cssSelector("td.recordFloor")).getText());
-			assertEquals(Acc, driver.findElement(By.cssSelector("td.correct")).getText());
-			 assertEquals(Dec, driver.findElement(By.cssSelector("td.incorrect")).getText());
-			 assertEquals(Acce+"  "+Dcel+" ", driver.findElement(By.xpath("//*[@id='pinpoint0']/div/div/div[2]/table/tbody/tr[1]/td[5]")).getText());
-	   
-  }//end of for loop
+     System.out.println("Total no of rows in table :- "+rows.size());
+        int rowsnum= rows.size();
+        String xpath =null;
+        String cellval;
+        String[] Frqarr = new String[rowsnum];
+        float[] Frqacc = new float[rowsnum];
+        float[] Frqdcc = new float[rowsnum];
+        String[] spl = new String[rowsnum];
+        double total=0;
+       if (rowsnum>1)
+       {
+        for(int i = 0;i<rowsnum;i++){
+            int t=i+1;
+            xpath = "//*[@id='pinpoint0']/div/div/div[2]/table/tbody/tr[" + String.valueOf(t) + "]/td[5]" ;
+            cellval = driver.findElement(By.xpath(xpath)).getText() ;
+           
+            
+           Frqarr[i]= cellval ;
+           System.out.println("Frequency value in row"+i+"  "+Frqarr[i]);
+           String[] parts = cellval.split(" ");
+           Frqacc[i]= Float.parseFloat(parts[0]);
+           Frqdcc[i]= Float.parseFloat(parts[2]);
+            if(cellval!= "" && cellval!= null){
+            
+               //System.out.println("String inside" + cellval);
+              //  total = Double.parseDouble(cellval) + total;
+            } 
+        }// end of for loop
+ 
+ // calculate median,Max,Min,Geo-mean,
+     int Accfirst = (int) Frqacc[0];
+     int Dccfirst = (int) Frqdcc[0];
+     int Accmed = Math.round(Calmedian(Frqacc));
+     int Dccmed = Math.round(Calmedian(Frqdcc));
+     int Accmax = Math.round(Max(Frqacc));
+     int Dccmin = Math.round(Max(Frqdcc));
+     int Accmin = Math.round(Min(Frqacc));
+     int Dccmax = Math.round(Min(Frqdcc));
+     int Accsum = Math.round(Average(Frqacc));
+     int Dccsum = Math.round(Average(Frqdcc));
+     int Accgmean =  (int) geometricMean(Frqacc);
+     int Dccgmean =  (int) geometricMean(Frqdcc);
+     System.out.println("first :"+Accfirst+" "+ Dccfirst);
+     System.out.println("Median :"+Accmed+" "+ Dccmed);
+     System.out.println("Max :" +Accmax+" "+ Dccmax);
+     System.out.println("Min :" +Accmin+" "+ Dccmin);
+     System.out.println("Sum :" +Accsum+" "+ Dccsum);
+     System.out.println("Geo mean :" +Accgmean+" "+ Dccgmean);
+//Assertion here
+    assertEquals(Accfirst+"  "+Dccfirst+" ", driver.findElement(By.cssSelector("div.info-block.first > p")).getText());
+   // assertEquals(Accmed+"  "+Dccmed+" ", driver.findElement(By.cssSelector("div.info-block.median > p")).getText());
+    assertEquals(Accgmean+"  "+Dccgmean+" ", driver.findElement(By.cssSelector("div.info-block.sum > p")).getText());
+    assertEquals(Accmax+"  "+Dccmax+" ", driver.findElement(By.cssSelector("div.info-block.max > p")).getText());
+    assertEquals(Accmin+"  "+Dccmin+" ", driver.findElement(By.cssSelector("div.info-block.min > p")).getText());
+    // assertEquals(Accsum+"  "+Dccsum+" ", driver.findElement(By.xpath("//div[@id='pinpoint0']/div/div/div[2]/div[2]/div[6]/p")).getText());
+       }else
+       {
+    	   System.out.println("Please enter some value for Acceleration and Deceleration");
+       }
   }
+     
+  public static int Average(float[] frqacc)
+  {
+	  float sum=0;
+	  for(int i=0;i<frqacc.length; i++)
+		  sum = sum+frqacc[i];
+	  int average = Math.round(sum/frqacc.length);
+	  return average;
+  }
+  
+  public static float Min(float[] frqacc)
+  {
+	  Arrays.sort(frqacc);
+	  float max =frqacc[0];
+	  return max;
+  }
+  
+  public static float Max(float[] frqacc)
+  {
+	  Arrays.sort(frqacc);
+	  float max =frqacc[frqacc.length-1];
+	  return max;
+  }
+
+  private static float Calmedian(float[] frqacc) {
+	  float median;
+Arrays.sort(frqacc);
+int middle = ((frqacc.length) / 2);
+if(frqacc.length % 2 == 0){
+ float medianA = frqacc[middle-1];
+ float medianB = frqacc[middle];
+ System.out.println();
+ median =  ((medianA + medianB) / 2);
+} else{
+ median = Math.round(frqacc[middle]);
+}
+	   return median;
+  }   
+  public static double geometricMean(float[] frqacc) {
+      int n = frqacc.length;
+      double GM_log = 0.0d;
+      for (int i = 0; i < n; ++i) {
+          if (frqacc[i] == 0L) {
+              return 0.0d;
+          }
+          GM_log += Math.log(frqacc[i]);
+      }
+     int Geomean =  (int) Math.round(Math.exp(GM_log / n));
+      return Geomean;
+  }
+
   
 	
 	//---------------------------------------------------------------------------------------------
@@ -234,6 +281,9 @@ public class TestSuit_020 implements SauceOnDemandSessionIdProvider {
 		return result.toString();
 
 }
+ 
+
+ 
 
   private String closeAlertAndGetItsText() {
     try {
