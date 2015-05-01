@@ -1,4 +1,4 @@
-spackage com.saucelabs;
+package com.saucelabs;
 
 import java.util.ArrayList;
 import java.util.regex.Pattern;
@@ -392,7 +392,7 @@ public  void condition(String title, String description, String type, String ass
 	    }
 	 
 	    
-
+}
 
 
 	
