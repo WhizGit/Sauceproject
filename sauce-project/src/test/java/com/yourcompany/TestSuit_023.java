@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 spackage com.saucelabs;
+=======
+package com.saucelabs;
+>>>>>>> 635096d23e10729f2a430f0aed1cd74aef3ee408
 
 import java.util.ArrayList;
 import java.util.regex.Pattern;
@@ -54,8 +58,13 @@ public class TestSuit_023 implements SauceOnDemandSessionIdProvider {
 	/*String[][] SauceInfo = GetValue(Pathofexcel,"signup",11);
 	String SauceUser = SauceInfo[0][0];
 	String SauceAccessKey = SauceInfo[0][1]; */
+<<<<<<< HEAD
     public SauceOnDemandAuthentication authentication = new SauceOnDemandAuthentication("gsteam", "a7b52c33-af4c-4334-9486-75f4b13a9869");
 
+=======
+   // public SauceOnDemandAuthentication authentication = new SauceOnDemandAuthentication("gsteam", "a7b52c33-af4c-4334-9486-75f4b13a9869");
+ public SauceOnDemandAuthentication authentication = new SauceOnDemandAuthentication("testingdummy", "31896c70-5384-4a59-82d7-c993f0182942");
+>>>>>>> 635096d23e10729f2a430f0aed1cd74aef3ee408
     @Rule
     public SauceOnDemandTestWatcher resultReportingTestWatcher = new SauceOnDemandTestWatcher(this, authentication);
     private String browser;
@@ -103,7 +112,11 @@ public class TestSuit_023 implements SauceOnDemandSessionIdProvider {
 	Orgname=getit[0][4];
 	 driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     }
+<<<<<<< HEAD
 	@Ignore
+=======
+	
+>>>>>>> 635096d23e10729f2a430f0aed1cd74aef3ee408
 	 @Test 
 	//--------------------------------------------------------------------------------------------
 	public void Invite_Verify_SignIn_As_User() throws Exception {
