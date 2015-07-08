@@ -63,7 +63,7 @@ public class TestSuit_001E implements SauceOnDemandSessionIdProvider {
 	private StringBuffer verificationErrors = new StringBuffer();
 	private String Tar, Mtype, Mrec, Aggtype, Email,Fullname,Orgname, Password,Type;
 	private String Pathofexcel ="./src/test/java/com/yourcompany/dataexcel.xlsx"; // path of your excel file
-    public SauceOnDemandAuthentication authentication = new SauceOnDemandAuthentication("gsteam", "a7b52c33-af4c-4334-9486-75f4b13a9869");
+    public SauceOnDemandAuthentication authentication = new SauceOnDemandAuthentication("TestingAutomate", "189a089e-07f7-4a79-ac18-b8082be2fa72");
 
     @Rule
     public SauceOnDemandTestWatcher resultReportingTestWatcher = new SauceOnDemandTestWatcher(this, authentication);
