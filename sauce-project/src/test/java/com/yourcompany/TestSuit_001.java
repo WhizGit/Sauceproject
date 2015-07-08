@@ -54,7 +54,7 @@ public class TestSuit_001 implements SauceOnDemandSessionIdProvider {
 	/*	String[][] SauceInfo = GetValue(Pathofexcel,"signup",11);
 	String SauceUser = SauceInfo[0][0];
 	String SauceAccessKey = SauceInfo[0][1];*/
-    public SauceOnDemandAuthentication authentication = new SauceOnDemandAuthentication("testingdummy", "31896c70-5384-4a59-82d7-c993f0182942");
+    public SauceOnDemandAuthentication authentication = new SauceOnDemandAuthentication("TestingAutomate", "189a089e-07f7-4a79-ac18-b8082be2fa72");
 
     @Rule
     public SauceOnDemandTestWatcher resultReportingTestWatcher = new SauceOnDemandTestWatcher(this, authentication);
@@ -63,9 +63,7 @@ public class TestSuit_001 implements SauceOnDemandSessionIdProvider {
     private String version;
     private String sessionId;
     private WebDriver driver;
-	//-----------------------------------------------------------------------------------------
-	
-	//-----------------------------------------------------------------------------------------
+
 	
     public TestSuit_001(String os, String version, String browser) {
         super();
@@ -103,7 +101,7 @@ public class TestSuit_001 implements SauceOnDemandSessionIdProvider {
 	Orgname=getit[0][4];
 	 driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     }
-	
+	@Ignore
 	@Test
 	public void testA_CreateAnOrganisation() throws Exception {
 //--------------------------------------------------Create An Organization---------------------------------------------------------------//	  

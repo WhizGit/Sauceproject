@@ -70,7 +70,7 @@ public class TestSuit_002 implements SauceOnDemandSessionIdProvider {
      * Constructs a {@link SauceOnDemandAuthentication} instance using the supplied user name/access key.  To use the authentication
      * supplied by environment variables or from an external file, use the no-arg {@link SauceOnDemandAuthentication} constructor.
      */
-    public SauceOnDemandAuthentication authentication = new SauceOnDemandAuthentication("gsteam", "a7b52c33-af4c-4334-9486-75f4b13a9869");
+    public SauceOnDemandAuthentication authentication = new SauceOnDemandAuthentication("TestingAutomate", "189a089e-07f7-4a79-ac18-b8082be2fa72");
 
     /**
      * JUnit Rule which will mark the Sauce Job as passed/failed when the test succeeds or fails.
@@ -163,7 +163,7 @@ public class TestSuit_002 implements SauceOnDemandSessionIdProvider {
      * Runs a simple test verifying the title of the amazon.com homepage.
      * @throws Exception
      */
-	@Ignore
+	
     @Test // Test 1 Create pinpoint
     public void CreatePinpoint() throws Exception {
     driver.get("http://"+baseUrl + "/");
