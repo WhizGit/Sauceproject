@@ -55,7 +55,7 @@ public class TestSuit_003 implements SauceOnDemandSessionIdProvider {
 	/*	String[][] SauceInfo = GetValue(Pathofexcel,"signup",11);
 	String SauceUser = SauceInfo[0][0];
 	String SauceAccessKey = SauceInfo[0][1]; */
-    public SauceOnDemandAuthentication authentication = new SauceOnDemandAuthentication("TestingAutomate", "189a089e-07f7-4a79-ac18-b8082be2fa72");
+    public SauceOnDemandAuthentication authentication = new SauceOnDemandAuthentication("TestingAuto", "11d6c831-6e67-4978-936f-3709d55aa962");
 
     @Rule
     public SauceOnDemandTestWatcher resultReportingTestWatcher = new SauceOnDemandTestWatcher(this, authentication);

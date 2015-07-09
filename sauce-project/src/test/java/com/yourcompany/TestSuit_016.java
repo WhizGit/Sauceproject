@@ -55,7 +55,7 @@ public class TestSuit_016 implements SauceOnDemandSessionIdProvider {
 	String SauceUser = SauceInfo[0][0];
 	String SauceAccessKey = SauceInfo[0][1]; */
   //  public SauceOnDemandAuthentication authentication = new SauceOnDemandAuthentication("gsteam", "a7b52c33-af4c-4334-9486-75f4b13a9869");
- public SauceOnDemandAuthentication authentication = new SauceOnDemandAuthentication("TestingAutomate", "189a089e-07f7-4a79-ac18-b8082be2fa72");
+ public SauceOnDemandAuthentication authentication = new SauceOnDemandAuthentication("TestingAuto", "11d6c831-6e67-4978-936f-3709d55aa962");
     @Rule
     public SauceOnDemandTestWatcher resultReportingTestWatcher = new SauceOnDemandTestWatcher(this, authentication);
     private String browser;

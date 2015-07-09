@@ -47,14 +47,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 //-------------------------------------------------------------
 
-/**
- * Demonstrates how to write a JUnit test that runs tests against Sauce Labs using multiple browsers in parallel.
- * <p/>
- * The test also includes the {@link SauceOnDemandTestWatcher} which will invoke the Sauce REST API to mark
- * the test as passed or failed.
- *
- * @author Ross Rowe
- */
+
 @RunWith(ConcurrentParameterized.class)
 public class TestSuit_002 implements SauceOnDemandSessionIdProvider {
 	
@@ -66,59 +59,24 @@ public class TestSuit_002 implements SauceOnDemandSessionIdProvider {
 	/*String[][] SauceInfo = GetValue(Pathofexcel,"signup",11);
 	String SauceUser = SauceInfo[0][0];
 	String SauceAccessKey = SauceInfo[0][1];*/
-    /**
-     * Constructs a {@link SauceOnDemandAuthentication} instance using the supplied user name/access key.  To use the authentication
-     * supplied by environment variables or from an external file, use the no-arg {@link SauceOnDemandAuthentication} constructor.
-     */
-    public SauceOnDemandAuthentication authentication = new SauceOnDemandAuthentication("TestingAutomate", "189a089e-07f7-4a79-ac18-b8082be2fa72");
+   
+    public SauceOnDemandAuthentication authentication = new SauceOnDemandAuthentication("TestingAuto", "11d6c831-6e67-4978-936f-3709d55aa962");
 
-    /**
-     * JUnit Rule which will mark the Sauce Job as passed/failed when the test succeeds or fails.
-     */
+    
     @Rule
     public SauceOnDemandTestWatcher resultReportingTestWatcher = new SauceOnDemandTestWatcher(this, authentication);
-
-    /**
-     * Represents the browser to be used as part of the test run.
-     */
     private String browser;
-    /**
-     * Represents the operating system to be used as part of the test run.
-     */
     private String os;
-    /**
-     * Represents the version of the browser to be used as part of the test run.
-     */
     private String version;
-    /**
-     * Instance variable which contains the Sauce Job Id.
-     */
     private String sessionId;
-
-    /**
-     * The {@link WebDriver} instance which is used to perform browser interactions with.
-     */
     private WebDriver driver;
 
-    /**
-     * Constructs a new instance of the test.  The constructor requires three string parameters, which represent the operating
-     * system, version and browser to be used when launching a Sauce VM.  The order of the parameters should be the same
-     * as that of the elements within the {@link #browsersStrings()} method.
-     * @param os
-     * @param version
-     * @param browser
-     */
     public TestSuit_002(String os, String version, String browser) {
         super();
         this.os = os;
         this.version = version;
         this.browser = browser;
     }
-
-    /**
-     * @return a LinkedList containing String arrays representing the browser combinations the test should be run against. The values
-     * in the String array are used as part of the invocation of the test constructor
-     */
     @ConcurrentParameterized.Parameters
     public static LinkedList browsersStrings() {
         LinkedList browsers = new LinkedList();
@@ -127,14 +85,6 @@ public class TestSuit_002 implements SauceOnDemandSessionIdProvider {
         return browsers;
     }
 
-
-    /**
-     * Constructs a new {@link RemoteWebDriver} instance which is configured to use the capabilities defined by the {@link #browser},
-     * {@link #version} and {@link #os} instance variables, and which is configured to run against ondemand.saucelabs.com, using
-     * the username and access key populated by the {@link #authentication} instance.
-     *
-     * @throws Exception if an error occurs during the creation of the {@link RemoteWebDriver} instance.
-     */
     @Before
     public void setUp() throws Exception {
 
@@ -149,12 +99,7 @@ public class TestSuit_002 implements SauceOnDemandSessionIdProvider {
                 new URL("http://" + authentication.getUsername() + ":" + authentication.getAccessKey() + "@ondemand.saucelabs.com:80/wd/hub"),
                 capabilities);
         this.sessionId = (((RemoteWebDriver) driver).getSessionId()).toString();
-		String[][] getit = GetValue(Pathofexcel,"signup",2);
-	baseUrl = getit[0][0]; 
-	Fullname = getit[0][1]; 
-	Email= getit[0][2];  
-	Password=getit[0][3];
-	Orgname=getit[0][4];
+		
 	driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
     }
@@ -166,18 +111,17 @@ public class TestSuit_002 implements SauceOnDemandSessionIdProvider {
 	
     @Test // Test 1 Create pinpoint
     public void CreatePinpoint() throws Exception {
-    driver.get("http://"+baseUrl + "/");
-    driver.findElement(By.linkText("Log in")).click();
-    driver.findElement(By.name("username")).clear();
-    driver.findElement(By.name("username")).sendKeys(Email);
-    driver.findElement(By.name("password")).clear();
-    driver.findElement(By.name("password")).sendKeys(Password);
-    driver.findElement(By.xpath("//button[@type='submit']")).click();
+  String[][] getit = CommonMethod.GetValue(Pathofexcel,"signup",2);
+	baseUrl = getit[0][0]; 
+	 Email= getit[0][2];  
+	 Password=getit[0][3];
+    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+    CommonMethod.SignIn(driver, baseUrl, Email, Password);
     // click on the pinpoint on the dashboard
     driver.findElement(By.cssSelector("a[title=\"Pinpoints+\"] > span")).click();
-     for(int c=5; c<=8; c++) // we can start test case from testcase 1
+	  for(int c=5; c<10; c++) // we can start test case from testcase 1
 		{
-	String[][] data = GetValue(Pathofexcel,"ReviewSummary",c);
+	String[][] data = CommonMethod.GetValue(Pathofexcel,"ReviewSummary",c);
 	String Acc = data [0][1];
 	String Dec = data [0][2];
 	String Frq = data [0][3];
@@ -195,12 +139,16 @@ public class TestSuit_002 implements SauceOnDemandSessionIdProvider {
 	String Max = data [0][15];
 	String Sum = data [0][16];
 	String Sta = data [0][17];
-	System.out.print("Create pinpoint:");
 
-	//--------------------- read data for set default using excel sheet-------
-	int k=0;
-	k = c-1;
-	String[][] datas = GetValue(Pathofexcel,"Pinpoint",k);	
+
+	//--------------------- read data for set default using excel sheet-----------------------
+	
+int k = 0;
+k=c-1;
+System.out.println(k);
+
+	String[][] datas = CommonMethod.GetValue(Pathofexcel,"Pinpoint",k);
+
 		String SIn = datas [0][1];
 		String Pout = datas [0][2];
 		String Action = datas [0][3];
@@ -212,10 +160,9 @@ public class TestSuit_002 implements SauceOnDemandSessionIdProvider {
 		String ADMi = datas [0][9];
 		String ADMx = datas [0][10];
 		String Daim  = datas [0][11];
-
+	System.out.println("Create pinpoint:"+Action);
 		
     //click on the Create Pinpoint
-	Thread.sleep(2000);
     driver.findElement(By.id("createPinpoint")).click();
     // click value from the drop down list
 //---------------------------------------------------------------------------------------------------------------------  
@@ -243,6 +190,7 @@ public class TestSuit_002 implements SauceOnDemandSessionIdProvider {
   //  driver.findElement(By.xpath("html/body/div[7]/div/div/div[5]/p/button[2]")).click();
     
     // Here is used permutataion of excel file
+    //selection for pinpoint goal 
     String tru = "y";
     String fal = "N";
   
@@ -408,7 +356,7 @@ public class TestSuit_002 implements SauceOnDemandSessionIdProvider {
     driver.findElement(By.cssSelector(".btn.btn-primary.btn-next")).click();
     driver.findElement(By.cssSelector(".btn.btn-primary.btn-next")).click();
    //------------------ handle assertion -------------------
-	    try {
+	    
 	      assertEquals(Mtype, driver.findElement(By.id("type")).getText());
 	      assertEquals(Mrec, driver.findElement(By.id("recurrence")).getText());
 	      assertEquals(Tar, driver.findElement(By.id("target")).getText());
@@ -417,22 +365,18 @@ public class TestSuit_002 implements SauceOnDemandSessionIdProvider {
 	      assertEquals(Noun, driver.findElement(By.id("noun")).getText());
 	      assertEquals(Context, driver.findElement(By.id("context")).getText());
 	      assertEquals(Daim, driver.findElement(By.id("daysToAim")).getText());
-	    } catch (Error e) {
-	      verificationErrors.append(e.toString());
-	    }
+	   
 	   
 	    if(Mtype=="duration" || Mtype=="latency")
 	    {
-	    	try {
+	    	
 	    
 	    		assertEquals(AAMi, driver.findElement(By.id("correctAimMin")).getText());
 	    		assertEquals(AAMx, driver.findElement(By.id("correctAimMax")).getText());
-	      } catch (Error e) {
-	        verificationErrors.append(e.toString());
-	      }
+	    
 	    }else
 	    {
-	    	 try {
+	    
 	    		 if(Mtype=="frequence")
 	    		 {
 	    			 assertEquals(Dct, driver.findElement(By.xpath("//*[@id='recordFloorTR']/td[2]")).getText());
@@ -442,65 +386,24 @@ public class TestSuit_002 implements SauceOnDemandSessionIdProvider {
 	 	       assertEquals(AAMx, driver.findElement(By.id("correctAimMax")).getText());
 	 	       assertEquals(ADMi, driver.findElement(By.id("incorrectAimMin")).getText());
 	 	       assertEquals(ADMx, driver.findElement(By.id("incorrectAimMax")).getText());
-	 	      } catch (Error e) {
-	 	        verificationErrors.append(e.toString());
-	 	      }
+	 	    
 	    	
 	    }
-	    
 	    driver.findElement(By.cssSelector(".btn.btn-next.btn-success")).click();
-	    
-	    Thread.sleep(3000);
+	    Thread.sleep(2000);
 	    int CountPin= driver.findElements(By.xpath("//*[@id='app-main']/div[2]/div[2]/div[2]/div")).size();
 
-	    try{  
-	    	  assertEquals("-"+PinName, driver.findElement(By.xpath("//*[@id='app-main']/div[2]/div[2]/div[2]/div["+CountPin+"]/a/div/div/div[1]/h2")).getText());
-	    }catch (Error e)
-	    {
-	    	verificationErrors.append(e.toString());
-	    }
+	    
+	    	  assertEquals(PinName, driver.findElement(By.xpath("//*[@id='app-main']/div[2]/div[2]/div[2]/div["+CountPin+"]/a/div/div/div[1]/h2")).getText());
 	
-	 //   driver.quit();
+	 if(c==16)
+	 {
+		 driver.quit();
+	 }
   } //for loop end
   } // end of test
    
-  // Methode GetValue is used to read the data from the excel sheet
-  	 private String[][] GetValue(String Pathfile, String sheetName, int startrow) throws IOException{
-	  File excel= new File(Pathfile);
-	  FileInputStream fis = new FileInputStream(excel);
-	  @SuppressWarnings("resource")
-	XSSFWorkbook wb = new XSSFWorkbook(fis);
-	  XSSFSheet ws = wb.getSheet(sheetName);
-	  int colNum = ws.getRow(startrow).getLastCellNum();
-	  String [][] arrays = new String [1][colNum];
-	  for(int i=0;i<colNum;i++){
-		  XSSFRow row= ws.getRow(startrow);
-		  XSSFCell cell = row.getCell(i);
-		  arrays[0][i] = cellToString(cell);
-		 // System.out.println(arrays[0][i]);
-	  }
-	  return arrays;
-  }
-  private String cellToString(XSSFCell cell) {
-			Object result;
-			int type = cell.getCellType();
-	
-			switch(type)
-			{
-			case 0:
-				result = cell.getNumericCellValue();
-				break;
-			case 1:
-				result = cell.getStringCellValue();
-				break;
-			default:
-				throw new RuntimeException("there are no support for this type of cell");
-			}
-			
-			return result.toString();
-
-	}
-
+ 
     /**
      * Closes the {@link WebDriver} session.
      *

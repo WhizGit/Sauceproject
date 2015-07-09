@@ -54,7 +54,7 @@ public class TestSuit_001 implements SauceOnDemandSessionIdProvider {
 	/*	String[][] SauceInfo = GetValue(Pathofexcel,"signup",11);
 	String SauceUser = SauceInfo[0][0];
 	String SauceAccessKey = SauceInfo[0][1];*/
-    public SauceOnDemandAuthentication authentication = new SauceOnDemandAuthentication("TestingAutomate", "189a089e-07f7-4a79-ac18-b8082be2fa72");
+    public SauceOnDemandAuthentication authentication = new SauceOnDemandAuthentication("TestingAuto", "11d6c831-6e67-4978-936f-3709d55aa962");
 
     @Rule
     public SauceOnDemandTestWatcher resultReportingTestWatcher = new SauceOnDemandTestWatcher(this, authentication);
@@ -105,25 +105,46 @@ public class TestSuit_001 implements SauceOnDemandSessionIdProvider {
 	@Test
 	public void testA_CreateAnOrganisation() throws Exception {
 //--------------------------------------------------Create An Organization---------------------------------------------------------------//	  
+    String[][] getit = CommonMethod.GetValue(Pathofexcel,"signup",2);
+	
+	 
+	 baseUrl = getit[0][0]; 
+	 Fullname = getit[0][1]; 
+	 Email= getit[0][2];  
+	 Password=getit[0][3];
+	 Orgname=getit[0][4];
+	 Type = getit[0][5];
+	  System.out.println(Type);
+	  
     driver.get("http://"+baseUrl + "/");
     driver.findElement(By.name("fullname")).clear();
     driver.findElement(By.name("fullname")).sendKeys(Fullname);
     driver.findElement(By.name("email")).clear();
     driver.findElement(By.name("email")).sendKeys(Email);
-	WebElement emailid = driver.findElement(By.name("email"));
+    WebElement emailid = driver.findElement(By.name("email"));
     String id = emailid.getAttribute("value");
     driver.findElement(By.name("password")).clear();
     driver.findElement(By.name("password")).sendKeys(Password);
+    if(Type.equalsIgnoreCase("Organization"))
+    {
+    driver.findElement(By.xpath("//label")).click();
+    Thread.sleep(5000);
     driver.findElement(By.name("orgName")).clear();
     driver.findElement(By.name("orgName")).sendKeys(Orgname);
-    driver.findElement(By.xpath("//button[@type='submit']")).click(); 
-    String msg = driver.findElement(By.xpath("//form/div/div")).getText();
-    System.out.println("//@@##--------------Email Verification Message----------------##@@// ");
-    System.out.println(msg);
-	String del = " ";
-    String[] temps= msg.split(del);
-    System.out.println(temps[9]);
-     assertEquals(temps[9], id+".") ;
+    }else
+    {
+    driver.findElement(By.xpath("//label[2]")).click();
+    }
+    driver.findElement(By.xpath("//button[@type='submit']")).click();
+    
+    
+    	String msg = driver.findElement(By.xpath("//form/div/div")).getText();
+    	String del = " ";
+    	String[] temps= msg.split(del);
+    	System.out.println(temps[9]);
+      assertEquals(temps[9], id) ;
+  
+    /*
 	  driver.get("https://accounts.google.com/ServiceLogin?sacu=1&scc=1&continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&hl=en&service=mail");
     driver.findElement(By.id("Email")).clear();
     driver.findElement(By.id("Email")).sendKeys("testingapptrial@gmail.com");
@@ -160,6 +181,7 @@ public class TestSuit_001 implements SauceOnDemandSessionIdProvider {
     assertEquals("Dashboard", db);
     System.out.println("//--------------------After the reset password & signin it open--------------------//");
     System.out.println(db);
+	*/
 	 
 	}
 	@Ignore
@@ -229,45 +251,6 @@ public class TestSuit_001 implements SauceOnDemandSessionIdProvider {
     System.out.println(db);
   }
   
-  
-	 private String[][] GetValue(String Pathfile, String sheetName, int startrow) throws IOException{
-	  File excel= new File(Pathfile);
-	  FileInputStream fis = new FileInputStream(excel);
-	  @SuppressWarnings("resource")
-	XSSFWorkbook wb = new XSSFWorkbook(fis);
-	  XSSFSheet ws = wb.getSheet(sheetName);
-	  int colNum = ws.getRow(startrow).getLastCellNum();
-	  String [][] arrays = new String [1][colNum];
-	  for(int i=0;i<colNum;i++){
-		  XSSFRow row= ws.getRow(startrow);
-		  XSSFCell cell = row.getCell(i);
-		  arrays[0][i] = cellToString(cell);
-		 // System.out.println(arrays[0][i]);
-	  }
-	  return arrays;
-  }
-  private static String cellToString(XSSFCell cell) {
-		
-		Object result;
-		int type = cell.getCellType();
-		switch(type)
-		{
-		case 0:
-			result = cell.getNumericCellValue();
-			break;
-		case 1:
-			result = cell.getStringCellValue();
-			break;
-		default:
-			throw new RuntimeException("there are no support for this type of cell");
-		}
-		return result.toString();
-
-}
- 
-
- 
-
   private String closeAlertAndGetItsText() {
     try {
       Alert alert = driver.switchTo().alert();
